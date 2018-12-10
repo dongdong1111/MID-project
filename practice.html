@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8">
+        <title>layuiAdmin std - 通用后台管理模板系统（iframe标准版）</title>
+        <meta name="renderer" content="webkit">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <link rel="stylesheet" href="media/plugins/layui/css/layui.css" media="all">
+        <link rel="stylesheet" href="media/plugins/layui/css/admin.css" media="all">
+      <style>
+        .layui-layer-adminRight{
+          opacity: 0;
+        }
+      </style>
+</head>
+
+<!-- <table class="layui-hide" id="test"></table> -->
+<!-- <table id="demo" lay-filter="test"></table> -->
+
+
+
+
+
+<body>
+        <!-- <div class="layui-tab" lay-filter="demo" lay-allowclose="true">
+            <ul class="layui-tab-title">
+                <li class="layui-this" lay-id="11">网站设置</li>
+                <li lay-id="22">用户管理</li>
+                <li lay-id="33">权限分配</li>
+                <li lay-id="44">商品管理</li>
+                <li lay-id="55">订单管理</li>
+            </ul>
+        <div class="site-demo-button" style="margin-bottom: 0;">
+            <button class="layui-btn site-demo-active" data-type="tabAdd" id="getTime">新增Tab项</button>  
+            <button class="layui-btn site-demo-active" data-type="tabDelete">删除：商品管理</button>
+            <button class="layui-btn site-demo-active" data-type="tabChange">切换到：用户管理</button> 
+                     
+       </div>
+    </div> -->
+        <!-- 带删除的选项卡 -->
+    <!-- <div class="layui-tab" lay-allowClose="true">
+            <ul class="layui-tab-title">
+              <li class="layui-this">网站设置</li>
+              <li>用户基本管理</li>
+              <li>权限分配</li>
+              <li>全部历史商品管理文字长一点试试</li>
+              <li>订单管理</li>
+            </ul>
+            <div class="layui-tab-content">
+              <div class="layui-tab-item layui-show">1</div>
+              <div class="layui-tab-item">2</div>
+              <div class="layui-tab-item">3</div>
+              <div class="layui-tab-item">4</div>
+              <div class="layui-tab-item">5</div>
+              <div class="layui-tab-item">6</div>
+            </div>
+          </div> -->
+          
+          <!-- 切换选项卡对应相应内容 -->
+      <!-- <div class="layui-tab" >
+              <ul class="layui-tab-title">
+                <li class="layui-this">文章列表</li>
+                <li lay-id="222">发送信息</li>
+                <li lay-id="333">权限分配</li>
+                <li lay-id="444">审核</li>
+                <li lay-id="555">订单管理</li>
+              </ul>
+              <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show">1</div>
+                <div class="layui-tab-item">2</div>
+                <div class="layui-tab-item">3</div>
+                <div class="layui-tab-item">4</div>
+                <div class="layui-tab-item">5</div>
+              </div>
+          </div> -->
+
+          <ul class="layui-nav layui-nav-tree" lay-filter="test">
+              <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
+                <!-- <li class="layui-nav-item layui-nav-itemed">
+                  <a href="javascript:;">默认展开</a>
+                  <dl class="layui-nav-child">
+                    <dd><a href="javascript:;">选项1</a></dd>
+                    <dd><a href="javascript:;">选项2</a></dd>
+                    <dd><a href="">跳转</a></dd>
+                  </dl>
+                </li>
+                <li class="layui-nav-item">
+                  <a href="javascript:;">解决方案</a>
+                  <dl class="layui-nav-child">
+                    <dd><a href="">移动模块</a></dd>
+                    <dd><a href="">后台模版</a></dd>
+                    <dd><a href="">电商平台</a></dd>
+                  </dl>
+                </li>
+                <li class="layui-nav-item"><a href="">产品</a></li>
+                <li class="layui-nav-item"><a href="">大数据</a></li>
+              </ul>
+              <ul class="layui-nav">
+                  <li class="layui-nav-item">
+                      <a href="">控制台<span class="layui-badge">9</span></a>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="">我</a>
+                        <dl class="layui-nav-child">
+                          <dd><a href="javascript:;">修改信息</a></dd>
+                          <dd><a href="javascript:;">安全管理</a></dd>
+                          <dd><a href="javascript:;">退了</a></dd>
+                        </dl>
+                      </li> -->
+              </ul>
+              
+
+              <div class="site-demo-button" id="layerDemo">
+                
+                <button data-method="setTop" class="layui-btn">多窗口模式，层叠置顶</button>
+                <button data-method="confirmTrans" class="layui-btn">配置一个透明的询问框</button>
+                <button data-method="notice" class="layui-btn">示范一个公告层</button>
+                <!-- <button data-method="offset" data-type="t" class="layui-btn layui-btn-normal">上弹出</button> -->
+                <button data-method="offset" data-type="r" class="layui-btn ">右弹出</button>
+                <!-- <button data-method="offset" data-type="b" class="layui-btn layui-btn-normal">下弹出</button>
+                <button data-method="offset" data-type="l" class="layui-btn layui-btn-normal">左弹出</button>
+                <button data-method="offset" data-type="lt" class="layui-btn layui-btn-normal">左上弹出</button>
+                <button data-method="offset" data-type="lb" class="layui-btn layui-btn-normal">左下弹出</button>
+                <button data-method="offset" data-type="rt" class="layui-btn layui-btn-normal">右上弹出</button>
+                <button data-method="offset" data-type="rb" class="layui-btn layui-btn-normal">右下弹出</button>
+                <button data-method="offset" data-type="auto" class="layui-btn layui-btn-normal">居中弹出</button> -->
+              </div>
+
+                
+              <div class="layui-layer layui-layer-page layui-anim layui-anim-rl layui-layer-adminRight" id="layui-layer28" type="page" times="28" showtime="0" contype="string" style="z-index: 19891042; width: 300px; top: 25px; left: 1620px;">
+                <div class="layui-card-header">配色方案</div>
+              </div>
+        
+              <input id="btnClose" type="button" value="关闭本页" onClick="custom_close()" />
+
+<script src="media/plugins/layui/layui.js" charset="utf-8"></script>
+<script src="media/js/jquery1.9.1.js"></script>
+<script>
+    
+        // button按钮新增tab页
+
+
+        // layui.use('element', function(){
+        //    var $ = layui.jquery,
+        //   element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+          
+        //   var active = {
+        //     tabAdd: function(){
+        //       //新增一个Tab项
+        //       element.tabAdd('demo', {
+        //         title: '新增加'+ (Math.random()*1000|0) //用于演示
+        //         ,content: '网站设置'+ (Math.random()*1000|0)
+        //         ,id: '11' //实际使用一般是规定好的id，这里以时间戳模拟下
+        //       })
+        //     }
+        //     ,tabDelete: function(othis){
+        //       //删除指定Tab项
+        //       element.tabDelete('demo', '44'); //删除：“商品管理”
+              
+              
+        //       othis.addClass('layui-btn-disabled');
+        //     }
+        //     ,tabChange: function(){
+        //       //切换到指定Tab项
+        //       element.tabChange('demo', '22'); //切换到：用户管理
+        //     }
+        //   }; 
+        //   $('.site-demo-active').on('click', function(){
+        //     var othis = $(this), type = othis.data('type');
+        //     active[type] ? active[type].call(this, othis) : '';
+        //   });
+        // });
+
+          //切换选项卡 对应相关内容的js
+
+  //       layui.use('element', function(){
+  //       var element = layui.element;
+  
+  // //获取hash来切换选项卡，假设当前地址的hash为lay-id对应的值
+  //       // var layid = location.hash.replace(/^#test1=/, '');
+  //       // element.tabChange('test1', layid); //假设当前地址为：http://a.com#test1=222，那么选项卡会自动切换到“发送消息”这一项
+  
+  // //监听Tab切换，以改变地址hash值
+  //       element.on('tab(test)', function(){
+  //       location.hash = 'test='+ this.getAttribute('lay-id');
+  //       });
+  //     });
+        
+
+        //新增tab页没有实现
+
+        // layui.use('element',function(){
+        //   var element = layui.element;
+        //   element.tabAdd('demo',{
+        //     title:'文章列表',
+        //     content:'发送消息',
+        //     id:'222'
+        //   });
+        //   location.hash = 'demo=' + this.getAttribute('lay-id')
+        // });
+
+
+            // layui.use('table', function(){
+            //   var table = layui.table;
+
+            //   //第一个实例
+            //   table.render({
+            //     elem: '#demo'
+            //     ,height: 312
+            //     ,url: './data.json' //数据接口
+            //     ,page: true //开启分页
+            //     ,cols: [[ //表头
+            //       {field: 'id', title: 'ID', width:80, sort: true, fixed: 'left'}
+            //       ,{field: 'username', title: '用户名', width:80}
+            //       ,{field: 'sex', title: '性别', width:80, sort: true}
+            //       ,{field: 'city', title: '城市', width:80} 
+            //       ,{field: 'sign', title: '签名', width: 177}
+            //       ,{field: 'experience', title: '积分', width: 80, sort: true}
+            //       ,{field: 'score', title: '评分', width: 80, sort: true}
+            //       ,{field: 'classify', title: '职业', width: 80}
+            //       ,{field: 'wealth', title: '财富', width: 135, sort: true}
+            //     ]]
+            //   });
+
+            //   });
+
+
+layui.use('layer', function(){ //独立版的layer无需执行这一句
+  var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
+  
+  //触发事件
+  var active = {
+    // setTop: function(){
+    //   var that = this; 
+    //   //多窗口模式，层叠置顶
+    //   layer.open({
+    //     type: 2 //此处以iframe举例
+    //     ,title: '当你选择该窗体时，即会在最顶端'
+    //     ,area: ['390px', '260px']
+    //     ,shade: 0
+    //     ,maxmin: true
+    //     ,offset: [ //为了演示，随机坐标
+    //       Math.random()*($(window).height()-300)
+    //       ,Math.random()*($(window).width()-390)
+    //     ] 
+    //     ,content: '//layer.layui.com/test/settop.html'
+    //     ,btn: ['继续弹出', '全部关闭'] //只是为了演示
+    //     ,yes: function(){
+    //       $(that).click(); 
+    //     }
+    //     ,btn2: function(){
+    //       layer.closeAll();
+    //     }
+        
+    //     ,zIndex: layer.zIndex //重点1
+    //     ,success: function(layero){
+    //       layer.setTop(layero); //重点2
+    //     }
+    //   });
+    // }
+    // confirmTrans: function(){
+    //   //配置一个透明的询问框
+    //   layer.msg('大部分参数都是可以公用的<br>合理搭配，展示不一样的风格', {
+    //     time: 20000, //20s后自动关闭
+    //     btn: ['明白了', '知道了', '哦']
+    //   });
+    // }
+    // ,notice: function(){
+    //   //示范一个公告层
+    //   layer.open({
+    //     type: 1
+    //     ,title: false //不显示标题栏
+    //     ,closeBtn: false
+    //     ,area: '300px;'
+    //     ,shade: 0.8
+    //     ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
+    //     ,btn: ['火速围观', '残忍拒绝']
+    //     ,btnAlign: 'c'
+    //     ,moveType: 1 //拖拽模式，0或者1
+    //     ,content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">你知道吗？亲！<br>layer ≠ layui<br><br>layer只是作为Layui的一个弹层模块，由于其用户基数较大，所以常常会有人以为layui是layerui<br><br>layer虽然已被 Layui 收编为内置的弹层模块，但仍然会作为一个独立组件全力维护、升级。<br><br>我们此后的征途是星辰大海 ^_^</div>'
+    //     ,success: function(layero){
+    //       var btn = layero.find('.layui-layer-btn');
+    //       btn.find('.layui-layer-btn0').attr({
+    //         href: 'http://www.layui.com/'
+    //         ,target: '_blank'
+    //       });
+    //     }
+    //   });
+    // }
+    offset: function(othis){
+      var type = othis.data('type')
+      ,text = othis.text();
+      
+      layer.open({
+        type: 1
+        ,offset: type //具体配置参考：http://www.layui.com/doc/modules/layer.html#offset
+        ,id: 'layerDemo'+type //防止重复弹出
+        ,content: '<div style="padding: 100px;">你寄吃的撒你问</div>'
+        // ,btn: '关闭全部'
+        // ,btnAlign: 'c' //按钮居中
+        ,shade: 0 //不显示遮罩
+        ,yes: function(){
+          layer.closeAll();
+        }
+      });
+    }
+  };
+  
+  $('#layerDemo .layui-btn').on('click', function(){
+    var othis = $(this), method = othis.data('method');
+    active[method] ? active[method].call(this, othis) : '';
+  });
+  
+});
+
+function custom_close(){
+if 
+(confirm("您确定要关闭本页吗？")){
+window.opener=null;
+window.open('','_self');
+window.close();
+}
+else{}
+}
+
+
+
+</script>
+</body>
+  
+</html>
