@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>铸造工件报表</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all">
+    <script src="../../plugins/layui/layui.js"></script>
+    <script src="../../media/js/echarts.js"></script>
+    <script src="../../media/js/jquery-1.10.1.min.js"></script>
+</head>
+<body>
+<div class="layui-form layui-form-pane">
+    <br>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">车间：</label>
+            <div class="layui-input-inline">
+                <select name="">
+                    <option value=""></option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">生产线：</label>
+            <div class="layui-input-inline">
+                <select name="">
+                    <option value=""></option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">产品型号：</label>
+            <div class="layui-input-inline">
+                <select name="">
+                    <option value=""></option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">失效模式：</label>
+            <div class="layui-input-inline">
+                <select name="">
+                    <option value=""></option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">开始日期：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="date" id="date" value="" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">截止日期：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="date1" id="date1" value="" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <button class="layui-btn layui-btn-normal" type="button"><i class="layui-icon"></i>查询</button>
+        </div>
+    </div>
+    <br>
+</div>
+<br>
+<div style="float: left">
+    <table class="layui-hide" id="test" lay-filter="test"></table>
+</div>
+<div id="echart1" style="height: 350px; width: 80% "></div>
+</body>
+<script>
+    layui.use(['element', 'table', 'laydate', 'laypage'], function () {
+        var element = layui.element;
+        var table = layui.table;
+        var laydate = layui.laydate;
+        //日期
+        laydate.render({
+            elem: '#date'
+        });
+        laydate.render({
+            elem: '#date1'
+        });
+        //监听表格复选框选择
+        table.on('checkbox(demo)', function (obj) {
+            console.log(obj)
+        });
+
+        //监听工具条
+        table.on('tool(demo)', function (obj) {
+            var data = obj.data;
+            if (obj.event === 'detail') {
+                parent.layer.msg('ID：' + data.id + ' 的查看操作');
+            } else if (obj.event === 'del') {
+                parent.layer.confirm('真的删除行么', function (index) {
+                    obj.del();
+                    layer.close(index);
+                });
+            } else if (obj.event === 'edit') {
+                parent.layer.alert('编辑行：<br>' + JSON.stringify(data))
+            }
+        });
+        table.render({
+            elem: "#test"
+            , id: 'ftt-table-id'
+            , url: '../../datas/reportData/makedplato.json'
+            , cols: [[
+                {field: 'value1', width: 80, title: '序号', event: ''}
+                , {field: 'value2',  title: '车间', event: ''}
+                , {field: 'value3',  title: '生产线', event: ''}
+                , {field: 'value4',  title: '产品型号', event: ''}
+                , {field: 'value5',  title: '失效模式', event: ''}
+                , {field: 'value10',  title: '失效数量', event: ''}
+
+            ]]
+        });
+
+    });
+</script>
+<script>
+    var Myechart1 = echarts.init(document.getElementById("echart1"));
+    option1 = {
+        title: {
+            text: 'NE12TG-AA缺陷的Pareto图',
+            x: 'center',
+            top: '20'
+        },
+        color: ['green', 'red', 'blue', '#ffd454', '#ffa361', '#d1d1d1'],
+        toolbox: {
+            feature: {
+                dataView: {show: true, readOnly: false},
+                magicType: {show: true, type: ['line', 'bar']},
+                restore: {show: true},
+                saveAsImage: {show: true}
+            }
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            top: '7%',
+            data: ['', '']
+        },
+        grid: {
+            top: '18%',
+            left: '5%',
+            right: '0%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis: {
+            type: 'category',
+            axisLabel: {
+                show: true,
+                interval: 0//横轴信息全部显示
+            },
+            axisLine:{
+                show: false
+            },
+            data: ['断芯', '冷隔', '其它', '掉砂', '划破伤', '拉伤', '冲网', '其他']
+        },
+        yAxis: [{
+            name: '缺陷数量',
+            type: 'value',
+            axisLabel: {
+                formatter: '{value}'
+            }
+        },
+            {
+                name: '百分比',
+                /*min: 0,
+                max: 80,
+                interval: 10,*/
+                type: 'value',
+                axisLabel: {
+                    formatter: function (value, index) {
+                        var vv = value.toFixed(2);
+                        return vv + '%';
+                    }
+                }
+            }
+        ],
+        series: [
+            {
+                name: '',
+                type: 'bar',
+                data: [253, 194, 68, 55, 32, 31,27,14],
+                barWidth: '30',
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'top'
+                    }
+                }
+            },
+            {
+                name: '',
+                type: 'line',
+                data: [37.5,66.3,76.4,84.6,89.3,93.9,97.9,100],
+                barWidth: '30',
+                yAxisIndex: 1,
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'top'
+                    }
+                }
+            }
+
+        ]
+    };
+    Myechart1.setOption(option1);
+</script>
+</body>
+</html>

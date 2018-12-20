@@ -1,0 +1,69 @@
+{
+  "code": 0,
+  "msg": "",
+  "count": 1,
+  "data": [
+    {
+      "value1": "H15TG-AA",
+      "value2": "JL476ZQCF-J",
+      "value3": "306",
+      "value4": "200",
+      "value5": "506"
+    },
+    {
+      "value1": "H15TG-AA",
+      "value2": "JL476ZQCF-B",
+      "value3": "",
+      "value4": "200",
+      "value5": "200"
+    },{
+      "value1": "H15TG-AA",
+      "value2": "JL476ZQCF-C",
+      "value3": "",
+      "value4": "",
+      "value5": "0"
+    },{
+      "value1": "H16EB",
+      "value2": "JL478QEN-B",
+      "value3": "11",
+      "value4": "",
+      "value5": "11"
+    },{
+      "value1": "H16EB",
+      "value2": "JL478QEN-C",
+      "value3": "",
+      "value4": "400",
+      "value5": "400"
+    },{
+      "value1": "H16EB",
+      "value2": "JL478QEN-J",
+      "value3": "",
+      "value4": "",
+      "value5": "0"
+    },{
+      "value1": "H16B",
+      "value2": "JL478QEE-AH",
+      "value3": "110",
+      "value4": "300",
+      "value5": "410"
+    },{
+      "value1": "H16B",
+      "value2": "JL478QEE-AE",
+      "value3": "",
+      "value4": "",
+      "value5": "0"
+    },{
+      "value1": "H16B",
+      "value2": "JL478QEE-AF",
+      "value3": "200",
+      "value4": "",
+      "value5": "200"
+    },{
+      "value1": "合计",
+      "value2": "合计",
+      "value3": "627",
+      "value4": "1100",
+      "value5": "1727"
+    }
+  ]
+}

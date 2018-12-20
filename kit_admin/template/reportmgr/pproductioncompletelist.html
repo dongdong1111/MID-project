@@ -1,0 +1,168 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>table模块快速使用</title>
+    <link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all">
+</head>
+
+<body>
+    
+    <form class="layui-form layui-form-pane" action="" style="margin-top:20px;">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">工厂：</label>
+                <div class="layui-input-block">
+                    <select name="interest" lay-filter="aihao">
+                        <option value="0">一工厂</option>
+                        <option value="1" selected="">三工厂</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">生 产 线：</label>
+                <div class="layui-input-block">
+                    <select name="interest" lay-filter="aihao">
+                        <option value="0">H5总装</option>
+                        <option value="1" selected="">H5机加</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">工    位：</label>
+                <div class="layui-input-block">
+                    <select name="interest" lay-filter="aihao">
+                        <option value="0">OE043</option>
+                        <option value="1" selected="">OE002</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">开始日期：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="date" id="date" value="2017-12" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">截止日期：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="date1" id="date1" value="2017-12" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+             <div class="layui-inline">
+                <button class="layui-btn layui-btn-normal" type="button"><i class="layui-icon">&#xe615;</i>搜索</button>
+                <button class="layui-btn layui-btn-normal" type="button"><i class="layui-icon">&#xe601;</i>导出</button>
+            </div>
+        </div>
+
+    </form>
+    <div>
+        <table class="layui-table" lay-data="{ url:'../../datas/pproductioncompletelist_day.json', page:false, id:'test'}" lay-filter="test" id="test">
+        <thead>
+            <tr>
+                <th lay-data="{field:'f1'}">时间</th>
+                <th lay-data="{field:'f2'}">2017/12/1</th>
+                <th lay-data="{field:'f3'}">2017/12/2</th>
+                <th lay-data="{field:'f4'}">2017/12/3</th>
+                <th lay-data="{field:'f5'}">2017/12/4</th>
+                <th lay-data="{field:'f6'}">2017/12/5</th>
+                <th lay-data="{field:'f7'}">2017/12/6</th>
+                <th lay-data="{field:'f8'}">2017/12/7</th>
+                <th lay-data="{field:'f9'}">2017/12/8</th>
+                <th lay-data="{field:'f10'}">2017/12/9</th>
+                <th lay-data="{field:'f11'}">2017/12/10</th>
+                <th lay-data="{field:'f12'}">2017/12/11</th>
+                <th lay-data="{field:'f13'}">2017/12/12</th>
+                <th lay-data="{field:'f14'}">2017/12/13</th>
+                <th lay-data="{field:'f15'}">2017/12/14</th>
+                <th lay-data="{field:'f16'}">2017/12/15</th>
+                <th lay-data="{field:'f17'}">2017/12/16</th>
+                <th lay-data="{field:'f18'}">2017/12/17</th>
+                <th lay-data="{field:'f19'}">2017/12/18</th>
+                <th lay-data="{field:'f20'}">2017/12/19</th>
+                <th lay-data="{field:'f21'}">2017/12/20</th>
+                <th lay-data="{field:'f22'}">2017/12/21</th>
+                <th lay-data="{field:'f24'}">2017/12/22</th>
+                <th lay-data="{field:'f25'}">2017/12/23</th>
+                <th lay-data="{field:'f26'}">2017/12/24</th>
+                <th lay-data="{field:'f27'}">2017/12/25</th>
+                <th lay-data="{field:'f28'}">2017/12/26</th>
+                <th lay-data="{field:'f29'}">2017/12/27</th>
+                <th lay-data="{field:'f30'}">2017/12/28</th>
+                <th lay-data="{field:'f31'}">2017/12/29</th>
+                <th lay-data="{field:'f32'}">2017/12/30</th>
+                <th lay-data="{field:'f33'}">2017/12/31</th>
+            </tr>
+        </thead>
+    </table>
+    </div>
+    
+    <div style="float: left;">
+        <table class="layui-table" lay-data="{ url:'../../datas/pproductioncompletelist_week.json', page:false, id:'test',width:500}" lay-filter="test" id="Table1">
+            <thead>
+                <tr>
+                    <th lay-data="{field:'f1'}">时间</th>
+                    <th lay-data="{field:'f2'}">第48周</th>
+                    <th lay-data="{field:'f3'}">第49周/12/2</th>
+                    <th lay-data="{field:'f4'}">第50周</th>
+                    <th lay-data="{field:'f5'}">第51周/12/2</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <div style="float: left;margin-left:10px;">
+        <table class="layui-table" lay-data="{ url:'../../datas/pproductioncompletelist_year.json', page:false, id:'test',width:300}" lay-filter="test" id="Table2">
+            <thead>
+                <tr>
+                    <th lay-data="{field:'f1'}">时间</th>
+                    <th lay-data="{field:'f2'}">12月</th>
+
+                </tr>
+            </thead>
+        </table>
+    </div>
+
+    <img src="../../reportimage/pproductioncompletelist.png" style="width: 1130px;" />
+    <img src="../../reportimage/pordercompletelist.png" style="width: 1130px;" />
+    <script src="../../plugins/layui/layui.js"></script>
+    <script type="textml" id="barDemo">
+                    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    </script>
+
+    <script>
+        layui.use(['table', 'laydate'], function () {
+            var table = layui.table;
+            laydate = layui.laydate;
+            table.render({
+                cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            });
+            table.on('tool(test)', function (obj) {
+                var data = obj.data;
+                if (obj.event === 'detail') {
+                    layer.msg('ID：' + data.id + ' 的查看操作');
+                } else if (obj.event === 'del') {
+                    layer.confirm('真的删除行么', function (index) {
+                        obj.del();
+                        layer.close(index);
+                    });
+                } else if (obj.event === 'edit') {
+                    layer.alert('编辑行：<br>' + JSON.stringify(data))
+                }
+            });
+            //日期
+            laydate.render({
+                elem: '#date'
+            });
+            laydate.render({
+                elem: '#date1'
+            });
+
+        });
+    </script>
+</body>
+
+</html>

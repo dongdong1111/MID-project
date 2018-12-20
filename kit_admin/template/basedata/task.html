@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>任务管理</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all">
+    <script src="../../plugins/layui/layui.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="layui-form layui-form-pane">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">工&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;厂：</label>
+                <div class="layui-input-inline">
+                    <select name="">
+                        <option value="">NE1发动机工厂</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">车&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;间：</label>
+                <div class="layui-input-inline">
+                    <select name="">
+                        <option value="">机总八</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">生产线：</label>
+                <div class="layui-input-inline">
+                    <select name="">
+                        <option value="">NE1总装生产线</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">任务标题：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="" value="" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">开始日期：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="date" id="date" value="" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">截止日期：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="date1" id="date1" value="" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-inline">
+                <button class="layui-btn layui-btn-normal" type="button"><i class="layui-icon"></i>查询</button>
+            </div>
+        </div>
+
+        <table class="layui-hide" id="test2" lay-filter="demo"></table>
+
+    </div>
+</div>
+<script type="textml" id="barDemo">
+        <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="edit">执行</a>
+       <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="del">撤销</a>
+       <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="finish">完成</a>
+</script>
+<script>
+    layui.use(['element', 'table', 'laydate'], function () {
+        var element = layui.element;
+        var table = layui.table;
+        var laydate = layui.laydate;
+
+        laydate.render({
+            elem: '#date'
+            ,type: 'datetime'
+        });
+        laydate.render({
+            elem: '#date1'
+            ,type: 'datetime'
+        });
+        //监听表格复选框选择
+        table.on('checkbox(demo)', function (obj) {
+            console.log(obj)
+        });
+
+        //监听工具条
+        table.on('tool(demo)', function (obj) {
+            var data = obj.data;
+            if (obj.event === 'detail') {
+                layer.msg('ID：' + data.id + ' 的查看操作');
+            } else if (obj.event === 'del') {
+                layer.confirm('真的删除行么', function (index) {
+                    obj.del();
+                    layer.close(index);
+                });
+            } else if (obj.event === 'edit') {
+                //layer.alert('编辑行：<br>' + JSON.stringify(data))
+                parent.layer.open({
+                    type: 2,
+                    title: '执行',
+                    shadeClose: true,
+                    shade: 0.1,
+                    area: ['35%', '65%'],
+                    content: '/template/basedata/add/dotask.html'
+                });
+            }
+        });
+
+        table.render({
+            elem: "#test2"
+            , id: 'ftt-table-id'
+            , url: '../../datas/task.json'
+            , cols: [[
+                {field: 'value1', width: 150, title: '工厂', event: ''}
+                , {field: 'value2', width: 100, title: '车间', event: ''}
+                , {field: 'value3', width: 150, title: '生产线', event: ''}
+                , {field: 'value5', width: 150, title: '任务标题', event: ''}
+                , {field: 'value6', width: 100, title: '发布人', event: ''}
+                , {field: 'value7', width: 200, title: '任务优先级', event: ''}
+                , {field: 'value8', width: 200, title: '开始时间', event: ''}
+                , {field: 'value9', width: 200, title: '完成时间', event: ''}
+                , {field: 'value10',  title: '是否已执行', event: ''}
+                , {width: '10%', title: '操作', event: '', toolbar: '#barDemo'}
+            ]]
+        });
+
+        var $ = layui.$, active = {
+            getCheckData: function () { //获取选中数据
+                var checkStatus = table.checkStatus('idTest')
+                    , data = checkStatus.data;
+                layer.alert(JSON.stringify(data));
+            }
+            , getCheckLength: function () { //获取选中数目
+                var checkStatus = table.checkStatus('idTest')
+                    , data = checkStatus.data;
+
+                layer.msg('选中了：' + data.length + ' 个');
+            }
+            , isAll: function () { //验证是否全选
+                var checkStatus = table.checkStatus('idTest');
+                checkStatus.isAll = true;
+                layer.msg(checkStatus.isAll ? '全选' : '未全选')
+            }
+        };
+
+        $('#refresh').on('click', function (obj) {
+            //do refresh on  your way
+            location.reload();
+        });
+
+    });
+</script>
+</body>
+</html>

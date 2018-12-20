@@ -1,0 +1,279 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>table模块快速使用</title>
+    <link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all">
+</head>
+
+<body>
+
+    <form class="layui-form layui-form-pane" action="" style="margin-top: 20px;">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">工厂：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="text12" id="text12" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">生 产 线：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="text12" id="text1" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">开始日期：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="date" id="date" value="2017-12-25" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">截止日期：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="date1" id="date1" value="2017-12-26" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+
+            <div class="layui-inline">
+                <button class="layui-btn layui-btn-normal" type="button"><i class="layui-icon">&#xe615;</i>搜索</button>
+                <button class="layui-btn layui-btn-normal" type="button"><i class="layui-icon">&#xe601;</i>导出</button>
+            </div>
+        </div>
+    </form>
+    <table width="100%">
+        <tr>
+            <td>
+                <div id="echart_1" style="height: 300px; width: 1000px;"></div>
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                <div id="echart_2" style="height: 300px; width: 1000px;"></div>
+            </td>
+        </tr>
+    </table>
+    <script src="../../media/js/echarts.js"></script>
+    <script src="../../plugins/layui/layui.js"></script>
+    <script>
+        var data1 = [50.005, 50.007, 50.009, 50.011, 50.013, 50.015, 50.017, 50.019, 50.020, 50.011, 50.015, 50.009, 50.005, 50.011, 50.009, 50.011, 50.013, 50.015, 50.017, 50.019, 50.017, 50.019, 50.020, 50.011, 50.015, 50.009, 50.005, 50.011, 50.009, 50.009, 50.011, 50.013, 50.015, 50.017, 50.019, 50.020, 50.011, 50.015, 50.009, 50.005, 50.011, 50.009, 50.011, 50.013, 50.015, 50.017, 50.019, 50.017, 50.005, 50.007, 50.009, 50.011, 50.013, 50.015, 50.017, 50.019, 50.020, 50.011, 50.015, 50.009, 50.005, 50.011, 50.009, 50.011, 50.013, 50.015, 50.017, 50.019, 50.017, 50.019, 50.020, 50.011, 50.015, 50.009, 50.005, 50.011, 50.009, 50.009, 50.011, 50.013, 50.015, 50.017, 50.019, 50.020, 50.011, 50.015, 50.009, 50.005, 50.011, 50.009, 50.011, 50.013, 50.015, 50.017, 50.019, 50.017, 50.005, 50.007, 50.009, 50.011, 50.013, 50.015, 50.017, 50.019, 50.020, 50.011, 50.015, 50.009, 50.005, 50.011, 50.009, 50.011, 50.013, 50.015, 50.017, 50.019, 50.017, 50.019, 50.020, 50.011, 50.015, 50.009, 50.005, 50.011, 50.009, 50.009, 50.011, 50.013, 50.015, 50.017, 50.019, 50.020, 50.011, 50.015, 50.009, 50.005, 50.011, 50.009, 50.011, 50.013, 50.015, 50.017, 50.019, 50.017, 50.005, 50.007, 50.009, 50.011, 50.013, 50.015, 50.017, 50.019, 50.020, 50.011, 50.015, 50.009, 50.005, 50.011, 50.009, 50.011, 50.013, 50.015, 50.017, 50.019, 50.017, 50.019, 50.020, 50.011, 50.015, 50.009, 50.005, 50.011, 50.009, 50.009, 50.011, 50.013, 50.015, 50.017, 50.019, 50.020, 50.011, 50.015, 50.009, 50.005, 50.011, 50.009, 50.011, 50.013, 50.015];
+
+        var data3 = [0.005, 0.007, 0.009, 0.011, 0.012, 0.011, 0.007, 0.006, 0.005, 0.004, 0.005, 0.007, 0.009, 0.011, 0.012, 0.011, 0.007, 0.006, 0.005, 0.004, 0.005, 0.007, 0.009, 0.011, 0.012, 0.011, 0.007, 0.006, 0.005, 0.004, 0.005, 0.007, 0.009, 0.011, 0.012, 0.011, 0.007, 0.006, 0.005, 0.004, 0.005, 0.007, 0.009, 0.011, 0.012, 0.011, 0.007, 0.006, 0.005, 0.004, 0.005, 0.007, 0.009, 0.011, 0.012, 0.011, 0.007, 0.006, 0.005, 0.004, 0.005, 0.007, 0.009, 0.011, 0.012, 0.011, 0.007, 0.006, 0.005, 0.004, 0.005, 0.007, 0.009, 0.011, 0.012, 0.011, 0.007, 0.006, 0.005, 0.004, 0.005, 0.007, 0.009, 0.011, 0.012, 0.011, 0.007, 0.006, 0.005, 0.004, 0.005, 0.007, 0.009, 0.011, 0.012, 0.011, 0.007, 0.006, 0.005, 0.004, 0.005, 0.007, 0.009, 0.011, 0.012, 0.011, 0.007, 0.006, 0.005, 0.004, 0.005, 0.007, 0.009, 0.011, 0.012, 0.011, 0.007, 0.006, 0.005, 0.004, 0.005, 0.007, 0.009, 0.011, 0.012, 0.011, 0.007, 0.006, 0.005, 0.004, 0.005, 0.007, 0.009, 0.011, 0.012, 0.011, 0.007, 0.006, 0.005, 0.004, 0.005, 0.007, 0.009, 0.011, 0.012, 0.011, 0.007, 0.006, 0.005, 0.004, 0.005, 0.007, 0.009, 0.011, 0.012, 0.011, 0.007, 0.006, 0.005, 0.004, 0.005, 0.007, 0.009, 0.011, 0.012, 0.011, 0.007, 0.006, 0.005, 0.004, 0.005, 0.007, 0.009, 0.011, 0.012, 0.011, 0.007, 0.006, 0.005, 0.004, 0.005, 0.007, 0.009, 0.011, 0.012, 0.011, 0.007, 0.006, 0.005, 0.004, 0.005, 0.007, 0.009, 0.011, 0.012, 0.011, 0.007, 0.006, 0.005, 0.004, 0.005, 0.007, 0.009, 0.011, 0.012, 0.011, 0.007, 0.006, 0.005, 0.004, 0.005, 0.007, 0.009, 0.011, 0.012, 0.011, 0.007, 0.006, 0.005, 0.004];
+
+        var data2 = [];
+        for (var i = 1; i <= 116; i++) {
+
+            data2.push(i);
+        }
+        var echart_1 = echarts.init(document.getElementById('echart_1'));
+        var option_1 = {
+            title: {
+                text: 'X曲线控制图'
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data: ['X 50.01']
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            toolbox: {
+                feature: {
+                    saveAsImage: {}
+                }
+            },
+            xAxis: {
+                type: 'category',
+                splitNumber:15,
+                data: data2
+            },
+            yAxis: {
+                type: 'value',
+                max: 50.02,
+                min: 50,
+                scale: true,
+                precision: 3,
+                splitNumber: 9,
+                boundaryGap: [0.001, 0.001],
+                splitArea: { show: true }
+            },
+            series: [
+                {
+                    name: 'X',
+                    type: 'line',
+                    stack: '总量',
+                    data: data1,
+                    markLine: {
+                        silent: false,
+                        data: [
+                                [
+                                    {
+                                        name: 'UCL',
+                                        x: 75,
+                                        y: 135
+                                    },
+                                    {
+                                        x: 960,
+                                        y: 135
+                                    }
+                                ],
+                                 [
+                                    {
+                                        name: 'CL',
+                                        x: 75,
+                                        y: 165
+                                    },
+                                    {
+                                        x: 960,
+                                        y: 165
+                                    }
+                                 ],
+                                  [
+                                    {
+                                        name: 'LCL',
+                                        x: 75,
+                                        y: 198
+                                    },
+                                    {
+                                        x: 960,
+                                        y: 198
+                                    }
+                                  ]
+                        ]
+                    }
+                }
+            ]
+        };
+        echart_1.setOption(option_1);
+
+        var echart_2 = echarts.init(document.getElementById('echart_2'));
+
+        var option_2 = {
+            title: {
+                text: 'R曲线控制图'
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data: ['X 50.01']
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            toolbox: {
+                feature: {
+                    saveAsImage: {}
+                }
+            },
+            xAxis: {
+                type: 'category',
+                splitNumber:15,
+                data: data2
+            },
+            yAxis: {
+                type: 'value',
+                max: 0.014,
+                min: 0,
+                scale: true,
+                precision: 3,
+                splitNumber: 9,
+                boundaryGap: [0.002, 0.002],
+                splitArea: { show: true }
+            },
+            series: [
+                {
+                    name: 'X',
+                    type: 'line',
+                    stack: '总量',
+                    data: data3,
+                    markLine: {
+                        silent: false,
+                        data: [
+                                [
+                                    {
+                                        name: 'UCL',
+                                        x: 75,
+                                        y: 135
+                                    },
+                                    {
+                                        x: 960,
+                                        y: 135
+                                    }
+                                ],
+                                 [
+                                    {
+                                        name: 'CL',
+                                        x: 75,
+                                        y: 165
+                                    },
+                                    {
+                                        x: 960,
+                                        y: 165
+                                    }
+                                 ],
+                                  [
+                                    {
+                                        name: 'LCL',
+                                        x: 75,
+                                        y: 198
+                                    },
+                                    {
+                                        x: 960,
+                                        y: 198
+                                    }
+                                  ]
+                        ]
+                    }
+                }
+            ]
+        };
+        echart_2.setOption(option_2);
+    </script>
+
+    <script>
+        layui.use(['table', 'laydate'], function () {
+            var table = layui.table;
+            laydate = layui.laydate;
+            table.render({
+                cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            });
+            table.on('tool(test)', function (obj) {
+                var data = obj.data;
+                if (obj.event === 'detail') {
+                    layer.msg('ID：' + data.id + ' 的查看操作');
+                } else if (obj.event === 'del') {
+                    layer.confirm('真的删除行么', function (index) {
+                        obj.del();
+                        layer.close(index);
+                    });
+                } else if (obj.event === 'edit') {
+                    layer.alert('编辑行：<br>' + JSON.stringify(data))
+                }
+            });
+            //日期
+            laydate.render({
+                elem: '#date'
+            });
+            laydate.render({
+                elem: '#date1'
+            });
+
+        });
+    </script>
+</body>
+
+</html>

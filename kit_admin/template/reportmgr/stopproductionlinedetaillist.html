@@ -1,0 +1,221 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>table模块快速使用</title>
+    <link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all">
+    <style>
+        td {
+            vertical-align: middle;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<form class="layui-form layui-form-pane" action="" style="margin-top: 20px;">
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">生 产 线：</label>
+            <div class="layui-input-block">
+                <select name="interest" lay-filter="aihao">
+                    <option value="0">所有生产线H5</option>
+                    <option value="1" selected="">总装</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">日期：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="date" id="Text1" value="2017-12-25" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">班次：</label>
+            <div class="layui-input-block">
+                <select name="interest" lay-filter="aihao">
+                    <option value="0">1</option>
+                    <option value="1" selected="">2</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <button class="layui-btn layui-btn-normal" type="button"><i class="layui-icon">&#xe615;</i>搜索</button>
+        </div>
+    </div>
+</form>
+<table border="1" cellpadding="2" cellspacing="1" style="border-color: #C1CDCD">
+    <thead>
+    <tr>
+        <th width="5%">选择事件</th>
+        <th width="10%">开始时间</th>
+        <th width="10%">结束时间</th>
+        <th width="10%">事件长度</th>
+        <th width="5%">状态</th>
+        <th width="10%">第一级</th>
+        <th width="10%">第二级</th>
+        <th width="10%">第三级</th>
+        <th width="10%">第四级</th>
+        <th width="15%">注释</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td style="height: 38px;"></td>
+        <td>14:12:44</td>
+        <td></td>
+        <td>1:30:00</td>
+        <td style="background-color: #00FF00;">运转</td>
+        <td>自动化</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>
+            <input type="checkbox" name="like1[read]" lay-skin="primary" title="阅读"></td>
+        <td>13:55:03</td>
+        <td>14:12:44</td>
+        <td>0:17:41</td>
+        <td style="background-color: #CF0000">停线时间</td>
+        <td>过程</td>
+        <td>机器人及程序</td>
+        <td>其他</td>
+        <td></td>
+        <td>端拾器连杆断裂，更换。工间休息10分钟(计划)</td>
+    </tr>
+    <tr>
+        <td style="height: 38px;"></td>
+        <td>14:12:44</td>
+        <td></td>
+        <td>1:30:00</td>
+        <td style="background-color: #00FF00">运转</td>
+        <td>自动化</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>
+            <input type="checkbox" name="like1[read]" lay-skin="primary" title="阅读"></td>
+        <td>13:55:03</td>
+        <td>14:12:44</td>
+        <td>0:17:41</td>
+        <td style="background-color: #9F0000">停线时间</td>
+        <td>过程</td>
+        <td>机器人及程序</td>
+        <td>其他</td>
+        <td></td>
+        <td>端拾器连杆断裂，更换。工间休息10分钟(计划)</td>
+    </tr>
+    <tr>
+        <td style="background-color: #00FF00" colspan="3">自动化</td>
+
+        <td style="background-color: #00FF00">01:49:56</td>
+        <td style="background-color: #00FF00">33%</td>
+        <td colspan="5" style="width: 39px;">
+            <div style="background-color: #00FF00; width: 33%; float: left; height: 38px; border: 0px; padding: 0px; margin: 0px;"></div>
+        </td>
+
+    </tr>
+
+    <tr>
+        <td style="background-color: #CF0000" colspan="3">过程 机器人及程序 其他 端拾器连杆断裂，更换。公间休息10分钟(计划)</td>
+
+        <td style="background-color: #CF0000">00:17:41</td>
+        <td style="background-color: #CF0000">5%</td>
+        <td colspan="5" style="width: 39px;">
+            <div style="background-color: #CF0000; width: 5%; float: left; height: 38px; border: 0px; padding: 0px; margin: 0px;"></div>
+        </td>
+
+    </tr>
+    <tr>
+        <td style="background-color: #9F0000" colspan="3">设备 机器人及程序R5/X3驱动器故障 机械手抖动幅度较大，设备检查</td>
+
+        <td style="background-color: #9F0000">00:08:09</td>
+        <td style="background-color: #9F0000">2%</td>
+        <td colspan="5" style="width: 39px;">
+            <div style="background-color: #9F0000; width: 2%; float: left; height: 38px; border: 0px; padding: 0px; margin: 0px;"></div>
+        </td>
+
+    </tr>
+    <tr>
+        <td style="background-color: #6F0000" colspan="3">设备 机器人及程序R4/X2驱动器故障 连杆螺丝断裂，10:47转C线</td>
+
+        <td style="background-color: #6F0000">03:03:12</td>
+        <td style="background-color: #6F0000">55%</td>
+        <td colspan="5" style="width: 39px;">
+            <div style="background-color: #6F0000; width: 55%; float: left; height: 38px; border: 0px; padding: 0px; margin: 0px;"></div>
+        </td>
+
+    </tr>
+    <tr>
+        <td style="background-color: #4F0000" colspan="3">设备 机器人及程序R4/X2驱动器故障</td>
+
+        <td style="background-color: #4F0000">00:01:41</td>
+        <td style="background-color: #4F0000">1%</td>
+        <td colspan="5" style="width: 39px;">
+            <div style="background-color: #4F0000; width: 1%; float: left; height: 38px; border: 0px; padding: 0px; margin: 0px;"></div>
+        </td>
+
+    </tr>
+    <tr>
+        <td style="background-color: #0000FF" colspan="3">换模标准</td>
+
+        <td style="background-color: #0000FF">00:10:34</td>
+        <td style="background-color: #0000FF">3%</td>
+        <td colspan="5" style="width: 39px;">
+            <div style="background-color: #0000FF; width: 3%; float: left; height: 38px; border: 0px; padding: 0px; margin: 0px;"></div>
+        </td>
+
+    </tr>
+    <tr>
+        <td style="background-color: #C0C0C0" colspan="3">时间总计</td>
+
+        <td style="background-color: #C0C0C0">05:31:13</td>
+        <td style="background-color: #C0C0C0">100%</td>
+        <td colspan="5" style="width: 39px;">
+            <div style="background-color: #C0C0C0; width: 100%; float: left; height: 38px; border: 0px; padding: 0px; margin: 0px;"></div>
+        </td>
+
+    </tr>
+    </tbody>
+</table>
+<script src="../../media/js/echarts.js"></script>
+<script src="../../plugins/layui/layui.js"></script>
+
+<script>
+    layui.use(['table', 'laydate'], function () {
+        var table = layui.table;
+        laydate = layui.laydate;
+        table.render({
+            cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+        });
+        table.on('tool(test)', function (obj) {
+            var data = obj.data;
+            if (obj.event === 'detail') {
+                layer.msg('ID：' + data.id + ' 的查看操作');
+            } else if (obj.event === 'del') {
+                layer.confirm('真的删除行么', function (index) {
+                    obj.del();
+                    layer.close(index);
+                });
+            } else if (obj.event === 'edit') {
+                layer.alert('编辑行：<br>' + JSON.stringify(data))
+            }
+        });
+        //日期
+        laydate.render({
+            elem: '#date'
+        });
+        laydate.render({
+            elem: '#date1'
+        });
+
+    });
+</script>
+</body>
+
+</html>

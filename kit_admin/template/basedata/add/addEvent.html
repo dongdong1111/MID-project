@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>新增事件</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../../../plugins/layui/css/layui.css" media="all">
+    <script src="../../../plugins/layui/layui.js"></script>
+</head>
+<body>
+<div class="container">
+    <form class="layui-form layui-form-pane" action="">
+        <div class="layui-form-item">
+            <label class="layui-form-label">方案名称:</label>
+            <div class="layui-input-block">
+                <select name="value1">
+                    <option vlaue="正常班次">正常班次</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">班次名称:</label>
+            <div class="layui-input-block">
+                <select name="value1">
+                    <option vlaue="一班">一班</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">事件名称:</label>
+            <div class="layui-input-block">
+                <input type="text" name="value2" lay-verify="" autocomplete="off" placeholder=""
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">事件类型:</label>
+            <div class="layui-input-block">
+                <select name="value1">
+                    <option vlaue="休息">休息</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">开始时间:</label>
+            <div class="layui-input-block">
+                <input type="text" name="start" id="start" value="" autocomplete="off" placeholder="时分" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">结束时间:</label>
+            <div class="layui-input-block">
+                <input type="text" name="end" id="end" value="" autocomplete="off" placeholder="时分" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn layui-btn-normal" lay-submit="" lay-filter="demo1">确认</button>
+                <button type="reset" class="layui-btn layui-btn-danger">取消</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    layui.use(['form', 'layedit', 'laydate'], function () {
+        var form = layui.form
+            ,layer = layui.layer
+            ,laydate = layui.laydate;
+
+        laydate.render({
+            elem: '#start'
+            ,type: 'time'
+        });
+        laydate.render({
+            elem: '#end'
+            ,type: 'time'
+        });
+
+        //自定义验证规则
+        form.verify({
+            addLength: function (value) {
+                if (value.length < 5) {
+                    return '标题至少得5个字符啊';
+                }
+            }
+        });
+
+        //监听提交
+        form.on('submit(demo1)', function (data) {
+            layer.alert(JSON.stringify(data.field), {
+                title: '最终的提交信息',
+                shade: 0
+            })
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

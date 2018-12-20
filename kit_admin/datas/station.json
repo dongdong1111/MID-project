@@ -1,0 +1,27 @@
+{
+  "code": 0,
+  "msg": "",
+  "count": 2,
+  "data": [
+    {
+      "value1": "NE1发动机工厂",
+      "value2": "机总八",
+      "value3": "NE1总装生产线",
+      "value4":"WE001",
+      "value5": "111",
+      "value6":"上线",
+      "value7":""
+
+    },
+    {
+      "value1": "NE1发动机工厂",
+      "value2": "机总八",
+      "value3": "NE1总装生产线",
+      "value4":"WE002",
+      "value5": "222",
+      "value6":"刻字",
+      "value7":""
+
+    }
+  ]
+}

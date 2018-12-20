@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>工料废趋势图</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all">
+    <script src="../../plugins/layui/layui.js"></script>
+    <script src="../../media/js/echarts.js"></script>
+    <script src="../../media/js/jquery-1.10.1.min.js"></script>
+
+</head>
+<body>
+<div class="container">
+    <div class="layui-form layui-form-pane">
+        <div class="layui-col-md12">
+            <table class="layui-table"
+                   lay-data="{url:'../../datas/reportData/materialtrendpic.json', page:false, id:'idTest'}"
+                   lay-filter="demo">
+                <thead>
+                <tr>
+                    <th lay-data="{field:'value1',  fixed: true}">时间</th>
+                    <th lay-data="{field:'value2',  fixed: true}">1月第一周</th>
+                    <th lay-data="{field:'value3',  fixed: true}">1月第二周</th>
+                    <th lay-data="{field:'value4',  fixed: true}">1月第三周</th>
+                    <th lay-data="{field:'value5',  fixed: true}">1月第四周</th>
+                    <th lay-data="{field:'value6',  fixed: true}">2月第一周</th>
+                    <th lay-data="{field:'value7',  fixed: true}">2月第二周</th>
+                    <th lay-data="{field:'value8',  fixed: true}">2月第三周</th>
+                    <th lay-data="{field:'value9',  fixed: true}">2月第四周</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+<br>
+<div id="echart1" style="height: 500px; width: 1300px;"></div>
+
+<div id="echart2" style="height: 500px; width: 1300px; margin-top: 200px"></div>
+
+</body>
+<script>
+    layui.use(['element', 'table', 'laydate', 'laypage'], function () {
+        var element = layui.element;
+        var table = layui.table;
+        var laydate = layui.laydate;
+        //日期
+        laydate.render({
+            elem: '#date'
+        });
+        laydate.render({
+            elem: '#date1'
+        });
+        //监听表格复选框选择
+        table.on('checkbox(demo)', function (obj) {
+            console.log(obj)
+        });
+
+        //监听工具条
+        table.on('tool(demo)', function (obj) {
+            var data = obj.data;
+            if (obj.event === 'detail') {
+                parent.layer.msg('ID：' + data.id + ' 的查看操作');
+            } else if (obj.event === 'del') {
+                parent.layer.confirm('真的删除行么', function (index) {
+                    obj.del();
+                    layer.close(index);
+                });
+            } else if (obj.event === 'edit') {
+                parent.layer.alert('编辑行：<br>' + JSON.stringify(data))
+            }
+        });
+
+        $('#addMaterialenter').on('click', function (obj) {
+        });
+        /*标题背景蓝色*/
+        $(".layui-table th").css("background-color", "#00B0F0");
+        /*标题加粗加黑*/
+        $("th[data-field]>div>span").css("color", 'black');
+    });
+</script>
+<script>
+
+    var Myechart1 = echarts.init(document.getElementById("echart1"));
+    option1 = {
+        title: {
+            text: '工废数',
+            x: 'center',
+            top: '20'
+        },
+        color: ['#ffa361', 'red', 'blue', '#ffd454', '#ffa361', '#d1d1d1'],
+        legend: {
+            top: 50,
+            data: ['工废数']
+            /*orient: 'vertical',
+            right: 0*/
+        },
+        grid: {
+            left: '3%',
+            right: '10%',
+            top: '20%',
+            containLabel: true
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        xAxis: {
+            type: 'category',
+            axisLabel: {
+                interval: 0//横轴信息全部显示
+                //rotate: 30,//-30度角倾斜显示
+            },
+            data: ['1月第一周', '1月第二周', '1月第三周', '1月第四周', '2月第一周', '2月第二周', '2月第三周', '2月第四周']
+        },
+        yAxis: {
+            type: 'value',
+            /*interval: 5,
+            min: 75*/
+
+        },
+        series: [{
+            name: '工废数',
+            type: 'bar',
+            barWidth: 30,
+            label: {
+                normal: {
+                    show: true,
+                    position: 'top'
+                }
+            },
+            data: [489, 275, 0, 87, 115, 64, 395, 10]
+        }]
+    };
+    Myechart1.setOption(option1);
+
+    var Myechart2 = echarts.init(document.getElementById("echart2"));
+    option2 = {
+        title: {
+            text: '合格率',
+            x: 'center',
+            top: '20'
+        },
+        color: ['blue', 'red', 'blue', '#ffd454', '#ffa361', '#d1d1d1'],
+        legend: {
+            top: 50,
+            data: ['合格率']
+            /*orient: 'vertical',
+            right: 0*/
+        },
+        grid: {
+            left: '3%',
+            right: '10%',
+            top: '20%',
+            containLabel: true
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        xAxis: {
+            type: 'category',
+            axisLabel: {
+                interval: 0//横轴信息全部显示
+                //rotate: 30,//-30度角倾斜显示
+            },
+            data: ['1月第一周', '1月第二周', '1月第三周', '1月第四周', '2月第一周', '2月第二周', '2月第三周', '2月第四周']
+        },
+        yAxis: {
+            type: 'value',
+            min: 95.00,
+            max: 100.50,
+            interval: 0.5,
+            axisLabel: {
+                formatter: '{value} %',
+                formatter: function (value, index) {
+                    var vv = value.toFixed(2);
+                    return vv + '%';
+                }
+            }
+        },
+        series: [{
+            name: '合格率',
+            type: 'line',
+            barWidth: 30,
+            symbol: 'star',//拐点样式
+            symbolSize: 8,//拐点大小
+            data: [97.85, 97.64, 100.00, 99.07, 98.31, 99.42, 96.87, 99.69]
+        }]
+    };
+    Myechart2.setOption(option2);
+
+</script>
+</body>
+</html>

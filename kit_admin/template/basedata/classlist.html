@@ -1,0 +1,510 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="../../media/css/fullcalendar.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all">
+    <script src="../../media/js/jquery-1.11.3.min.js" type="text/javascript"></script>
+    <script src="../../plugins/layui/layui.js"></script>
+    <script type="text/javascript" src="../../media/js/fullcalendar.min.js"></script>
+    <script type="text/javascript" src="../../media/js/app.js"></script>
+    <script type="text/javascript" src="../../media/js/jquery-migrate-1.2.1.min.min.js"></script>
+    <script type="text/javascript" src="../../media/js/jquery-ui-1.10.1.custom.min.js"></script>
+    <title></title>
+</head>
+<body>
+<div class="layui-form layui-form-pane" action=""  >
+    <br>
+    <div class="layui-col-md12" style="margin-bottom: 50px">
+        <div class="layui-input-inline">
+            <label class="layui-form-label">班次方案：</label>
+            <div class="layui-input-block">
+                <select name="">
+                    <option value=""></option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-input-inline">
+            <label class="layui-form-label">工&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;厂：</label>
+            <div class="layui-input-block">
+                <select name="">
+                    <option value="">NE1发动机工厂</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-input-inline">
+            <label class="layui-form-label">车&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;间：</label>
+            <div class="layui-input-block">
+                <select name="">
+                    <option value="">机总八</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-input-inline">
+            <label class="layui-form-label">生&nbsp;产&nbsp;线：</label>
+            <div class="layui-input-block">
+                <select name="">
+                    <option value="">NE1总装生产线</option>
+                </select>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="layui-input-inline">
+            <button class="layui-btn layui-btn-normal" id="addMethod">
+                <i class="layui-icon">&#xe61f;</i>添加月班次方案
+            </button>
+        </div>
+        <div class="layui-input-inline">
+            <button class="layui-btn layui-btn-normal" id="addClasscount">
+                <i class="layui-icon">&#xe61f;</i>班次保存
+            </button>
+        </div>
+        <div class="layui-input-inline">
+            <button class="layui-btn layui-btn-danger">班次删除</button>
+        </div>
+    </div>
+</div>
+<div id="calendar" class="has-toolbar" style="margin-top: 20px; width: 1300px; height: 400px;"></div>
+
+</body>
+
+<script type="text/javascript">
+    var Calendar = function () {
+        return {
+            //main function to initiate the module
+            init: function () {
+                App.addResponsiveHandler(function () {
+                    Calendar.initCalendar();
+                });
+
+                $('.page-sidebar .sidebar-toggler').click(function () {
+                    Calendar.initCalendar();
+                });
+
+                Calendar.initCalendar();
+            },
+
+            initCalendar: function () {
+
+                if (!jQuery().fullCalendar) {
+                    return;
+                }
+
+                var date = new Date();
+                var d = date.getDate();
+                var m = date.getMonth();
+                var y = date.getFullYear();
+
+                var h = {};
+
+                if (App.isRTL()) {
+                    if ($('#calendar').parents(".portlet").width() <= 720) {
+                        $('#calendar').addClass("mobile");
+                        h = {
+                            right: 'title, prev, next',
+                            center: '',
+                            right: 'agendaDay, agendaWeek, month, today'
+                        };
+                    } else {
+                        $('#calendar').removeClass("mobile");
+                        h = {
+                            right: 'title',
+                            center: '',
+                            left: 'agendaDay, agendaWeek, month, today, prev,next'
+                        };
+                    }
+                } else {
+                    if ($('#calendar').parents(".portlet").width() <= 720) {
+                        $('#calendar').addClass("mobile");
+                        h = {
+                            left: 'title, prev, next',
+                            center: '',
+                            right: 'today,month,agendaWeek,agendaDay'
+                            //right: ''
+                        };
+                    } else {
+                        $('#calendar').removeClass("mobile");
+                        h = {
+                            left: 'title',
+                            center: '',
+                            right: 'prev,next,today,month,agendaWeek,agendaDay'
+                        };
+                    }
+                }
+
+                var initDrag = function (el) {
+                    // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
+                    // it doesn't need to have a start or end
+                    var eventObject = {
+                        title: $.trim(el.text()) // use the element's text as the event title
+                    };
+                    // store the Event Object in the DOM element so we can get to it later
+                    el.data('eventObject', eventObject);
+                    // make the event draggable using jQuery UI
+                    el.draggable({
+                        zIndex: 999,
+                        revert: true, // will cause the event to go back to its
+                        revertDuration: 0 //  original position after the drag
+                    });
+                }
+
+                var addEvent = function (title) {
+                    title = title.length == 0 ? "Untitled Event" : title;
+                    var html = $('<div class="external-event label">' + title + '</div>');
+                    jQuery('#event_box').append(html);
+                    initDrag(html);
+                }
+
+                $('#external-events div.external-event').each(function () {
+                    initDrag($(this))
+                });
+
+                $('#event_add').unbind('click').click(function () {
+                    var title = $('#event_title').val();
+                    addEvent(title);
+                });
+
+                //predefined events
+                $('#event_box').html("");
+                addEvent("My Event 1");
+                addEvent("My Event 2");
+                addEvent("My Event 3");
+                addEvent("My Event 4");
+                addEvent("My Event 5");
+                addEvent("My Event 6");
+
+                $('#calendar').fullCalendar('destroy'); // destroy the calendar
+                $('#calendar').fullCalendar({ //re-initialize the calendar
+                    header: h,
+                    slotMinutes: 15,
+                    editable: true,
+                    monthNames: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+                    monthNamesShort: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+                    dayNames: ["周日", "周一", "周二", "周三", "周四", "周五", "周六"],
+                    dayNamesShort: ["周日", "周一", "周二", "周三", "周四", "周五", "周六"],
+                    buttonText: {
+                        today: '本月',
+                        month: '月',
+                        week: '周',
+                        day: '日',
+                        prev: '上一月',
+                        next: '下一月'
+                    },
+                    droppable: true, // this allows things to be dropped onto the calendar !!!
+                    drop: function (date, allDay) { // this function is called when something is dropped
+
+                        // retrieve the dropped element's stored Event Object
+                        var originalEventObject = $(this).data('eventObject');
+                        // we need to copy it, so that multiple events don't have a reference to the same object
+                        var copiedEventObject = $.extend({}, originalEventObject);
+
+                        // assign it the date that was reported
+                        copiedEventObject.start = date;
+                        copiedEventObject.allDay = allDay;
+                        copiedEventObject.className = $(this).attr("data-class");
+
+                        // render the event on the calendar
+                        // the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
+                        $('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
+
+                        // is the "remove after drop" checkbox checked?
+                        if ($('#drop-remove').is(':checked')) {
+                            // if so, remove the element from the "Draggable Events" list
+                            $(this).remove();
+                        }
+                    },
+                    events: [
+                        {
+                            title: '常规班次',
+                            start: "2018/7/29 08:00",
+                            end: "2018/7/29 20:00",
+                            backgroundColor: App.getLayoutColorCode('green')
+                        },
+                        {
+                            title: '常规班次',
+                            start: "2018/7/30 08:00",
+                            end: "2018/7/30 20:00",
+                            backgroundColor: App.getLayoutColorCode('green')
+                        },
+                        {
+                            title: '常规班次',
+                            start: "2018/7/31 08:00",
+                            end: "2018/7/31 20:00",
+                            backgroundColor: App.getLayoutColorCode('green')
+                        },
+                        {
+                            title: '常规班次',
+                            start: "2018/8/1 08:00",
+                            end: "2018/8/1 20:00",
+                            backgroundColor: App.getLayoutColorCode('green')
+                        },
+                        {
+                            title: '常规班次',
+                            start: "2018/8/2 08:00",
+                            end: "2018/8/2 20:00",
+                            backgroundColor: App.getLayoutColorCode('green')
+                        }, {
+                            title: '常规班次',
+                            start: "2018/8/3 08:00",
+                            end: "2018/8/3 20:00",
+                            backgroundColor: App.getLayoutColorCode('green')
+                        }, {
+                            title: '常规班次',
+                            start: "2018/8/4 08:00",
+                            end: "2018/8/4 20:00",
+                            backgroundColor: App.getLayoutColorCode('green')
+                        }, {
+                            title: '常规班次',
+                            start: "2018/8/5 08:00",
+                            end: "2018/8/5 20:00",
+                            backgroundColor: App.getLayoutColorCode('green')
+                        },
+                        {
+                            title: '常规班次',
+                            start: "2018/8/6 08:00",
+                            end: "2018/8/6 20:00",
+                            backgroundColor: App.getLayoutColorCode('green')
+                        },
+                        {
+                            title: '常规班次',
+                            start: "2018/8/7 08:00",
+                            end: "2018/8/7 20:00",
+                            backgroundColor: App.getLayoutColorCode('green')
+                        }, {
+                            title: '常规班次',
+                            start: "2018/8/8 08:00",
+                            end: "2018/8/8 20:00",
+                            backgroundColor: App.getLayoutColorCode('green')
+                        }, {
+                            title: '常规班次',
+                            start: "2018/8/9 08:00",
+                            end: "2018/8/9 20:00",
+                            backgroundColor: App.getLayoutColorCode('green')
+                        },
+                        {
+                            title: '常规班次',
+                            start: "2018/8/10 08:00",
+                            end: "2018/8/10 20:00",
+                            backgroundColor: App.getLayoutColorCode('green')
+                        },
+                        {
+                            title: '常规班次',
+                            start: "2018/8/11 08:00",
+                            end: "2018/8/11 20:00",
+                            backgroundColor: App.getLayoutColorCode('green')
+                        },
+                        {
+                            title: '常规班次',
+                            start: "2018/8/12 08:00",
+                            end: "2018/8/12 20:00",
+                            backgroundColor: App.getLayoutColorCode('green')
+                        }, {
+                            title: '常规班次',
+                            start: "2018/8/13 08:00",
+                            end: "2018/8/13 20:00",
+                            backgroundColor: App.getLayoutColorCode('green')
+                        }, {
+                            title: '常规班次',
+                            start: "2018/8/14 08:00",
+                            end: "2018/8/14 20:00",
+                            backgroundColor: App.getLayoutColorCode('green')
+                        }, {
+                            title: '常规班次',
+                            start: "2018/8/15 08:00",
+                            end: "2018/8/15 20:00",
+                            backgroundColor: App.getLayoutColorCode('green')
+                        },
+                        {
+                            title: '常规班次',
+                            start: "2018/8/16 08:00",
+                            end: "2018/8/16 20:00",
+                            backgroundColor: App.getLayoutColorCode('green')
+                        },
+                        {
+                            title: '常规班次',
+                            start: "2018/8/17 08:00",
+                            end: "2018/8/17 20:00",
+                            backgroundColor: App.getLayoutColorCode('green')
+                        }, {
+                            title: '常规班次',
+                            start: "2018/8/18 08:00",
+                            end: "2018/8/18 20:00",
+                            backgroundColor: App.getLayoutColorCode('green')
+                        }, {
+                            title: '常规班次',
+                            start: "2018/8/19 08:00",
+                            end: "2018/8/19 20:00",
+                            backgroundColor: App.getLayoutColorCode('green')
+                        }, {
+                            title: '常规班次',
+                            start: "2018/8/20 08:00",
+                            end: "2018/8/20 20:00",
+                            backgroundColor: App.getLayoutColorCode('green')
+                        },
+                        {
+                            title: '常规班次',
+                            start: "2018/8/21 08:00",
+                            end: "2018/8/21 20:00",
+                            backgroundColor: App.getLayoutColorCode('green')
+                        },
+                        {
+                            title: '常规班次',
+                            start: "2018/8/22 08:00",
+                            end: "2018/8/22 20:00",
+                            backgroundColor: App.getLayoutColorCode('green')
+                        }, {
+                            title: '常规班次',
+                            start: "2018/8/23 08:00",
+                            end: "2018/8/23 20:00",
+                            backgroundColor: App.getLayoutColorCode('green')
+                        }, {
+                            title: '常规班次',
+                            start: "2018/8/24 08:00",
+                            end: "2018/8/24 20:00",
+                            backgroundColor: App.getLayoutColorCode('green')
+                        }, {
+                            title: '常规班次',
+                            start: "2018/8/25 08:00",
+                            end: "2018/8/25 20:00",
+                            backgroundColor: App.getLayoutColorCode('green')
+                        },
+                        {
+                            title: '常规班次',
+                            start: "2018/8/26 08:00",
+                            end: "2018/8/26 20:00",
+                            backgroundColor: App.getLayoutColorCode('green')
+                        },
+                        {
+                            title: '常规班次',
+                            start: "2018/8/27 08:00",
+                            end: "2018/8/27 20:00",
+                            backgroundColor: App.getLayoutColorCode('green')
+                        }, {
+                            title: '常规班次',
+                            start: "2018/8/28 08:00",
+                            end: "2018/8/28 20:00",
+                            backgroundColor: App.getLayoutColorCode('green')
+                        }, {
+                            title: '常规班次',
+                            start: "2018/8/29 08:00",
+                            end: "2018/8/29 20:00",
+                            backgroundColor: App.getLayoutColorCode('green')
+                        },
+                        {
+                            title: '常规班次',
+                            start: "2018/8/30 08:00",
+                            end: "2018/8/30 20:00",
+                            backgroundColor: App.getLayoutColorCode('green')
+                        },
+                        {
+                            title: '常规班次',
+                            start: "2018/8/31 08:00",
+                            end: "2018/8/31 20:00",
+                            backgroundColor: App.getLayoutColorCode('green')
+                        },
+
+                        {
+                            title: 'A班(08:00-20:00)',
+                            start: "2017/12/1 08:00",
+                            end: "2017/12/1 20:00",
+                            backgroundColor: App.getLayoutColorCode('green')
+                        }
+
+                        , {
+                            title: '常规班次',
+                            start: "2018/9/1 08:00",
+                            end: "2018/9/1 20:00",
+                            backgroundColor: App.getLayoutColorCode('green')
+                        }, {
+                            title: '常规班次',
+                            start: "2018/9/2 08:00",
+                            end: "2018/9/2 20:00",
+                            backgroundColor: App.getLayoutColorCode('green')
+                        },
+                        {
+                            title: '常规班次',
+                            start: "2018/9/3 08:00",
+                            end: "2018/9/3 20:00",
+                            backgroundColor: App.getLayoutColorCode('green')
+                        },
+                        {
+                            title: '常规班次',
+                            start: "2018/9/4 08:00",
+                            end: "2018/9/4 20:00",
+                            backgroundColor: App.getLayoutColorCode('green')
+                        },
+
+                        {
+                            title: 'A班(08:00-20:00)',
+                            start: "2017/12/1 08:00",
+                            end: "2017/12/1 20:00",
+                            backgroundColor: App.getLayoutColorCode('green')
+                        },
+
+                        {
+                            title: 'B班(20:00-08:00)',
+                            start: "2017/12/1 20:00",
+                            end: "2017/12/1 08:00",
+                            backgroundColor: App.getLayoutColorCode('green')
+                        },
+
+                        {
+                            title: 'C班(6:00-12:00)',
+                            start: "2017/12/1 6:00",
+                            end: "2017/12/1 12:00",
+                            backgroundColor: App.getLayoutColorCode('green')
+                        },
+
+                        {
+                            title: 'B班(20:00-08:00)',
+                            start: "2017/12/31 20:00",
+                            end: "2017/12/31 08:00",
+                            backgroundColor: App.getLayoutColorCode('green')
+                        },
+
+                        {
+                            title: 'C班(6:00-12:00)',
+                            start: "2017/12/31 6:00",
+                            end: "2017/12/31 12:00",
+                            backgroundColor: App.getLayoutColorCode('green')
+                        },
+                        {
+                            title: '',
+                            start: '',
+                            backgroundColor: App.getLayoutColorCode('yellow')
+                        }
+                    ]
+                });
+
+            }
+
+        };
+
+    }();
+</script>
+<script>
+    layui.use(['form', 'layedit', 'laydate'], function () {
+        $ = layui.$;
+        $(document).ready(function () {
+            Calendar.init();
+            //$(".fc-header-left").empty().append(".fc-header-title");
+            $(".fc-header-right").empty();
+            $(".fc-header-title h2 ").css("font-size",0.5);
+            $(".fc-header-title").css("vertical-align",'bottom').css("margin-bottom",10);
+
+            var obj = $("td[data-date] > div");
+            obj.removeAttr("style").css('height', '70');
+
+            $('.fc-button-prev,.fc-button-next').click(function () {
+                var obj = $("td[data-date] > div");
+                obj.removeAttr("style").css('height', '70');
+            });
+        });
+
+
+    });
+
+
+</script>
+</html>

@@ -1,0 +1,104 @@
+{
+  "code": 0,
+  "msg": "",
+  "count": 3,
+  "data": [
+    {
+      "value1": "A班",
+      "value2": "WE003",
+      "value3": "缸体上线",
+      "value4": "缸体翻转机故障",
+      "start":"9:20",
+      "end":"9:50",
+      "value6": "30",
+      "value7": "2",
+      "value8": "设备",
+      "value9": "设备工程师处理"
+    },
+    {
+      "value1": "A班",
+      "value2": "OE053",
+      "value3": "发电机装配",
+      "value4": "发电机缺料导致停线",
+      "start":"13:10",
+      "end":"13:20",
+      "value6": "10",
+      "value7": "1",
+      "value8": "物流",
+      "value9": "物流主管处理"
+    },
+    {
+      "value1": "A班",
+      "value2": "CL001",
+      "value3": "缸盖上线",
+      "value4": "员工未到岗",
+      "start":"8:00",
+      "end":"8:30",
+      "value6": "30",
+      "value7": "1",
+      "value8": "人员",
+      "value9": "生产主管处理"
+    },
+    {
+      "value1": "A班",
+      "value2": "HT023",
+      "value3": "发动机下线",
+      "value4": "缺少发动机转运架，无法下线",
+      "start":"15:20",
+      "end":"16:00",
+      "value6": "40",
+      "value7": "1",
+      "value8": "物流",
+      "value9": ""
+    },
+    {
+      "value1": "B班",
+      "value2": "WE003",
+      "value3": "缸体上线",
+      "value4": "缸体翻转机故障",
+      "start":"9:20",
+      "end":"9:50",
+      "value6": "30",
+      "value7": "2",
+      "value8": "设备",
+      "value9": "设备工程师处理"
+    },
+    {
+      "value1": "B班",
+      "value2": "OE053",
+      "value3": "发电机装配",
+      "value4": "发电机缺料导致停线",
+      "start":"13:10",
+      "end":"13:20",
+      "value6": "10",
+      "value7": "1",
+      "value8": "物流",
+      "value9": "物流主管处理"
+    },
+    {
+      "value1": "B班",
+      "value2": "CL001",
+      "value3": "缸盖上线",
+      "value4": "员工未到岗",
+      "start":"8:00",
+      "end":"8:30",
+      "value6": "30",
+      "value7": "1",
+      "value8": "人员",
+      "value9": "生产主管处理"
+    },
+    {
+      "value1": "B班",
+      "value2": "HT023",
+      "value3": "发动机下线",
+      "value4": "缺少发动机转运架，无法下线",
+      "start":"15:20",
+      "end":"16:00",
+      "value6": "40",
+      "value7": "1",
+      "value8": "物流",
+      "value9": ""
+    }
+
+  ]
+}

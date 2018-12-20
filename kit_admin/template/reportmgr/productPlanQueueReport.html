@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>生产计划队列报表</title>
+    <link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all">
+</head>
+
+<body>
+
+<form class="layui-form layui-form-pane" action="" style="margin-top: 20px;">
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">工单号：</label>
+            <div class="layui-input-inline">
+                <select name="" lay-filter="">
+                    <option value="">请选择</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">发动机机型:</label>
+            <div class="layui-input-inline">
+                <select name="" lay-filter="">
+                    <option value="">请选择</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">工单状态:</label>
+            <div class="layui-input-inline">
+                <select name="" lay-filter="">
+                    <option value="">请选择</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">开始日期：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="date" id="date" value="" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">截止日期：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="date1" id="date1" value="" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <button class="layui-btn layui-btn-normal" type="button"><i class="layui-icon">&#xe615;</i>搜索</button>
+            <button class="layui-btn layui-btn-normal" type="button"><i class="layui-icon">&#xe601;</i>导出</button>
+        </div>
+    </div>
+</form>
+<table class="layui-table" lay-data="{width:1300, url:'../../datas/reportData/productPlanQueueReport.json',id:'idTest'}"
+       lay-filter="demo">
+    <thead>
+    <tr>
+        <th lay-data="{field:'value1',  fixed: true,width:150}">工单编号</th>
+        <th lay-data="{field:'value2',  fixed: true,width:120}">发动机型号</th>
+        <th lay-data="{field:'value3',  fixed: true,width:140}">起始编码</th>
+        <th lay-data="{field:'value4',  fixed: true,width:140}">结束编码</th>
+        <th lay-data="{field:'value5',  fixed: true,width:100}">计划数量</th>
+        <th lay-data="{field:'value6',  fixed: true,width:120}">计划时间</th>
+        <th lay-data="{field:'value7',  fixed: true,width:170}">实际开始时间</th>
+        <th lay-data="{field:'value8',  fixed: true,width:120}">上线数量</th>
+        <th lay-data="{field:'value9',  fixed: true,width:120}">下线数量</th>
+        <th lay-data="{field:'value10', fixed: true}">上线状态</th>
+    </tr>
+    </thead>
+</table>
+<br><br>
+<table class="layui-table"
+       lay-data="{width:1450, url:'../../datas/reportData/productPlanQueueReport2.json',id:'idTest2'}"
+       lay-filter="demo">
+    <thead>
+    <tr>
+        <th lay-data="{field:'value1',  fixed: true, width:130}"></th>
+        <th lay-data="{field:'value2',  fixed: true, width:70}">2017</th>
+        <th lay-data="{field:'value3',  fixed: true, width:70}">2018</th>
+        <th lay-data="{field:'value4',  fixed: true, width:60}">1月</th>
+        <th lay-data="{field:'value5',  fixed: true, width:60}">2月</th>
+        <th lay-data="{field:'value6',  fixed: true, width:60}">3月</th>
+        <th lay-data="{field:'value7',  fixed: true, width:60}">4月</th>
+        <th lay-data="{field:'value8',  fixed: true, width:60}">5月</th>
+        <th lay-data="{field:'value9',  fixed: true, width:60}">6月</th>
+        <th lay-data="{field:'value10',  fixed: true, width:60}">7月</th>
+        <th lay-data="{field:'value11',  fixed: true, width:60}">8月</th>
+        <th lay-data="{field:'value12',  fixed: true, width:60}">9月</th>
+        <th lay-data="{field:'value13',  fixed: true, width:60}">10月</th>
+        <th lay-data="{field:'value14',  fixed: true, width:60}">11月</th>
+        <th lay-data="{field:'value15',  fixed: true, width:60}">12月</th>
+        <th lay-data="{field:'value16',  fixed: true, width:110}">12月第一周</th>
+        <th lay-data="{field:'value17',  fixed: true, width:110}">12月第二周</th>
+        <th lay-data="{field:'value18',  fixed: true, width:110}">12月第三周</th>
+        <th lay-data="{field:'value19',  fixed: true, width:110}">12月第四周</th>
+    </tr>
+    </thead>
+</table>
+<br><br>
+<div id="echart1" style="height: 500px; width: 1300px;"></div>
+
+<script src="../../media/js/echarts.js"></script>
+<script src="../../plugins/layui/layui.js"></script>
+<script src="../../media/js/jquery-1.10.1.min.js"></script>
+
+<script>
+    layui.use(['table', 'laydate'], function () {
+        var table = layui.table;
+        var laydate = layui.laydate;
+        var $ = layui.jquery;
+        table.render({
+            cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+        });
+        table.on('tool(test)', function (obj) {
+            var data = obj.data;
+            if (obj.event === 'detail') {
+                layer.msg('ID：' + data.id + ' 的查看操作');
+            } else if (obj.event === 'del') {
+                layer.confirm('真的删除行么', function (index) {
+                    obj.del();
+                    layer.close(index);
+                });
+            } else if (obj.event === 'edit') {
+                layer.alert('编辑行：<br>' + JSON.stringify(data))
+            }
+        });
+        //日期
+        laydate.render({
+            elem: '#date'
+        });
+        laydate.render({
+            elem: '#date1'
+        });
+
+    });
+
+</script>
+
+<script>
+
+    var Myechart1 = echarts.init(document.getElementById("echart1"));
+    option = {
+        title: {
+            text: '2018年12月5日产量',
+            x: 'center'
+        },
+        color: ['green', 'red', 'blue', '#ffd454', '#ffa361', '#d1d1d1'],
+        legend: {
+            orient: 'vertical',
+            data: ['计划完成率%', '标准值', '周计划完成率%'],
+            top: 100,
+            right: 0
+        },
+        grid: {
+            left: '3%',
+            right: '10%',
+            containLabel: true
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        xAxis: {
+            type: 'category',
+            axisLabel: {
+                interval: 0,//横轴信息全部显示
+                rotate: 30,//-30度角倾斜显示
+            },
+            data: ['2017', '2018', '1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月', '12月第一周', '12月第二周', '12月第三周', '12月第四周']
+        },
+        yAxis: {
+            type: 'value',
+            interval: 5,
+            min: 75
+
+        },
+        series: [{
+            name: '计划完成率%',
+            type: 'bar',
+            barWidth: 30,
+            data: [95.3, 93.21]
+        }, {
+            name: '标准值',
+            type: 'line',
+            symbol: 'star',//拐点样式
+            symbolSize: 8,//拐点大小
+            data: [, , 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95]
+        }, {
+            name: '周计划完成率%',
+            type: 'line',
+            symbol: 'diamond',//拐点样式
+            symbolSize: 9,//拐点大小
+            data: [, , 96, 98, 85, 89, 90, 91, 96, 92, 94, 100, 93, 94.575, 95, 93, 92.3, 98]
+        }]
+    };
+    Myechart1.setOption(option);
+
+</script>
+</body>
+
+</html>

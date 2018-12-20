@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>JPH统计报表</title>
+    <link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all">
+</head>
+
+<body>
+
+<form class="layui-form layui-form-pane" action="" style="margin-top: 20px;">
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">开始日期：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="date" id="date" value="" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">截止日期：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="date1" id="date1" value="" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">工位：</label>
+            <div class="layui-input-inline">
+                <select name="" lay-filter="">
+                    <option value="">请选择</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-inline">
+            <button class="layui-btn layui-btn-normal" type="button"><i class="layui-icon">&#xe615;</i>搜索</button>
+            <button class="layui-btn layui-btn-normal" type="button"><i class="layui-icon">&#xe601;</i>导出</button>
+        </div>
+    </div>
+</form>
+<table class="layui-table" lay-data="{width:1800, url:'../../datas/reportData/jphReport.json',id:'idTest'}"
+       lay-filter="demo">
+    <thead>
+    <tr>
+        <th lay-data="{field:'value1',  fixed: true,width:120}">当日JPH趋势</th>
+        <th lay-data="{field:'value2',  fixed: true}">0.00</th>
+        <th lay-data="{field:'value3',  fixed: true}">1:00</th>
+        <th lay-data="{field:'value4',  fixed: true}">2:00</th>
+        <th lay-data="{field:'value5',  fixed: true}">3:00</th>
+        <th lay-data="{field:'value6',  fixed: true}">4:00</th>
+        <th lay-data="{field:'value7',  fixed: true}">5:00</th>
+        <th lay-data="{field:'value8',  fixed: true}">6:00</th>
+        <th lay-data="{field:'value9',  fixed: true}">7:00</th>
+        <th lay-data="{field:'value10',  fixed: true}">8:00</th>
+        <th lay-data="{field:'value11',  fixed: true}">9:00</th>
+        <th lay-data="{field:'value12',  fixed: true,width:70}">10:00</th>
+        <th lay-data="{field:'value13',  fixed: true,width:70}">11:00</th>
+        <th lay-data="{field:'value14',  fixed: true,width:70}">12:00</th>
+        <th lay-data="{field:'value15',  fixed: true,width:70}">13:00</th>
+        <th lay-data="{field:'value16',  fixed: true,width:70}">14:00</th>
+        <th lay-data="{field:'value17',  fixed: true,width:70}">15:00</th>
+        <th lay-data="{field:'value18',  fixed: true,width:70}">16:00</th>
+        <th lay-data="{field:'value19',  fixed: true,width:70}">17:00</th>
+        <th lay-data="{field:'value20',  fixed: true,width:70}">18:00</th>
+        <th lay-data="{field:'value21',  fixed: true,width:70}">19:00</th>
+        <th lay-data="{field:'value22',  fixed: true,width:70}">20:00</th>
+        <th lay-data="{field:'value23',  fixed: true,width:70}">21:00</th>
+        <th lay-data="{field:'value24',  fixed: true,width:70}">22:00</th>
+        <th lay-data="{field:'value25',  fixed: true,width:70}">23:00</th>
+    </tr>
+    </thead>
+</table>
+<br>
+<div id="echarts1" style="height: 400px; width: 1700px;"></div>
+<br>
+<br>
+<table class="layui-table" lay-data="{width:1700, url:'../../datas/reportData/jphReport2.json',id:'idTest2'}"
+       lay-filter="demo">
+    <thead>
+    <tr>
+        <th lay-data="{field:'value1',  fixed: true,width:120}">当日JPH趋势</th>
+        <th lay-data="{field:'value2',  fixed: true}">1月</th>
+        <th lay-data="{field:'value3',  fixed: true}">2月</th>
+        <th lay-data="{field:'value4',  fixed: true}">3月</th>
+        <th lay-data="{field:'value5',  fixed: true}">4月</th>
+        <th lay-data="{field:'value6',  fixed: true}">5月</th>
+        <th lay-data="{field:'value7',  fixed: true,width:90}">5月1日</th>
+        <th lay-data="{field:'value8',  fixed: true,width:90}">5月2日</th>
+        <th lay-data="{field:'value9',  fixed: true,width:90}">5月3日</th>
+        <th lay-data="{field:'value10',  fixed: true,width:90}">5月4日</th>
+        <th lay-data="{field:'value11',  fixed: true,width:90}">5月5日</th>
+        <th lay-data="{field:'value12',  fixed: true,width:90}">5月6日</th>
+        <th lay-data="{field:'value13',  fixed: true,width:90}">5月7日</th>
+        <th lay-data="{field:'value14',  fixed: true,width:90}">5月8日</th>
+        <th lay-data="{field:'value15',  fixed: true,width:90}">5月9日</th>
+        <th lay-data="{field:'value16',  fixed: true,width:90}">5月10日</th>
+        <th lay-data="{field:'value17',  fixed: true,width:90}">5月11日</th>
+        <th lay-data="{field:'value18',  fixed: true,width:90}">5月12日</th>
+        <th lay-data="{field:'value19',  fixed: true,width:90}">5月13日</th>
+        <th lay-data="{field:'value20',  fixed: true,width:90}">......</th>
+    </tr>
+    </thead>
+</table>
+<br>
+<div id="echarts2" style="height: 400px; width: 1500px;"></div>
+<script src="../../media/js/echarts.js"></script>
+<script src="../../plugins/layui/layui.js"></script>
+<script src="../../media/js/jquery-1.10.1.min.js"></script>
+<script>
+    layui.use(['table', 'laydate'], function () {
+        var table = layui.table;
+        var laydate = layui.laydate;
+        var $ = layui.jquery;
+        table.render({
+            cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+        });
+        table.on('tool(test)', function (obj) {
+            var data = obj.data;
+            if (obj.event === 'detail') {
+                layer.msg('ID：' + data.id + ' 的查看操作');
+            } else if (obj.event === 'del') {
+                layer.confirm('真的删除行么', function (index) {
+                    obj.del();
+                    layer.close(index);
+                });
+            } else if (obj.event === 'edit') {
+                layer.alert('编辑行：<br>' + JSON.stringify(data))
+            }
+        });
+        //日期
+        laydate.render({
+            elem: '#date'
+        });
+        laydate.render({
+            elem: '#date1'
+        });
+
+    });
+
+</script>
+
+<script>
+
+    var Myecharts1 = echarts.init(document.getElementById("echarts1"));
+    option1 = {
+        title: {
+            text: '',
+            x: ''
+        },
+        color: ['#87CEEB', 'green', 'red', '#ffd454', '#ffa361', '#d1d1d1'],
+        legend: {
+            orient: 'vertical',
+            data: ['JPH', 'JPH ', '目标JPH'],
+            top: 100,
+            right: 0
+        },
+        grid: {
+            left: '1%',
+            right: '7%',
+            containLabel: true
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        xAxis: {
+            type: 'category',
+            axisLabel: {
+                interval: 0//横轴信息全部显示
+            },
+            data: ["0.00", "1.00", "2.00", "3.00", "4.00", "5.00", "6.00", "7.00", "8.00", "9.00", "10.00", "11.00", "12.00", "13.00", "14.00", "15.00", "16.00", "17.00", "18.00", "19.00", "20.00", "21.00", "22.00", "23.00"]
+        },
+        yAxis: {
+            type: 'value',
+            interval: 10
+
+        },
+        series: [{
+            name: 'JPH',
+            type: 'bar',
+            barWidth: 30,
+            data: [81, 80, 79, 85, 90, 88, 76, 75, 0, 81, 80, 79, 85, 90, 88, 76, 75, 81, 80, 79, 0, 90, 88, 76]
+        }, {
+            name: 'JPH ',
+            type: 'line',
+            symbol: 'star',//拐点样式
+            symbolSize: 8,//拐点大小
+            data: [81, 80, 79, 85, 90, 88, 76, 75, 0, 81, 80, 79, 85, 90, 88, 76, 75, 81, 80, 79, 0, 90, 88, 76]
+        }, {
+            name: '目标JPH',
+            type: 'line',
+            symbol: 'diamond',//拐点样式
+            symbolSize: 9,//拐点大小
+            data: [85, 85, 85, 85, 85, 85, 85, 85, 0, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 0, 85, 85, 85]
+        }]
+    };
+    Myecharts1.setOption(option1);
+
+    var Myecharts2 = echarts.init(document.getElementById("echarts2"));
+    option2 = {
+        title: {
+            text: '',
+            x: ''
+        },
+        color: ['red', '#228B22', 'orange', 'blue', '#ffd454', '#ffa361', '#d1d1d1'],
+        legend: {
+            orient: 'vertical',
+            //注意，前面图案块的颜色
+            data: ['JPH', 'JPH ', '目标JPH'],
+            //data: ['JPH','JPH ','目标JPH'],
+            // color:['red','yellow','#FCCE10'],
+            borderColor: 'red',
+            top: 100,
+            right: 0
+        },
+        grid: {
+            left: '1%',
+            right: '7%',
+            containLabel: true
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        xAxis: {
+            type: 'category',
+            axisLabel: {
+                interval: 0//横轴信息全部显示
+            },
+            data: ["1月", "2月", "3月", "4月", "5月", "5月1日", "5月2日", "5月3日", "5月4日", "5月5日", "5月6日", "5月7日", "5月8日", "5月9日", "5月10日", "5月11日", "5月12日", "5月13日", "......"]
+        },
+        yAxis: {
+            type: 'value',
+            interval: 10
+
+        },
+        series: [{
+            name: 'JPH',
+            type: 'bar',
+            barWidth: 30,
+            data: [85, 87, 90, 75, 73],
+            itemStyle: {
+                normal: {
+                    color: function (params) {
+                        var index_color = params.value;
+
+                        if (index_color >= 85) {
+                            return '#228B22';
+                        } else {
+                            return 'yellow';
+                        }
+
+
+                    }
+                }
+            }
+        },
+            {
+                name: 'JPH ',
+                type: 'line',
+                symbol: 'star',//拐点样式
+                symbolSize: 8,//拐点大小
+                data: [, , , , , 85, 75, 70, 69, 81, 78, 77, 71, 66, 68, 80, 53, 76,]
+            }, {
+                name: '目标JPH',
+                type: 'line',
+                symbol: 'diamond',//拐点样式
+                symbolSize: 9,//拐点大小
+                data: [, , , , , 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85,]
+            }]
+    };
+    Myecharts2.setOption(option2);
+
+</script>
+</body>
+
+</html>

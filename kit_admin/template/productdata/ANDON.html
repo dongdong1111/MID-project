@@ -1,0 +1,210 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>生产订单查询</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all">
+    <script src="../../plugins/layui/layui.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="layui-form layui-form-pane">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-mid">工&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;厂：</label>
+                    <div class="layui-input-inline">
+                        <select name="status">
+                            <option value="">一工厂</option>
+                            <option value="0">三工厂</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-mid">生&nbsp;&nbsp;产&nbsp;&nbsp;线：</label>
+                    <div class="layui-input-inline">
+                        <select name="status">
+                            <option value="">H5总装</option>
+                            <option value="0">H5机加</option>
+                            <option value="1">H5铸造</option>
+                            <option value="2">NE1总装</option>
+                            <option value="3">NE1机加</option>
+                            <option value="4">NE1铸造</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-mid">报警类型：</label>
+                    <div class="layui-input-inline">
+                        <select name="status">
+                            <option value="">呼叫物料</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-mid">报警工位：</label>
+                    <div class="layui-input-inline">
+                        <select name="status">
+                            <option value="" selected="selected">=请选择=</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-mid">开始时间：</label>
+                    <div class="layui-input-inline">
+                        <input type="text" class="layui-input" id="test1" placeholder="开始时间">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-mid">截止时间：</label>
+                    <div class="layui-input-inline">
+                        <input type="text" class="layui-input" id="test2" placeholder="截止时间">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-md12">
+                <div class="layui-inline">
+                    <div class="layui-input-inline">
+                        <button class="layui-btn layui-btn-normal" type="button"><i class="layui-icon">&#xe615;</i>搜索</button>
+                    </div>
+                    <div class="layui-input-inline">
+                        <button class="layui-btn layui-btn-normal" type="button"><i class="layui-icon">&#xe601;</i>导出</button>
+                    </div>
+                    <div class="layui-input-inline">
+                        <button class="layui-btn layui-btn-normal" type="button" id="alarmType"><i class="layui-icon">&#xe615;</i>报警类型统计</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-form">
+            <div class="layui-col-md12">
+                <table class="layui-table" lay-data="{url:'../../datas/ANDON.json',  id:'idTest'}"
+                    lay-filter="demo">
+                    <thead>
+                        <tr>
+                            <th lay-data="{field:'value1', width:'15%', sort: true, fixed: true}">开始时间</th>
+                            <th lay-data="{field:'value2', width:'15%', sort: true}">结束时间</th>
+                            <th lay-data="{field:'value3', width:'15%', sort: true}">持续时间</th>
+                            <th lay-data="{field:'value4', width:'15%', sort: true}">报警工位</th>
+                            <th lay-data="{field:'value5', width:'15%', sort: true}">报警类型</th>
+                            <th lay-data="{field:'value6', width:'15%', sort: true}">工厂</th>
+                            <th lay-data="{field:'value7', sort: true}">生产线</th>
+                        </tr>
+                    </thead>
+                </table>
+                <div id="pagination"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        layui.use(['laypage', 'form', 'laydate', 'layer', 'table', 'element'], function () {
+            var laypage = layui.laypage;
+            var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+            var form = layui.form;
+            var laydate = layui.laydate;
+            var table = layui.table;
+            var $ = layui.jquery;
+            var layer = layui.layer;
+
+            //监听表格复选框选择
+            table.on('checkbox(demo)', function (obj) {
+                console.log(obj)
+            });
+
+            //触发事件
+            $('#alarmType').on('click', function () {
+                parent.layer.open({
+                    type: 2,
+                    title: "报警类型统计",
+                    shadeClose: true,
+                    shade: 0.1,
+                    area: ['70%', '70%'],
+                    content: '/kit_admin/template/productdata/alarmTypeStatic.html',                //iframe页面的url，只能是url
+                    btn: ['关闭'],
+                    btn2: function () {
+                        layer.closeAll();
+                    },
+                });
+            });
+
+            //监听工具条
+            table.on('tool(demo)', function (obj) {
+                var data = obj.data;
+                if (obj.event === 'detail') {
+                    layer.msg('ID：' + data.id + ' 的查看操作');
+                } else if (obj.event === 'del') {
+                    layer.confirm('真的删除行么', function (index) {
+                        obj.del();
+                        layer.close(index);
+                    });
+                } else if (obj.event === 'edit') {
+                    layer.alert('编辑行：<br>' + JSON.stringify(data))
+                }
+            });
+
+            var $ = layui.$, active = {
+                getCheckData: function () { //获取选中数据
+                    var checkStatus = table.checkStatus('idTest')
+                        , data = checkStatus.data;
+                    layer.alert(JSON.stringify(data));
+                }
+                , getCheckLength: function () { //获取选中数目
+                    var checkStatus = table.checkStatus('idTest')
+                        , data = checkStatus.data;
+                    layer.msg('选中了：' + data.length + ' 个');
+                }
+                , isAll: function () { //验证是否全选
+                    var checkStatus = table.checkStatus('idTest');
+                    layer.msg(checkStatus.isAll ? '全选' : '未全选')
+                }
+            };
+
+            $('.demoTable .layui-btn').on('click', function () {
+                layer.msg("23234");
+
+                var type = $(this).data('type');
+                active[type] ? active[type].call(this) : '';
+            });
+
+            //日期
+            laydate.render({
+                elem: '#test1'
+            });
+            laydate.render({
+                elem: '#test2'
+            });
+
+            //监听提交
+            form.on('submit(demo1)', function (data) {
+                layer.alert(JSON.stringify(data.field), {
+                    title: '最终的提交信息'
+                })
+                return false;
+            });
+
+            //监听导航点击
+            element.on('nav(demo)', function (elem) {
+                //console.log(elem)
+                layer.msg(elem.text());
+            });
+            //分页
+            laypage.render({
+                elem: 'pagination'
+                , count: 100
+                , layout: ['prev', 'page', 'next', 'limit', 'skip', 'count']
+                , jump: function (obj) {
+                    console.log(obj)
+                }
+            });
+
+        });
+    </script>
+</body>
+</html>

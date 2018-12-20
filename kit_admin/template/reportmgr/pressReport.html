@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>压装履历</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../../plugins/layui/css/layui.css">
+    <script src="../../plugins/layui/layui.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="layui-form layui-form-pane">
+        <div class="layui-col-md12">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label" style="width: auto;padding: 9px 0;">选择时间：</label>
+                    <div class="layui-input-block" style="margin-left: 80px;">
+                        <input type="radio" name="searhTime" value="all" title="全部" checked="">
+                        <input type="radio" name="searhTime" value="three" title="近三天">
+                        <input type="radio" name="searhTime" value="week" title="近一周">
+                        <input type="radio" name="searhTime" value="month" title="近一月">
+                        <input type="radio" name="searhTime" value="custom" title="自定义">
+                    </div>
+                </div>
+                <div class="layui-inline timeHidden searchTime" id="searchTime">
+                    <label class="layui-form-mid">开始时间</label>
+                    <div class="layui-input-inline">
+                        <input type="text" class="layui-input" id="startTime" placeholder="yyyy-MM-dd HH:mm:ss">
+                    </div>
+                    <label class="layui-form-mid">结束时间</label>
+                    <div class="layui-input-inline">
+                        <input type="text" class="layui-input" id="endTime" placeholder="yyyy-MM-dd HH:mm:ss">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-mid">工位名称：</label>
+                    <div class="layui-input-inline">
+                        <select name="modules" lay-verify="required" lay-search="">
+                            <option value="">直接选择或搜索选择</option>
+                            <option value="1">OP210(A)</option>
+                            <option value="2">OP210(A)</option>
+                            <option value="3">OP210(A)</option>
+                            <option value="4">OP210(A)</option>
+                            <option value="5">OP210(A)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-mid">生产线：</label>
+                    <div class="layui-input-inline">
+                        <select name="modules" lay-verify="required" lay-search="">
+                            <option value="">直接选择或搜索选择</option>
+                            <option value="1">OP210(A)</option>
+                            <option value="2">OP210(A)</option>
+                            <option value="3">OP210(A)</option>
+                            <option value="4">OP210(A)</option>
+                            <option value="5">OP210(A)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-mid">OK/NG：</label>
+                    <div class="layui-input-inline">
+                        <select name="modules" lay-verify="required" lay-search="">
+                            <option value="">直接选择或搜索选择</option>
+                            <option value="1">1</option>
+                            <option value="0">0</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">
+                        <button class="layui-btn layui-btn-normal" type="button"><i class="layui-icon">&#xe615;</i>查询
+                        </button>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="idTest">
+
+    </div>
+</div>
+<script>
+    layui.use(['form', 'laydate', 'element', 'table'], function () {
+        var form = layui.form;
+        var laydate = layui.laydate;
+        var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+        var table = layui.table;
+        var $ = layui.jquery;
+
+        laydate.render({
+            elem: '#startTime'
+            , type: 'datetime'
+        });
+        laydate.render({
+            elem: '#endTime'
+            , type: 'datetime'//max,min设置值
+        });
+
+        table.render({
+            elem: '#idTest'
+            , url: '../../datas/reportData/pressReport.json'
+            , cols: [[
+                {field: 'value1', sort: true, width: 110, title: '工位名称'},
+                {field: 'value2', sort: true, minWidth: 210, align: 'center', title: '工件码'},
+                {field: 'value3', sort: true, width: 110, title: '生产线'},
+                {field: 'value4', sort: true, minWidth: 160, align: 'center', title: '时间'},
+                {field: 'value5', sort: true, minWidth: 110, title: 'OK/NG'},
+                {field: 'value6', sort: true, minWidth: 150, title: '目标节拍'},
+                {field: 'value7', sort: true, minWidth: 150, title: '实际节拍'},
+                {field: 'value8', sort: true, minWidth: 150, title: '1#进气导管位移'},
+                {field: 'value9', sort: true, minWidth: 150, title: '1#进气导管压力'},
+                {field: 'value10', sort: true, minWidth: 150, title: '1#进气座圈位移'},
+                {field: 'value11', sort: true, minWidth: 150, title: '1#进气座圈压力'},
+                {field: 'value12', sort: true, minWidth: 150, title: '1#排气导管位移'},
+                {field: 'value13', sort: true, minWidth: 150, title: '1#排气导管压力'},
+                {field: 'value14', sort: true, minWidth: 150, title: '1#排气座圈位移'},
+                {field: 'value15', sort: true, minWidth: 150, title: '1#排气座圈压力'},
+                {field: 'value16', sort: true, minWidth: 150, title: '2#进气导管位移'},
+                {field: 'value17', sort: true, minWidth: 150, title: '2#进气导管压力'},
+                {field: 'value18', sort: true, minWidth: 150, title: '2#进气座圈位移'},
+                {field: 'value19', sort: true, minWidth: 150, title: '2#进气座圈压力'},
+                {field: 'value20', sort: true, minWidth: 150, title: '2#排气导管位移'},
+                {field: 'value21', sort: true, minWidth: 150, title: '2#排气导管压力'},
+                {field: 'value22', sort: true, minWidth: 150, title: '2#排气座圈位移'},
+                {field: 'value23', sort: true, minWidth: 150, title: '2#排气座圈压力'},
+                {field: 'value24', sort: true, minWidth: 150, title: '3#进气导管位移'},
+                {field: 'value25', sort: true, minWidth: 150, title: '3#进气导管压力'},
+                {field: 'value26', sort: true, minWidth: 150, title: '3#进气座圈位移'},
+                {field: 'value27', sort: true, minWidth: 150, title: '3#进气座圈压力'},
+                {field: 'value28', sort: true, minWidth: 150, title: '3#排气导管位移'},
+                {field: 'value29', sort: true, minWidth: 150, title: '3#排气导管压力'},
+                {field: 'value30', sort: true, minWidth: 150, title: '3#排气座圈位移'},
+                {field: 'value31', sort: true, minWidth: 150, title: '3#排气座圈压力'},
+                {field: 'value32', sort: true, minWidth: 150, title: '4#进气导管位移'},
+                {field: 'value33', sort: true, minWidth: 150, title: '4#进气导管压力'},
+                {field: 'value34', sort: true, minWidth: 150, title: '4#进气座圈位移'},
+                {field: 'value35', sort: true, minWidth: 150, title: '4#进气座圈压力'},
+                {field: 'value36', sort: true, minWidth: 150, title: '4#排气导管位移'},
+                {field: 'value37', sort: true, minWidth: 150, title: '4#排气导管压力'},
+                {field: 'value38', sort: true, minWidth: 150, title: '4#排气座圈位移'},
+                {field: 'value39', sort: true, minWidth: 150, title: '4#排气座圈压力'},
+                {field: 'value40', sort: true, minWidth: 150, title: '5#进气导管位移'},
+                {field: 'value41', sort: true, minWidth: 150, title: '5#进气导管压力'},
+                {field: 'value42', sort: true, minWidth: 150, title: '5#进气座圈位移'},
+                {field: 'value43', sort: true, minWidth: 150, title: '5#进气座圈压力'},
+                {field: 'value44', sort: true, minWidth: 150, title: '5#排气导管位移'},
+                {field: 'value45', sort: true, minWidth: 150, title: '5#排气导管压力'},
+                {field: 'value46', sort: true, minWidth: 150, title: '5#排气座圈位移'},
+                {field: 'value47', sort: true, minWidth: 150, title: '5#排气座圈压力'},
+                {field: 'value48', sort: true, minWidth: 150, title: '6#进气导管位移'},
+                {field: 'value49', sort: true, minWidth: 150, title: '6#进气导管压力'},
+                {field: 'value50', sort: true, minWidth: 150, title: '6#进气座圈位移'},
+                {field: 'value51', sort: true, minWidth: 150, title: '6#进气座圈压力'},
+                {field: 'value52', sort: true, minWidth: 150, title: '6#排气导管位移'},
+                {field: 'value53', sort: true, minWidth: 150, title: '6#排气导管压力'},
+                {field: 'value54', sort: true, minWidth: 150, title: '6#排气座圈位移'},
+                {field: 'value55', sort: true, minWidth: 150, title: '6#排气座圈压力'},
+                {field: 'value56', sort: true, minWidth: 150, title: '7#进气导管位移'},
+                {field: 'value57', sort: true, minWidth: 150, title: '7#进气导管压力'},
+                {field: 'value58', sort: true, minWidth: 150, title: '7#进气座圈位移'},
+                {field: 'value59', sort: true, minWidth: 150, title: '7#进气座圈压力'},
+                {field: 'value60', sort: true, minWidth: 150, title: '7#排气导管位移'},
+                {field: 'value61', sort: true, minWidth: 150, title: '7#排气导管压力'},
+                {field: 'value62', sort: true, minWidth: 150, title: '7#排气座圈位移'},
+                {field: 'value63', sort: true, minWidth: 150, title: '7#排气座圈压力'},
+                {field: 'value64', sort: true, minWidth: 150, title: '8#进气导管位移'},
+                {field: 'value65', sort: true, minWidth: 150, title: '8#进气导管压力'},
+                {field: 'value66', sort: true, minWidth: 150, title: '8#进气座圈位移'},
+                {field: 'value67', sort: true, minWidth: 150, title: '8#进气座圈压力'},
+                {field: 'value68', sort: true, minWidth: 150, title: '8#排气导管位移'},
+                {field: 'value69', sort: true, minWidth: 150, title: '8#排气导管压力'},
+                {field: 'value70', sort: true, minWidth: 150, title: '8#排气座圈位移'},
+                {field: 'value71', sort: true, minWidth: 150, title: '8#排气座圈压力'},
+
+            ]], page: true
+        });
+
+        form.on('radio', function (data) {
+            if (data.value == 'custom') {
+                $('#searchTime').removeClass('timeHidden');
+            } else {
+                $('#searchTime').addClass('timeHidden');
+            }
+        });
+
+        //自定义验证规则
+        form.verify({
+            title: function (value) {
+                parent.layer.alert(value);
+            }
+        });
+    });
+</script>
+</body>
+</html>

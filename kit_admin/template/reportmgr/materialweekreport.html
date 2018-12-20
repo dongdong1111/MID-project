@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>工料废周报</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all">
+    <script src="../../plugins/layui/layui.js"></script>
+    <script src="../../media/js/jquery-1.10.1.min.js"></script>
+</head>
+<body>
+<div style="width: 1500px; height: 80px; border: 1px solid black; background-color: #00B0F0 ; text-align: center ;line-height: 80px;">
+    <h1 style="margin: 0 auto;">工料废周报</h1>
+</div>
+<div class="container">
+    <div class="layui-form layui-form-pane">
+        <div class="layui-col-md12">
+            <table class="layui-table"
+                   lay-data="{width:1500,url:'../../datas/reportData/materialweekreport.json', page:false, id:'idTest'}"
+                   lay-filter="demo">
+                <thead>
+                <tr>
+                    <th lay-data="{field:'value1',  fixed: true}">序号</th>
+                    <th lay-data="{field:'value2',  fixed: true}">零部件号</th>
+                    <th lay-data="{field:'value3',  fixed: true}">零件名称</th>
+                    <th lay-data="{field:'value4',  fixed: true}">数量（件）</th>
+                    <th lay-data="{field:'value5',  fixed: true}">供应商名称</th>
+                    <th lay-data="{field:'value6',  fixed: true}">故障现象</th>
+                    <th lay-data="{field:'value7',  fixed: true}">生产线</th>
+                    <th lay-data="{field:'value8',  fixed: true}">类别</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+    layui.use(['element', 'table', 'laydate', 'laypage'], function () {
+        var element = layui.element;
+        var table = layui.table;
+        var laydate = layui.laydate;
+        //日期
+        laydate.render({
+            elem: '#date'
+        });
+        laydate.render({
+            elem: '#date1'
+        });
+        //监听表格复选框选择
+        table.on('checkbox(demo)', function (obj) {
+            console.log(obj)
+        });
+
+        //监听工具条
+        table.on('tool(demo)', function (obj) {
+            var data = obj.data;
+            if (obj.event === 'detail') {
+                parent.layer.msg('ID：' + data.id + ' 的查看操作');
+            } else if (obj.event === 'del') {
+                parent.layer.confirm('真的删除行么', function (index) {
+                    obj.del();
+                    layer.close(index);
+                });
+            } else if (obj.event === 'edit') {
+                parent.layer.alert('编辑行：<br>' + JSON.stringify(data))
+            }
+        });
+
+        $(".layui-table th").css("background-color", "#00B0F0");
+        hbcol();
+
+        /*合并最后一行*/
+        function hbcol() {
+            $('.layui-table-fixed').empty("");
+            var datatable = $(".layui-table")[2];
+            var lastrow = datatable.rows.length - 1;
+            datatable.rows[lastrow].cells[0].style.display = "none";
+            datatable.rows[lastrow].cells[1].style.display = "none";
+            datatable.rows[lastrow].cells[2].style.display = "none";
+            datatable.rows[lastrow].cells[3].colSpan = 4;
+            datatable.rows[lastrow].cells[3].align = "center";
+            datatable.rows[lastrow].cells[3].style.backgroundColor = "yellow";
+            datatable.rows[lastrow].cells[3].style.color = "black";
+
+
+            datatable.rows[lastrow].cells[4].style.display = "none";
+            datatable.rows[lastrow].cells[5].colSpan = 2;
+            datatable.rows[lastrow].cells[5].align = "center";
+            datatable.rows[lastrow].cells[5].style.backgroundColor = "#FF0000";
+            datatable.rows[lastrow].cells[5].style.color = "black";
+
+
+            datatable.rows[lastrow].cells[6].style.display = "none";
+            datatable.rows[lastrow].cells[7].colSpan = 2;
+            datatable.rows[lastrow].cells[7].align = "center";
+            datatable.rows[lastrow].cells[7].style.backgroundColor = "#00B050";
+            datatable.rows[lastrow].cells[7].style.color = "black";
+
+        }
+        /*标题加粗加黑*/
+        $("th[data-field]>div>span").css("color",'black').css("font-weight",'900');
+
+
+    });
+</script>
+</body>
+</html>

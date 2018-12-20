@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>c1000</title>
+    <link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all">
+</head>
+
+<body>
+
+<form class="layui-form layui-form-pane" action="" style="margin-top: 20px;">
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">生产线</label>
+            <div class="layui-input-inline">
+                <select name="">
+                </select>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">失效模式</label>
+            <div class="layui-input-inline">
+                <select name="">
+                </select>
+            </div>
+        </div>
+
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">开始时间</label>
+            <div class="layui-input-inline">
+                <input type="text" name="date" id="date" value="" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">结束时间</label>
+            <div class="layui-input-inline">
+                <input type="text" name="date1" id="date1" value="" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <button class="layui-btn layui-btn-normal" type="button"><i class="layui-icon">&#xe615;</i>查询</button>
+            <button class="layui-btn layui-btn-normal" type="button"><i class="layui-icon">&#xe601;</i>导出</button>
+        </div>
+    </div>
+</form>
+
+<div id="echarts1" style="height: 400px; width: 1600px;"></div>
+<br>
+<br>
+<script src="../../media/js/echarts.js"></script>
+<script src="../../plugins/layui/layui.js"></script>
+<script src="../../media/js/jquery-1.10.1.min.js"></script>
+<script>
+    layui.use(['table', 'laydate'], function () {
+        var table = layui.table;
+        var laydate = layui.laydate;
+        var $ = layui.jquery;
+
+        table.on('tool(test)', function (obj) {
+            var data = obj.data;
+            if (obj.event === 'detail') {
+                layer.msg('ID：' + data.id + ' 的查看操作');
+            } else if (obj.event === 'del') {
+                layer.confirm('真的删除行么', function (index) {
+                    obj.del();
+                    layer.close(index);
+                });
+            } else if (obj.event === 'edit') {
+                layer.alert('编辑行：<br>' + JSON.stringify(data))
+            }
+        });
+        //日期
+        laydate.render({
+            elem: '#date'
+        });
+        laydate.render({
+            elem: '#date1'
+        });
+
+
+    });
+</script>
+
+<script>
+
+    var Myecharts1 = echarts.init(document.getElementById("echarts1"));
+    option1 = {
+        title: {
+            top: '1%',
+            left: 'center',
+            text: '失效模式C/1000趋势图',
+            align: 'right'
+        },
+        color: [
+            '#94D352',
+            '#C60000',
+            '#4A82BD',
+            '#e22eca',
+            '#722FA5',
+            '#FF4500',
+            '#ca8622'
+        ],
+        toolbox: {
+            feature: {
+                dataView: {show: true, readOnly: false},
+                magicType: {show: true, type: ['line', 'bar']},
+                restore: {show: true},
+                saveAsImage: {show: true}
+            }
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            top: '7%',
+            data: ['曲轴后油封/装配不到位', '气门锁块/装配不到位', '曲轴箱上体/涂胶不合格', '机油盘总成/涂胶不合格']
+        },
+        grid: {
+            top: '18%',
+            left: '0%',
+            right: '0%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis: {
+            type: 'category',
+            axisLabel: {
+                interval: 0//横轴信息全部显示
+            },
+            data: ['2017', '01月', '02月', '03月', '02/24', '03/03', '03/10', '03/17', '03/24', '03/31', '20DAY', '03/12', '03/13', '03/14', '03/15', '03/16', '03/17', '03/18', '03/19', '03/20', '03/21', '03/22', '03/23', '03/24', '03/25', '03/26', '03/27', '03/28', '03/29', '03/30', '03/31']
+        },
+        yAxis: {
+            name: '',
+            min: 0,
+            max: 600,
+            interval: 100,
+            type: 'value',
+            axisLabel: {
+                formatter: '{value}'
+            }
+        },
+        series: [
+            {
+                name: '曲轴后油封/装配不到位',
+                type: 'line',
+                data: [400, 400, 400, 400, 230, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400,],
+                barWidth: '30',
+                symbol: 'star',//拐点样式
+                symbolSize: 8,//拐点大小
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'top'
+                    }
+                }
+            },
+            {
+                name: '气门锁块/装配不到位',
+                type: 'line',
+                data: [300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 600, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300],
+                barWidth: '30',
+                symbol: 'diamond',//拐点样式
+                symbolSize: 9,//拐点大小
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'top'
+                    }
+                }
+            },
+            {
+                name: '曲轴箱上体/涂胶不合格',
+                type: 'line',
+                data: [500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 400, 500, 500, 500, 400, 500, 500, 500, 500, 500, 500, 300, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500],
+                barWidth: '30',
+                symbol: 'circle',//拐点样式
+                symbolSize: 9,//拐点大小
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'top'
+                    }
+                }
+            },
+            {
+                name: '机油盘总成/涂胶不合格',
+                type: 'line',
+                data: [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 200, 100, 100, 100, 100, 100, 100, 400, 100, 100, 100, 400, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100,],
+                barWidth: '30',
+                symbol: 'triangle',//拐点样式
+                symbolSize: 9,//拐点大小
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'top'
+                    }
+                }
+            },
+
+        ]
+    };
+    Myecharts1.setOption(option1);
+
+</script>
+</body>
+
+</html>

@@ -1,0 +1,177 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>table模块快速使用</title>
+    <link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all">
+</head>
+
+<body>
+  
+    <form class="layui-form layui-form-pane" action="" style="margin-top:20px;">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">工厂：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="text12" id="text12" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">生 产 线：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="text12" id="text1" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">工    序：</label>
+                <div class="layui-input-block">
+                    <select name="interest" lay-filter="aihao">
+                        <option value="0">OE001</option>
+                        <option value="1" selected="">OE045</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">开始日期：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="date" id="date" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">截止日期：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="date1" id="date1" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+
+            <div class="layui-inline">
+                <button class="layui-btn layui-btn-normal" type="button"><i class="layui-icon">&#xe615;</i>搜索</button>
+                <button class="layui-btn layui-btn-normal" type="button"><i class="layui-icon">&#xe601;</i>导出</button>
+            </div>
+        </div>
+    </form>
+    <div style="float: left;">
+        <table class="layui-table" lay-data="{ url:'../../datas/linepassperiodlist.json', page:false, id:'test',width:300}" lay-filter="test" id="test">
+            <thead>
+                <tr>
+                    <th lay-data="{field:'f1', sort: true}">工序</th>
+                    <th lay-data="{field:'f3'}">平均过线周期</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <div id="echart_linepoint" class="chart" style="float: left; width: 800px; height: 450px; margin-left: 10px;"></div>
+
+    <script src="../../plugins/layui/layui.js"></script>
+    <script src="../../media/js/echarts.min.js"></script>
+    <script>
+        var echart_linepoint = echarts.init(document.getElementById('echart_linepoint'));
+
+        var option = {
+            title: {
+                text: '平均过线周期'
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'cross',
+                    crossStyle: {
+                        color: '#999'
+                    }
+                }
+            },
+            toolbox: {
+                feature: {
+                    dataView: { show: true, readOnly: false },
+                    magicType: { show: true, type: ['line', 'bar'] },
+                    restore: { show: true },
+                    saveAsImage: { show: true }
+                }
+            },
+            legend: {
+                data: ['平均过线周期'],
+                right: 'center'
+            },
+            xAxis: [
+                {
+                    type: 'category',
+                    data: ['WE001', 'WE002', 'WE003', 'WE004', 'WE005', 'WE006', 'WE007', 'WE008', 'WE009', 'WE010', 'WE011', 'WE012', 'WE013'],
+                    axisPointer: {
+                        type: 'shadow'
+                    }
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value',
+                    name: '平均过线周期',
+                    min: 0,
+                    max: 100,
+                    interval: 10,
+                    axisLabel: {
+                        formatter: '{value}'
+                    }
+                },
+                {
+                    type: 'value',
+                    name: '平均过线周期',
+                    min: 0,
+                    max: 100,
+                    interval: 10,
+                    axisLabel: {
+                        formatter: '{value}'
+                    }
+                }
+            ],
+            series: [
+                {
+                    name: '平均过线周期',
+                    type: 'line',
+                    yAxisIndex: 1,
+                    data: [50, 57, 60, 62, 59, 49, 54, 45, 56, 62, 56, 64]
+                }
+            ]
+        };
+        echart_linepoint.setOption(option);
+
+    </script>
+
+    <script>
+        layui.use(['table', 'laydate'], function () {
+            var table = layui.table;
+            laydate = layui.laydate;
+            table.render({
+                cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            });
+            table.on('tool(test)', function (obj) {
+                var data = obj.data;
+                if (obj.event === 'detail') {
+                    layer.msg('ID：' + data.id + ' 的查看操作');
+                } else if (obj.event === 'del') {
+                    layer.confirm('真的删除行么', function (index) {
+                        obj.del();
+                        layer.close(index);
+                    });
+                } else if (obj.event === 'edit') {
+                    layer.alert('编辑行：<br>' + JSON.stringify(data))
+                }
+            });
+            //日期
+            laydate.render({
+                elem: '#date'
+            });
+            laydate.render({
+                elem: '#date1'
+            });
+
+        });
+
+
+    </script>
+</body>
+
+</html>

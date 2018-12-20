@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>编辑内容</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all">
+    <script src="../../plugins/layui/layui.js"></script>
+</head>
+<body>
+<form class="layui-form layui-form-pane" action="" style="margin-top: 20px;margin-left: 20px; width: 670px;">
+    <div class="layui-form-item" style="margin-right:15px;">
+        <div class="layui-inline">
+            <label class="layui-form-label">开始时间：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="date" id="date" value="" autocomplete="off" class="layui-input" style="width: 212px; ">
+            </div>
+        </div>
+        <div class="layui-inline" style="margin: 10px;">
+            <label class="layui-form-label">结束时间：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="date1" id="date1" value="" autocomplete="off" class="layui-input" style="width: 212px">
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">关键字</label>
+            <div class="layui-input-block">
+                <select name="interest" lay-filter="aihao">
+
+                </select>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">项目名称：</label>
+            <div class="layui-input-block">
+                <select name="interest" lay-filter="aihao">
+
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">项目级别：</label>
+            <div class="layui-input-block">
+                <select name="interest" lay-filter="aihao">
+                    <option value ="请输入项目级别">请输入项目级别</option>
+                    <option value ="B级">B级</option>
+                    <option value="C级">C级</option>
+                    <option value="D级">D级</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">开发语言：</label>
+            <div class="layui-input-block">
+                <select name="interest" lay-filter="aihao"></select>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">项目类别:</label>
+            <div class="layui-input-block">
+                <select name="interest" lay-filter="aihao"></select>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">项目进度：</label>
+            <div class="layui-input-block">
+                <select name="interest" lay-filter="aihao"></select>
+            </div>
+        </div>
+
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">版本：</label>
+            <div class="layui-input-block">
+                <select name="interest" lay-filter="aihao"></select>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">所属部门：</label>
+            <div class="layui-input-block">
+                <select name="interest" lay-filter="aihao"></select>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">项目备注：</label>
+            <div class="layui-input-block">
+                <select name="interest" lay-filter="aihao"></select>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">是否删除：</label>
+            <div class="layui-input-block">
+                <select name="interest" lay-filter="aihao"></select>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item" style="padding-left:445px;">
+        <div class="layui-inline" >
+            <button class="layui-btn layui-btn-normal" type="button"><i class="layui-icon">&#xe642;</i>确认修改</button>
+        </div>
+        <div class="layui-inline">
+            <button id="addPage" class="layui-btn layui-btn-normal" type="button"><i class="layui-icon">&#xe605;</i>保存</button>
+        </div>
+    </div>
+</form>
+<script>
+    layui.use(['form',  'layer', 'table', 'element','laydate'], function () {
+        var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+        var form = layui.form;
+        var table = layui.table;
+        var $ = layui.jquery;
+        var layer = layui.layer;
+        var laydate = layui.laydate;
+
+        //日期
+        laydate.render({
+            elem: '#date'
+        });
+        laydate.render({
+            elem: '#date1'
+        });
+    });
+</script>
+</body>
+</html>

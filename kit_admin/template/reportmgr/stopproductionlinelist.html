@@ -1,0 +1,245 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>table模块快速使用</title>
+    <link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all">
+</head>
+
+<body>
+
+<form class="layui-form layui-form-pane" action="" style="margin-top: 20px;">
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">生 产 线：</label>
+            <div class="layui-input-block">
+                <select name="interest" lay-filter="aihao">
+                    <option value="0">所有生产线</option>
+                    <option value="1" selected="">H5总装</option>
+                </select>
+            </div>
+        </div>
+
+
+        <div class="layui-inline">
+            <label class="layui-form-label">班次：</label>
+            <div class="layui-input-block">
+                <select name="interest" lay-filter="aihao">
+                    <option value="0">1</option>
+                    <option value="1" selected="">2</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-inline">
+            <label class="layui-form-label">日期：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="date" id="Text1" value="2017-12-25" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">停线时间：</label>
+            <div class="layui-input-block">
+                <select name="interest" lay-filter="aihao">
+                    <option value="0">所有生产线</option>
+                    <option value="1" selected="">2017-12-28</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-inline">
+            <label class="layui-form-label">设备：</label>
+            <div class="layui-input-block">
+                <select name="interest" lay-filter="aihao">
+                    <option value="0">1</option>
+                    <option value="1" selected="">=全选=</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-inline">
+            <label class="layui-form-label">传输设备：</label>
+            <div class="layui-input-block">
+                <select name="interest" lay-filter="aihao">
+                    <option value="0">1</option>
+                    <option value="1" selected="">=全选=</option>
+                </select>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">传输皮带：</label>
+            <div class="layui-input-block">
+                <select name="interest" lay-filter="aihao">
+                    <option value="0">1</option>
+                    <option value="1" selected="">=全选=</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">加注：</label>
+            <div class="layui-input-block">
+                <select name="interest" lay-filter="aihao">
+                    <option value="0">1</option>
+                    <option value="1" selected="">=全选=</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <button class="layui-btn layui-btn-normal" type="button"><i class="layui-icon">&#xe615;</i>搜索</button>
+        </div>
+    </div>
+</form>
+<table width="100%">
+    <tr>
+        <td>
+            <div id="echart_1" style="height: 250px; width: 500px;"></div>
+        </td>
+        <td>
+            <div id="echart_2" style="height: 250px; width: 500px;"></div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div id="echart_3" style="height: 250px; width: 500px;"></div>
+        </td>
+        <td>
+            <div id="echart_4" style="height: 250px; width: 500px;"></div>
+        </td>
+    </tr>
+</table>
+<script src="../../media/js/echarts.js"></script>
+<script src="../../plugins/layui/layui.js"></script>
+<script>
+
+    echarts.init(document.getElementById('echart_1')).setOption({
+        title: {
+            text: '工作时间分布图',
+            left: 'center',
+            textStyle: {
+                fontSize: 14
+            }
+        },
+        series: {
+            type: 'pie',
+            data: [
+                {name: '计划停机11%', value: 11},
+                {name: '停线19%', value: 19},
+                {name: '运转56%', value: 56},
+                {name: '换模14%', value: 14}
+            ]
+        }
+    });
+    echarts.init(document.getElementById('echart_2')).setOption({
+        title: {
+            text: '生产时间分布图',
+            left: 'center',
+            textStyle: {
+                fontSize: 14
+            }
+        },
+        series: {
+            type: 'pie',
+            data: [
+                {name: '运转59%', value: 59},
+                {name: '换模15%', value: 15},
+                {name: '设备6%', value: 6},
+                {name: '模具9%', value: 9},
+                {name: '压伤6%', value: 6},
+                {name: '过程0%', value: 0},
+                {name: '抓放件1%', value: 1},
+                {name: '泄漏1%', value: 1},
+                {name: '其他3%', value: 1}
+            ]
+        }
+    });
+    echarts.init(document.getElementById('echart_3')).setOption({
+        title: {
+            text: '磨具停线分布图',
+            left: 'center',
+            textStyle: {
+                fontSize: 14
+            }
+        },
+        series: {
+            type: 'pie',
+            data: [
+                {name: '模具1故障22%', value: 22},
+                {name: '模具2故障21%', value: 21},
+                {name: '模具3故障15%', value: 15},
+                {name: '模具4故障10%', value: 10},
+                {name: '模具5故障9%', value: 9},
+                {name: '模具6故障7%', value: 7},
+                {name: '模具7故障5%', value: 5},
+                {name: '模具8故障3%', value: 3},
+                {name: '模具9故障2%', value: 2},
+                {name: '模具10故障6%', value: 6}
+            ]
+        }
+    });
+    echarts.init(document.getElementById('echart_4')).setOption({
+        title: {
+            text: '设备故障分布图',
+            left: 'center',
+            textStyle: {
+                fontSize: 14
+            }
+        },
+        series: {
+            type: 'pie',
+            data: [
+                {name: '设备1故障22%', value: 18},
+                {name: '设备2故障16%', value: 16},
+                {name: '设备3故障15%', value: 15},
+                {name: '设备4故障13%', value: 13},
+                {name: '设备5故障11%', value: 11},
+                {name: '设备6故障9%', value: 9},
+                {name: '设备7故障7%', value: 7},
+                {name: '设备8故障5%', value: 5},
+                {name: '设备9故障4%', value: 4},
+                {name: '设备10故障2%', value: 2}
+            ]
+        }
+    });
+</script>
+
+<script>
+    layui.use(['table', 'laydate'], function () {
+        var table = layui.table;
+        laydate = layui.laydate;
+        table.render({
+            cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+        });
+        table.on('tool(test)', function (obj) {
+            var data = obj.data;
+            if (obj.event === 'detail') {
+                layer.msg('ID：' + data.id + ' 的查看操作');
+            } else if (obj.event === 'del') {
+                layer.confirm('真的删除行么', function (index) {
+                    obj.del();
+                    layer.close(index);
+                });
+            } else if (obj.event === 'edit') {
+                layer.alert('编辑行：<br>' + JSON.stringify(data))
+            }
+        });
+        //日期
+        laydate.render({
+            elem: '#date'
+        });
+        laydate.render({
+            elem: '#date1'
+        });
+
+    });
+</script>
+</body>
+
+</html>

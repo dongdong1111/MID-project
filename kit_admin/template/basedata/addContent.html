@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>增加内容</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all">
+    <script src="https://lolicode.gitee.io/layui_component_tableselect/layui/layui.all.js"></script>
+    <script src="../../plugins/layui/tableSelect.js"></script>
+    <script src="../../media/js/jquery-1.11.3.min.js"></script>
+    <!--<script src="https://lolicode.gitee.io/layui_component_tableselect/tableSelect.js"></script>-->
+</head>
+<body>
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+    <legend>新增基本内容</legend>
+</fieldset>
+<form class="layui-form layui-form-pane" action="" style="margin-top: 20px;margin-left: 20px;">
+    <div class="layui-form-item" >
+        <div class="layui-inline">
+            <label class="layui-form-label">开始时间：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="date" id="date" value="" autocomplete="off" class="layui-input" style="width: 212px">
+            </div>
+        </div>
+        <div class="layui-inline" style="margin: 10px;">
+            <label class="layui-form-label">结束时间：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="date1" id="date1" value="" autocomplete="off" class="layui-input" style="width: 212px">
+            </div>
+        </div>
+
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">项目经理：</label>
+            <div class="layui-input-block">
+                <select name="interest" lay-filter="aihao">
+                    <option value ="请选择经理名称">请选择经理名称</option>
+                    <option value ="张大大">张大大</option>
+                    <option value="李大大">李大大</option>
+                    <option value="小明">小明</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">关键字：</label>
+            <div class="layui-input-block">
+                <select name="interest" lay-filter="aihao">
+                    <option value ="请输入关键字">请输入关键字</option>
+                    <option value ="类别">类别</option>
+                    <option value="级别">级别</option>
+                    <option value="进度">进度</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">项目级别：</label>
+            <div class="layui-input-block">
+                <select name="interest" lay-filter="aihao">
+                    <option value ="请输入项目级别">请输入项目级别</option>
+                    <option value ="B级">B级</option>
+                    <option value="C级">C级</option>
+                    <option value="D级">D级</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">项目名称：</label>
+            <div class="layui-input-block">
+                <select name="interest" lay-filter="aihao">
+                    <option value ="请输入项目名称">请输入项目名称</option>
+                    <option value ="北京">北京</option>
+                    <option value="成都">成都</option>
+                    <option value="西安">西安</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">开发语言</label>
+            <div class="layui-input-block">
+                <select name="interest" lay-filter="aihao">
+                    <option value="项目">
+                        <iframe src="addTable.html" frameborder="0"></iframe>
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">项目编码：</label>
+            <div class="layui-input-block">
+                <select name="interest" lay-filter="aihao"></select>
+            </div>
+        </div>
+
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">项目备注：</label>
+            <div class="layui-input-block">
+                <select name="interest" lay-filter="aihao"></select>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">数据</label>
+            <div class="layui-input-inline">
+                <input type="text" name="" placeholder="请输入" value="朱一" ts-selected="004" autocomplete="off" class="layui-input" id="demo2" style="width: 212px">
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">ID：</label>
+            <div class="layui-input-block">
+                <input type="text" name="ID" placeholder="默认填充" id="ID1" value="" autocomplete="off" class="layui-input" style="width: 212px">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">性别</label>
+            <div class="layui-input-inline">
+                <input type="text" name="" placeholder="默认填充"  autocomplete="off" class="layui-input" id="sex1" style="width: 212px">
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-form-item" >
+        <div class="layui-inline">
+            <button id="addPage" class="layui-btn layui-btn-normal" type="button"><i class="layui-icon">&#xe61f;</i>立即提交</button>
+        </div>
+        <div class="layui-inline">
+            <button id="del" class="layui-btn layui-btn-danger" type="button"><i class="layui-icon">&#xe605;</i>重置</button>
+        </div>
+    </div>
+</form>
+<script>
+    layui.use(['form',  'layer', 'table', 'element','laydate','laypage'], function () {
+        var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+        var form = layui.form;
+        var table = layui.table;
+        var $ = layui.jquery;
+        var layer = layui.layer;
+        var laydate = layui.laydate;
+        var laypage = layui.laypage;
+
+        //日期
+        laydate.render({
+            elem: '#date'
+        });
+        laydate.render({
+            elem: '#date1'
+        });
+
+        //分页
+        laypage.render({
+            elem:'pageDemo',
+            count:100,
+            jump: function(obj,first){
+                if(!first){
+                    layer.msg( obj.cuur);
+                }
+            }
+        });
+    });
+
+    //弹出数据表格
+    var form = layui.form;
+
+    form.render();
+    var tableSelect = layui.tableSelect;
+
+
+    tableSelect.render({
+        elem: '#demo2',
+        checkedKey: 'id',
+        searchKey: 'keyword',
+        searchPlaceholder: '关键词搜索',
+        page: true,
+        table: {
+            url: '../../datas/addTable.json?pagenum=1',
+            cols: [[
+                { type: 'radio' },
+                { field: 'id', title: 'ID' ,width:'100px;'},
+                { field: 'username', title: '姓名' ,width:'300px;'},
+                { field: 'sex', title: '性别' ,width:'100px;'}
+            ]]
+        },
+        done: function (elem, data) {
+            // console.log("=========");
+            // console.log(data);
+            // console.log(data.data[0].id);
+            $('#ID1').val(data.data[0].id);
+            $('#sex1').val(data.data[0].sex)
+            var NEWJSON = []
+            layui.each(data.data, function (index, item) {
+                NEWJSON.push(item.username)
+            });
+            elem.val(NEWJSON.join(","))
+        }
+    });
+
+
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+{
+  "code": 0,
+  "msg": "",
+  "count": 2,
+  "data": [
+    {
+      "value1": "NE1发动机工厂",
+      "value2": "机总八",
+      "value3": "NE1总装生产线",
+      "value4": "P41",
+      "value5": ""
+    },
+    {
+      "value1": "NE1发动机工厂",
+      "value2": "机总八",
+      "value3": "NE1机加生产线",
+      "value4": "P42",
+      "value5": ""
+    }
+  ]
+}

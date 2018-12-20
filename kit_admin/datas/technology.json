@@ -1,0 +1,61 @@
+{
+  "code": 0,
+  "msg": "",
+  "count": 9,
+  "data": [
+    {
+      "value1": "10",
+      "value2": "WE005",
+      "value3": "2",
+      "value4":"P307"
+    },
+    {
+      "value1": "4",
+      "value2": "WE002",
+      "value3": "2",
+      "value4":"P307"
+    },
+    {
+      "value1": "5",
+      "value2": "WE003",
+      "value3": "2",
+      "value4":"P307"
+    },
+    {
+      "value1": "6",
+      "value2": "WE004",
+      "value3": "2",
+      "value4":"P307"
+    },
+    {
+      "value1": "7",
+      "value2": "WE005",
+      "value3": "2",
+      "value4":"P307"
+    },
+    {
+      "value1": "8",
+      "value2": "WE006",
+      "value3": "2",
+      "value4":"P307"
+    },
+    {
+      "value1": "9",
+      "value2": "WE007",
+      "value3": "2",
+      "value4":"P307"
+    },
+    {
+      "value1": "1",
+      "value2": "WE008",
+      "value3": "2",
+      "value4":"P307"
+    },
+    {
+      "value1": "2",
+      "value2": "WE009",
+      "value3": "2",
+      "value4":"P307"
+    }
+  ]
+}

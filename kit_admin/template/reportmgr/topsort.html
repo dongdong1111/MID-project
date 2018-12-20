@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>TOP问题排序</title>
+    <link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all">
+</head>
+
+<body>
+
+<form class="layui-form layui-form-pane" action="" style="margin-top: 20px;">
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">生产线</label>
+            <div class="layui-input-inline">
+                <select name="">
+                    <option value="NE1机加生产线">NE1机加生产线</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">开始时间</label>
+            <div class="layui-input-inline">
+                <input type="text" name="date" id="date" value="" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">结束时间</label>
+            <div class="layui-input-inline">
+                <input type="text" name="date1" id="date1" value="" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">TOPN</label>
+            <div class="layui-input-inline">
+                <select name="">
+                    <option value="TOPN">TOPN</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">数据类型</label>
+            <div class="layui-input-inline">
+                <select name="">
+                    <option value="问题数">问题数</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <button class="layui-btn layui-btn-normal" type="button"><i class="layui-icon">&#xe615;</i>查询</button>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">失效模式</label>
+            <div class="layui-input-inline">
+                <select name="">
+                    <option value="全部">全部</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">排序方式</label>
+            <div class="layui-input-inline">
+                <select name="">
+                    <option value="当天">当天</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <button class="layui-btn layui-btn-normal" type="button"><i class="layui-icon">&#xe601;</i>导出</button>
+        </div>
+    </div>
+</form>
+
+<br>
+<br>
+<div>
+    <table class="layui-hide" id="test" lay-filter="test" ></table>
+</div>
+
+<br>
+<div id="echarts2" style="height: 400px; width: 1500px;"></div>
+<script src="../../media/js/echarts.js"></script>
+<script src="../../plugins/layui/layui.js"></script>
+<script src="../../media/js/jquery-1.10.1.min.js"></script>
+<script>
+    layui.use(['table', 'laydate'], function () {
+        var table = layui.table;
+        var laydate = layui.laydate;
+        var $ = layui.jquery;
+
+        table.on('tool(test)', function (obj) {
+            var data = obj.data;
+            if (obj.event === 'detail') {
+                layer.msg('ID：' + data.id + ' 的查看操作');
+            } else if (obj.event === 'del') {
+                layer.confirm('真的删除行么', function (index) {
+                    obj.del();
+                    layer.close(index);
+                });
+            } else if (obj.event === 'edit') {
+                layer.alert('编辑行：<br>' + JSON.stringify(data))
+            }
+        });
+        //日期
+        laydate.render({
+            elem: '#date'
+            ,value:'2018/9/2'
+        });
+        laydate.render({
+            elem: '#date1'
+            ,value:'2018/9/2'
+        });
+
+        table.render({
+            elem: "#test"
+            , id: 'ftt-table-id'
+            ,url:'../../datas/reportData/topsort.json'
+            , width: 2710
+            , cols: [[
+                {field: 'title', title: '失效模式', width: 177, rowspan: 2, colspan: 1, event: 'setSign'}
+                , {title: 'CY'}
+                , {title: 'Month', colspan: 3}
+                , {title: 'Week Starting', colspan: 6}
+                , {title: '20days', width: 100,colspan: 1}
+                , {title: 'Day', colspan: 20}
+            ], [
+                {field: 'year1', width: 80, title: '2017', event: ''}
+                , {field: 'month1', width: 80, title: '01月', event: ''}
+                , {field: 'month2', width: 80, title: '02月', event: ''}
+                , {field: 'month3', width: 80, title: '03月', event: ''}
+                , {field: 'week1', width: 80, title: '02/24', event: ''}
+                , {field: 'week2', width: 80, title: '03/03', event: ''}
+                , {field: 'week3', width: 80, title: '03/10', event: ''}
+                , {field: 'week4', width: 80, title: '03/17', event: ''}
+                , {field: 'week5', width: 80, title: '03/24', event: ''}
+                , {field: 'week6', width: 80, title: '03/31', event: ''}
+                , {field: 'days', width: 100, title: '20天汇总', event: ''}
+                , {field: 'day1', width: 80, title: '03/12', event: ''}
+                , {field: 'day2', width: 80, title: '03/13', event: ''}
+                , {field: 'day3', width: 80, title: '03/14', event: ''}
+                , {field: 'day4', width: 80, title: '03/15', event: ''}
+                , {field: 'day5', width: 80, title: '03/16', event: ''}
+                , {field: 'day6', width: 80, title: '03/17', event: ''}
+                , {field: 'day7', width: 80, title: '03/18', event: ''}
+                , {field: 'day8', width: 80, title: '03/19', event: ''}
+                , {field: 'day9', width: 80, title: '03/20', event: ''}
+                , {field: 'day10', width: 80, title: '03/21', event: ''}
+                , {field: 'day11', width: 80, title: '03/22', event: ''}
+                , {field: 'day12', width: 80, title: '03/23', event: ''}
+                , {field: 'day13', width: 80, title: '03/24', event: ''}
+                , {field: 'day14', width: 80, title: '03/25', event: ''}
+                , {field: 'day15', width: 80, title: '03/26', event: ''}
+                , {field: 'day16', width: 80, title: '03/27', event: ''}
+                , {field: 'day17', width: 80, title: '03/28', event: ''}
+                , {field: 'day18', width: 80, title: '03/29', event: ''}
+                , {field: 'day19', width: 80, title: '03/30', event: ''}
+                , {field: 'day20', width: 80, title: '03/31', event: ''}
+            ]]
+        });
+
+
+        setTimeout(function () {
+            delRow();
+        }, 80);
+
+    });
+</script>
+
+<script>
+
+    function delRow() {
+        var table = $("td[data-field='1'],td[data-field='4']");
+        console.log("---");
+        console.log(table);
+        for (var i = 0; i < table.size(); i++) {
+            if (isIE() || isIE11()) {
+                table[i].removeNode(true);
+            } else {
+                table[i].remove();
+            }
+        }
+    }
+    //根据浏览器的不同添加不同的移除方法
+    function isIE() {
+        if (!!window.ActiveXObject || "ActiveXObject" in window) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function isIE11() {
+        if ((/Trident\/7\./).test(navigator.userAgent)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+</script>
+</body>
+
+</html>

@@ -1,0 +1,245 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>table模块快速使用</title>
+    <link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all">
+</head>
+
+<body>
+
+    <form class="layui-form layui-form-pane" action="" style="margin-top: 20px;">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">生 产 线：</label>
+                <div class="layui-input-block">
+                    <select name="interest" lay-filter="aihao">
+                        <option value="0">H5总装</option>
+                        <option value="1" selected="">所有生产线</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">日期：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="date" id="Text1" value="2017-12-25" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">班次：</label>
+                <div class="layui-input-block">
+                    <select name="interest" lay-filter="aihao">
+                        <option value="0">1</option>
+                        <option value="1" selected="">2</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <button class="layui-btn layui-btn-normal" type="button"><i class="layui-icon">&#xe615;</i>搜索</button>
+            </div>
+        </div>
+    </form>
+    <table width="100%">
+        <tr>
+            <td>
+                <div id="echart_1" style="height: 500px; width: 1000px;"></div>
+            </td>
+
+        </tr>
+
+    </table>
+    <script src="../../media/js/echarts.js"></script>
+    <script src="../../plugins/layui/layui.js"></script>
+    <script>
+
+        var echart_1 = echarts.init(document.getElementById('echart_1'));
+        var data = [];
+        var dataCount = 10;
+        var startTime = 1000;
+        var categories = ['H5总装', 'H5机加', 'NE1机加'];
+        var types = [
+            { name: '停线换模', color: '#FFFF00' },
+            { name: '停线维修', color: '#00FF00' },
+            { name: '设备停线', color: '#CC0000' },
+            { name: '停线午休', color: '#FF0000' },
+            { name: '停线备料', color: '#0000FF' },
+            { name: '停线保养', color: '#993300' }
+        ];
+
+        // Generate mock data
+        echarts.util.each(categories, function (category, index) {
+            var baseTime = startTime;
+            for (var i = 0; i < dataCount; i++) {
+                var typeItem = types[Math.round(Math.random() * (types.length - 1))];
+                var duration = Math.round(Math.random() * 10000);
+                data.push({
+                    name: typeItem.name,
+                    value: [
+                        index,
+                        baseTime,
+                        baseTime += duration,
+                        duration
+                    ],
+                    itemStyle: {
+                        normal: {
+                            color: typeItem.color
+                        }
+                    }
+                });
+                baseTime += 1;
+            }
+        });
+
+        function renderItem(params, api) {
+            var categoryIndex = api.value(0);
+            var start = api.coord([api.value(1), categoryIndex]);
+            var end = api.coord([api.value(2), categoryIndex]);
+            var height = api.size([0, 1])[1] * 0.6;
+
+            return {
+                type: 'rect',
+                shape: echarts.graphic.clipRectByRect({
+                    x: start[0],
+                    y: start[1] - height / 2,
+                    width: end[0] - start[0],
+                    height: height
+                }, {
+                    x: params.coordSys.x,
+                    y: params.coordSys.y,
+                    width: params.coordSys.width,
+                    height: params.coordSys.height
+                }),
+                style: api.style()
+            };
+        }
+
+        var option_1 = {
+            tooltip: {
+                formatter: function (params) {
+                    return params.marker + params.name + ': ' + params.value[3] + ' ms';
+                }
+            },
+            title: {
+                text: '监测时间流程：8小时状态',
+                left: 'center'
+            },
+            legend: {
+                data: ['bar', 'error']
+            },
+            dataZoom: [{
+                type: 'slider',
+                filterMode: 'weakFilter',
+                showDataShadow: false,
+                top: 400,
+                height: 10,
+                borderColor: 'transparent',
+                backgroundColor: '#e2e2e2',
+                handleIcon: 'M10.7,11.9H9.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4h1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7v-1.2h6.6z M13.3,22H6.7v-1.2h6.6z M13.3,19.6H6.7v-1.2h6.6z', // jshint ignore:line
+                handleSize: 20,
+                handleStyle: {
+                    shadowBlur: 6,
+                    shadowOffsetX: 1,
+                    shadowOffsetY: 2,
+                    shadowColor: '#aaa'
+                },
+                labelFormatter: ''
+            }, {
+                type: 'inside',
+                filterMode: 'weakFilter'
+            }],
+            grid: {
+                height: 300
+            },
+            xAxis: {
+                min: startTime,
+                scale: true,
+                axisLabel: {
+                    formatter: function (val) {
+                        //return Math.max(0, val - startTime) + 'ms';
+                        //return val;
+                        if (val == 1000) {
+                            return '08:00';
+                        }
+                        else if (val == 10000) {
+                            return '09:00';
+                        }
+                        else if (val == 20000) {
+                            return '10:00';
+                        }
+                        else if (val == 30000) {
+                            return '11:00';
+                        }
+                        else if (val == 40000) {
+                            return '12:00';
+                        }
+                        else if (val == 50000) {
+                            return '13:00';
+                        }
+                        else if (val == 60000) {
+                            return '14:00';
+                        }
+                        else if (val == 70000) {
+                            return '15:00';
+                        }
+                        else if (val == 80000) {
+                            return '16:00';
+                        }
+                    }
+                }
+            },
+            yAxis: {
+                data: categories
+            },
+            series: [{
+                type: 'custom',
+                renderItem: renderItem,
+                itemStyle: {
+                    normal: {
+                        opacity: 0.8
+                    }
+                },
+                encode: {
+                    x: [1, 2],
+                    y: 0
+                },
+                data: data
+            }]
+        };
+        echart_1.setOption(option_1);
+
+    </script>
+
+    <script>
+        layui.use(['table', 'laydate'], function () {
+            var table = layui.table;
+            laydate = layui.laydate;
+            table.render({
+                cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            });
+            table.on('tool(test)', function (obj) {
+                var data = obj.data;
+                if (obj.event === 'detail') {
+                    layer.msg('ID：' + data.id + ' 的查看操作');
+                } else if (obj.event === 'del') {
+                    layer.confirm('真的删除行么', function (index) {
+                        obj.del();
+                        layer.close(index);
+                    });
+                } else if (obj.event === 'edit') {
+                    layer.alert('编辑行：<br>' + JSON.stringify(data))
+                }
+            });
+            //日期
+            laydate.render({
+                elem: '#date'
+            });
+            laydate.render({
+                elem: '#date1'
+            });
+
+        });
+    </script>
+</body>
+
+</html>

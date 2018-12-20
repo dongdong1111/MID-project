@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>数据展示</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all">
+    <script src="../../plugins/layui/layui.js"></script>
+</head>
+<body>
+<table class="layui-table" lay-data="{width:1300, url:'../../datas/reportData/productPlanQueueReport.json',id:'idTest'}"
+       lay-filter="demo">
+    <thead>
+    <tr>
+        <th lay-data="{field:'value1',  fixed: true,width:150}">工单编号</th>
+        <th lay-data="{field:'value2',  fixed: true,width:120}">发动机型号</th>
+        <th lay-data="{field:'value3',  fixed: true,width:140}">起始编码</th>
+        <th lay-data="{field:'value4',  fixed: true,width:140}">结束编码</th>
+        <th lay-data="{field:'value5',  fixed: true,width:100}">计划数量</th>
+        <th lay-data="{field:'value6',  fixed: true,width:120}">计划时间</th>
+        <th lay-data="{field:'value7',  fixed: true,width:170}">实际开始时间</th>
+        <th lay-data="{field:'value8',  fixed: true,width:120}">上线数量</th>
+        <th lay-data="{field:'value9',  fixed: true,width:120}">下线数量</th>
+        <th lay-data="{field:'value10', fixed: true}">上线状态</th>
+    </tr>
+    </thead>
+</table>
+<br>
+<div id="echart1" style="width:1300px; height:500px;"></div>
+<script src="../../media/js/echarts.js"></script>
+<script src="../../plugins/layui/layui.js"></script>
+<script src="../../media/js/jquery-1.10.1.min.js"></script>
+<script>
+    layui.use(['table'],function(){
+        var $ = layui.jquery;
+        var table = layui.table;
+
+        var myChart1 = echarts.init(document.getElementById('echart1'));
+        option = {
+            title: {
+                text: '未来一周气温变化',
+                subtext: '纯属虚构'
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data:['最高气温','最低气温']
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    dataZoom: {
+                        yAxisIndex: 'none'
+                    },
+                    dataView: {readOnly: false},
+                    magicType: {type: ['line', 'bar']},
+                    restore: {},
+                    saveAsImage: {}
+                }
+            },
+            xAxis:  {
+                type: 'category',
+                boundaryGap: false,
+                data: ['周一','周二','周三','周四','周五','周六','周日']
+            },
+            yAxis: {
+                type: 'value',
+                axisLabel: {
+                    formatter: '{value} °C'
+                }
+            },
+            series: [
+                {
+                    name:'最高气温',
+                    type:'line',
+                    data:[11, 11, 15, 13, 12, 13, 10],
+                    markPoint: {
+                        data: [
+                            {type: 'max', name: '最大值'},
+                            {type: 'min', name: '最小值'}
+                        ]
+                    },
+                    markLine: {
+                        data: [
+                            {type: 'average', name: '平均值'}
+                        ]
+                    }
+                },
+                {
+                    name:'最低气温',
+                    type:'line',
+                    data:[1, -2, 2, 5, 3, 2, 0],
+                    markPoint: {
+                        data: [
+                            {name: '周最低', value: -2, xAxis: 1, yAxis: -1.5}
+                        ]
+                    },
+                    markLine: {
+                        data: [
+                            {type: 'average', name: '平均值'},
+                            [{
+                                symbol: 'none',
+                                x: '90%',
+                                yAxis: 'max'
+                            }, {
+                                symbol: 'circle',
+                                label: {
+                                    normal: {
+                                        position: 'start',
+                                        formatter: '最大值'
+                                    }
+                                },
+                                type: 'max',
+                                name: '最高点'
+                            }]
+                        ]
+                    }
+                }
+            ]
+        };
+        myChart1.setOption(option);
+    });
+
+</script>
+</body>
+</html>

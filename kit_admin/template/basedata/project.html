@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>项目管理</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all">
+    <script src="../../plugins/layui/layui.js"></script>
+    <script src="../../build/js/tab.js"></script>
+</head>
+<body>
+<form class="layui-form layui-form-pane" action="" style="margin:20px;">
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">开始时间：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="date" id="date" value="" autocomplete="off" class="layui-input" style="width: 212px">
+            </div>
+        </div>
+        <div class="layui-inline" style="margin-left: 15px;">
+            <label class="layui-form-label">结束时间：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="date1" id="date1" value="" autocomplete="off" class="layui-input" style="width: 212px">
+            </div>
+        </div>
+        <div class="layui-inline" style="margin-left: 10px;">
+            <button class="layui-btn layui-btn-normal" type="button"><i class="layui-icon">&#xe615;</i>搜索</button>
+        </div>
+        <div class="layui-inline">
+            <button id="addPage" class="layui-btn layui-btn-normal " type="button"><i class="layui-icon">&#xe61f;</i>添加</button>
+        </div>
+
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">项目经理：</label>
+            <div class="layui-input-block">
+                <select name="interest" lay-filter="aihao"></select>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">关键字：</label>
+            <div class="layui-input-block">
+                <select name="interest" lay-filter="aihao"></select>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">项目级别：</label>
+            <div class="layui-input-block">
+                <select name="interest" lay-filter="aihao"></select>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">版本：</label>
+            <div class="layui-input-block">
+                <select name="interest" lay-filter="aihao"></select>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">开发语言</label>
+            <div class="layui-input-block">
+                <select name="interest" lay-filter="aihao"></select>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">项目编码：</label>
+            <div class="layui-input-block">
+                <select name="interest" lay-filter="aihao"></select>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">项目名称：</label>
+            <div class="layui-input-block">
+                <select name="interest" lay-filter="aihao"></select>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">时间预估：</label>
+            <div class="layui-input-block">
+                <select name="interest" lay-filter="aihao"></select>
+            </div>
+        </div>
+    </div>
+</form>
+<table class="layui-table" lay-data="{url:'../../datas/project.json',page:true,id:'idProject'}"
+       lay-filter="demo100">
+    <thead>
+    <tr>
+        <th lay-data="{type:'checkbox', width:'3%', fixed: 'left'}"></th>
+        <th lay-data="{field:'value1',  width:'5%'}">关键字</th>
+        <th lay-data="{field:'value2',  width:'6%'}">项目名称</th>
+        <th lay-data="{field:'value3',  width:'6%'}">项目类别</th>
+        <th lay-data="{field:'value4',  width:'6%' }">项目级别</th>
+        <th lay-data="{field:'value5',  width:'6%'}">项目进度</th>
+        <th lay-data="{field:'value6',  width:'6%'}">开发语言</th>
+        <th lay-data="{field:'value7',  width:'6%'}">所属部门</th>
+        <th lay-data="{field:'value8',  width:'6%'}">合同状态</th>
+        <th lay-data="{field:'value9',  width:'6%'}">时间预估</th>
+        <th lay-data="{field:'value10', width:'6%'}">版本</th>
+        <th lay-data="{field:'value11', width:'10%'}">计划开始时间</th>
+        <th lay-data="{field:'value12', width:'10%'}">计划结束时间</th>
+        <th lay-data="{field:'value13', width:'10%'}">实际开始时间</th>
+        <th lay-data="{field:'value14', width:'6%'}">项目经理</th>
+        <th lay-data="{field:'value15', width:'6%'}">负责人</th>
+        <th lay-data="{field:'value16', width:'6%'}">协助人</th>
+        <th lay-data="{field:'value17', width:'6%'}">项目状态</th>
+        <th lay-data="{field:'value18', width:'6%'}">SVIV地址</th>
+        <th lay-data="{field:'value19', width:'8%'}">项目备注</th>
+        <th lay-data="{field:'value20', width:'6%'}">是否删除</th>
+        <th lay-data="{field:'value21', width:'6%', sort: true}">客户名称1</th>
+        <th lay-data="{field:'value22', width:'6%', sort: true}">客户编码</th>
+        <th lay-data="{field:'value23', width:'6%', sort: true}">项目编码</th>
+        <th lay-data="{fixed: 'right', width:'8%', align:'center', toolbar: '#barDemo'}">操作</th>
+    </tr>
+    </thead>
+</table>
+
+<script type="text/html" id="barDemo">
+    <button class="layui-btn layui-btn-xs layui-btn-normal" lay-event='edit' id="edit1">编辑</button>
+    <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</a>
+</script>
+<script>
+
+    layui.use(['form',  'layer', 'table', 'element','laydate',], function () {
+        var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+        var form = layui.form;
+        var table = layui.table;
+        var $ = layui.jquery;
+        var layer = layui.layer;
+        var laydate = layui.laydate;
+
+        //日期
+        laydate.render({
+            elem: '#date'
+        });
+        laydate.render({
+            elem: '#date1'
+        });
+
+        //新增页面
+        /*$('#addPage').on('click',function(obj){
+            parent.layer.open({
+                type:2,
+                title:'hello girl',
+                shadeClose: true,
+                shade: 0.1,
+                area: ['30%','50%'],
+                content: 'template/basedata/addContent.html'
+            });
+        });
+       */
+
+        //新增内容
+        $('#addPage').on('click',function(obj){
+            var addMenu ={
+                url :  'template/basedata/addContent.html',
+                icon :'&#xe61f;',
+                title :'新增内容',
+                id : '110'
+            };
+            parent.tab.tabAdd(addMenu);
+        });
+
+        //编辑页面
+         table.on('tool(demo100)',function(obj){
+             var data = obj.data;
+             console.log(data.value1);
+             if(obj.event === 'edit'){
+                 parent.layer.open({
+                     type:2,
+                     title:'编辑内容',
+                     shadeClose: true,
+                     shade: 0.1,
+                     area: ['38%','80%'],
+                     content: 'template/basedata/editContent.html'
+                 });
+             } else if(obj.event === 'del'){
+                 layer.confirm('想好了么？真的删除么',function(index){
+                     obj.del();
+                     layer.close(index);
+                 });
+             }
+         });
+});
+</script>
+</body>
+</html>

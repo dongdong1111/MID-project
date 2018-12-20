@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>停线记录管理</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all">
+    <script src="../../plugins/layui/layui.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="layui-form layui-form-pane">
+            <div class="layui-form-item">
+                <div class="layui-inline" >
+                    <label class="layui-form-label">工&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;厂：</label>
+                    <div class="layui-input-inline">
+                        <select name="">
+                            <option value="">NE1发动机工厂</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">车&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;间：</label>
+                    <div class="layui-input-inline">
+                        <select name="">
+                            <option value="">机总八</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">生产线：</label>
+                    <div class="layui-input-inline">
+                        <select name="">
+                            <option value="">NE1总装生产线</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">开始日期：</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="date" id="date" value="" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">截止日期：</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="date1" id="date1" value="" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+
+                <div class="layui-inline">
+                    <button class="layui-btn layui-btn-normal" type="button"><i class="layui-icon"></i>查询</button>
+                    <button class="layui-btn layui-btn-normal" id="addStopLineWrite"><i class="layui-icon">&#xe61f;</i>新增停线记录</button>
+                </div>
+            </div>
+
+            <div class="layui-col-md12">
+                <table class="layui-table" lay-data="{url:'../../datas/stopLineWrite.json', page:true, id:'idTest'}"
+                       lay-filter="demo">
+                    <thead>
+                    <tr>
+                        <th lay-data="{type:'checkbox', width:'3%', fixed: 'left'}"></th>
+                        <th lay-data="{field:'value1',  width:150 }">工厂名称</th>
+                        <th lay-data="{field:'value2',  width:100}">车间名称</th>
+                        <th lay-data="{field:'value3',  width:150}">生产线名称</th>
+                        <th lay-data="{field:'value4',  width:100}">班次</th>
+                        <th lay-data="{field:'value5',  width:100}">工位号</th>
+                        <th lay-data="{field:'value6',  width:100}">工位名称</th>
+                        <th lay-data="{field:'value7',  width:150}">起止时间</th>
+                        <th lay-data="{field:'value8',  width:150}">结束时间</th>
+                        <th lay-data="{field:'value9',  width:100}">分钟</th>
+                        <th lay-data="{field:'value10',  width:150}">停线原因分类</th>
+                        <th lay-data="{field:'value11',  width:100}">停线原因</th>
+                        <th lay-data="{field:'value12',  width:150}">整改措施</th>
+                        <th lay-data="{fixed: 'right', width:'10%', align:'center', toolbar: '#barDemo'}">操作</th>
+                    </tr>
+                    </thead>
+                </table>
+                <script type="text/html" id="barDemo">
+                    <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="edit">编辑记录</a>
+                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除记录</a>
+                </script>
+            </div>
+    </div>
+</div>
+<script>
+    layui.use(['element', 'table','laydate'], function () {
+        var element = layui.element;
+        var table = layui.table;
+        var laydate = layui.laydate;
+
+        laydate.render({
+            elem: '#date'
+        });
+        laydate.render({
+            elem: '#date1'
+        });
+        //监听表格复选框选择
+        table.on('checkbox(demo)', function (obj) {
+            console.log(obj)
+        });
+
+        //监听工具条
+        table.on('tool(demo)', function (obj) {
+            var data = obj.data;
+            if (obj.event === 'detail') {
+                parent.layer.msg('ID：' + data.id + ' 的查看操作');
+            } else if (obj.event === 'del') {
+                layer.confirm('真的删除行么', function (index) {
+                    obj.del();
+                    layer.close(index);
+                });
+            } else if (obj.event === 'edit') {
+                parent.layer.alert('编辑行：<br>' + JSON.stringify(data))
+            }
+        });
+
+        var $ = layui.$, active = {
+            getCheckData: function () { //获取选中数据
+                var checkStatus = table.checkStatus('idTest')
+                    , data = checkStatus.data;
+                layer.alert(JSON.stringify(data));
+            }
+            , getCheckLength: function () { //获取选中数目
+                var checkStatus = table.checkStatus('idTest')
+                    , data = checkStatus.data;
+                layer.msg('选中了：' + data.length + ' 个');
+            }
+            , isAll: function () { //验证是否全选
+                var checkStatus = table.checkStatus('idTest');
+                layer.msg(checkStatus.isAll ? '全选' : '未全选')
+            }
+        };
+
+        $('#addStopLineWrite').on('click', function (obj) {
+            parent.layer.open({
+                type: 2,
+                title: '新增停线记录',
+                shadeClose: true,
+                shade: 0.1,
+                area: ['35%', '65%'],
+                content: '/template/basedata/add/addStopLineWrite.html'
+            });
+        });
+
+        $('#refresh').on('click', function (obj) {
+            //do refresh on  your way
+            location.reload();
+        });
+
+    });
+</script>
+</body>
+</html>

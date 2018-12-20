@@ -1,0 +1,27 @@
+{
+  "code": 0,
+  "msg": "",
+  "count": 3,
+  "data": [
+    {
+      "value1": "NE1发动机工厂",
+      "value2": "机总八",
+      "value3": "NE1总装生产线",
+      "value4":"停机"
+
+    },
+    {
+      "value1": "NE1发动机工厂",
+      "value2": "机总八",
+      "value3": "NE1总装生产线",
+      "value4":"故障"
+    },
+    {
+      "value1": "NE1发动机工厂",
+      "value2": "机总八",
+      "value3": "NE1总装生产线",
+      "value4":"呼叫"
+
+    }
+  ]
+}

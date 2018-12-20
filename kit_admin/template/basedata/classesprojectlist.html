@@ -1,0 +1,210 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>table模块快速使用</title>
+    <link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../src/css/ztree/metro/ztree.css">
+    <script src="../../media/js/jquery-1.10.1.min.js"></script>
+</head>
+
+<body>
+
+<div>
+    <div style="float: left; width: 20%;">
+        <ul id="ztree" class="ztree">
+        </ul>
+    </div>
+    <div style="float: left; width: 80%;">
+
+        <form class="layui-form layui-form-pane" action="" style="margin-top:20px;">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <button class="layui-btn layui-btn-normal" id="addMethod">
+                        <i class="layui-icon">&#xe61f;</i>新增方案
+                    </button>
+                    <button class="layui-btn layui-btn-danger">删除方案</button>
+                    <button class="layui-btn layui-btn-normal" id="addClasscount">
+                        <i class="layui-icon">&#xe61f;</i>新增班次
+                    </button>
+                    <button class="layui-btn layui-btn-danger">删除班次</button>
+                    <button class="layui-btn layui-btn-normal" id="addEvent">
+                        <i class="layui-icon">&#xe61f;</i>新增事件
+                    </button>
+                </div>
+            </div>
+        </form>
+        <table class="layui-table" lay-data="{ url:'../../datas/classesprojectlist.json', page:true, id:'test'}"
+               lay-filter="test" id="test">
+            <thead>
+            <tr>
+                <th lay-data="{field:'f1', sort: true}">事件序号</th>
+                <th lay-data="{field:'f2'}">事件名称</th>
+                <th lay-data="{field:'f3',sort: true}">事件类型</th>
+                <th lay-data="{field:'f4'}">班次名称</th>
+                <th lay-data="{field:'f5'}">开始时间</th>
+                <th lay-data="{field:'f6', sort: true}">结束时间</th>
+                <th lay-data="{fixed: 'right', align:'center', toolbar: '#barDemo'}">操作</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+<script type="textml" id="barDemo">
+       <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="edit">编辑</a>
+       <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+<script src="../../plugins/layui/layui.js"></script>
+<script>
+    layui.config({
+        base: '../../src/js/'
+    }).use(['ztree', 'layer'], function () {
+        var $ = layui.jquery,
+            layer = layui.layer;
+        var zNodes = [{
+            id: 1,
+            pId: 0,
+            name: "常规班次",
+            open: true
+        }, {
+            id: 111,
+            pId: 1,
+            name: "一班",
+            open: true
+        }, {
+            id: 112,
+            pId: 1,
+            name: "二班",
+            open: true
+        }, {
+            id: 2,
+            pId: 0,
+            name: "特殊班次",
+            open: true
+        }, {
+            id: 211,
+            pId: 2,
+            name: "加晚班",
+            open: true
+        }];
+
+        var setting = {
+            view: {
+                addHoverDom: addHoverDom,
+                removeHoverDom: removeHoverDom,
+                selectedMulti: false
+            },
+            check: {
+                enable: true
+            },
+            data: {
+                simpleData: {
+                    enable: true
+                }
+            },
+            edit: {
+                enable: true
+            },
+            callback: {
+                onClick: function (e, treeId, treeNode) {
+                    console.log(treeNode);
+                }
+            }
+        };
+
+
+        $(document).ready(function () {
+            $.fn.zTree.init($("#ztree"), setting, zNodes);
+        });
+
+        var newCount = 1;
+
+        function addHoverDom(treeId, treeNode) {
+            var sObj = $("#" + treeNode.tId + "_span");
+            if (treeNode.editNameFlag || $("#addBtn_" + treeNode.tId).length > 0)
+                return;
+            var addStr = "<span class='button add' id='addBtn_" + treeNode.tId +
+                "' title='add node' onfocus='this.blur();'></span>";
+            sObj.after(addStr);
+            var btn = $("#addBtn_" + treeNode.tId);
+            if (btn) {
+                btn.bind("click", function () {
+                    var zTree = $.fn.zTree.getZTreeObj("ztree");
+                    zTree.addNodes(treeNode, {
+                        id: (100 + newCount),
+                        pId: treeNode.id,
+                        name: "new node" + (newCount++)
+                    });
+                    return false;
+                });
+            }
+        };
+
+        function removeHoverDom(treeId, treeNode) {
+            $("#addBtn_" + treeNode.tId).unbind().remove();
+        };
+    });
+
+</script>
+<script>
+    layui.use('table', function () {
+        var table = layui.table;
+        $ = layui.$;
+        table.render({
+            cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+        });
+        table.on('tool(test)', function (obj) {
+            var data = obj.data;
+            if (obj.event === 'detail') {
+                layer.msg('ID：' + data.id + ' 的查看操作');
+            } else if (obj.event === 'del') {
+                layer.confirm('真的删除行么', function (index) {
+                    obj.del();
+                    layer.close(index);
+                });
+            } else if (obj.event === 'edit') {
+                layer.alert('编辑行：<br>' + JSON.stringify(data))
+            }
+        });
+
+        $('#addMethod').on('click', function () {
+            parent.layer.open({
+                type: 2,
+                title: '新增方案',
+                shadeClose: true,
+                shade: 0.1,
+                area: ['35%', '65%'],
+                content: '/template/basedata/add/addMethod.html'
+
+            })
+        });
+
+        $('#addClasscount').on('click', function () {
+            parent.layer.open({
+                type: 2,
+                title: '新增班次',
+                shadeClose: true,
+                shade: 0.1,
+                area: ['35%', '65%'],
+                content: '/template/basedata/add/addClasscount.html'
+
+            })
+        });
+        $('#addEvent').on('click', function () {
+            parent.layer.open({
+                type: 2,
+                title: '新增事件',
+                shadeClose: true,
+                shade: 0.1,
+                area: ['35%', '65%'],
+                content: '/template/basedata/add/addEvent.html'
+
+            })
+        })
+    });
+</script>
+</body>
+
+</html>

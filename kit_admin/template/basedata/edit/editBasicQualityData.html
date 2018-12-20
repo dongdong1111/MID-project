@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>编辑质量数据</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../../../plugins/layui/css/layui.css" media="all">
+    <script src="../../../plugins/layui/layui.js"></script>
+</head>
+<body>
+<div class="container">
+    <form class="layui-form" action="">
+        <div class="layui-form-item">
+            <label class="layui-form-label">参数名称</label>
+            <div class="layui-input-block">
+                <input type="text" name="value1" lay-verify="addLength" autocomplete="off" placeholder="参数名称" value="1#"
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">最大值</label>
+            <div class="layui-input-block">
+                <input type="text" name="value2" lay-verify="" autocomplete="off" placeholder="最大值" value=""
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">最小值</label>
+            <div class="layui-input-block">
+                <input type="number" name="value3" autocomplete="off" placeholder="优先级" value=""
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">参考值</label>
+            <div class="layui-input-block">
+                <input type="number" name="value4" autocomplete="off" placeholder="优先级" value=""
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn layui-btn-normal" lay-submit="" lay-filter="demo1">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-danger">重置</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    layui.use(['form', 'layedit', 'laydate'], function () {
+        var form = layui.form
+            , layer = layui.layer;
+
+        //监听提交
+        form.on('submit(demo1)', function (data) {
+            layer.alert(JSON.stringify(data.field), {
+                title: '最终的提交信息',
+                shade: 0
+            })
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

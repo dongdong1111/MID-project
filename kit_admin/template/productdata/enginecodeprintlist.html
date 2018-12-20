@@ -1,0 +1,183 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>table模块快速使用</title>
+    <link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all">
+</head>
+
+<body>
+  
+    <form class="layui-form layui-form-pane" action="" style="margin-top:20px;">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">工&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;厂：</label>
+                <div class="layui-input-block">
+                    <select name="interest" lay-filter="aihao">
+                        <option value="0">一工厂</option>
+                        <option value="1" selected="">三工厂</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">车&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;间：</label>
+                <div class="layui-input-block">
+                    <select name="interest" lay-filter="aihao">
+                        <option value="0"></option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="layui-inline">
+                <label class="layui-form-label">生 产 线：</label>
+                <div class="layui-input-block">
+                    <select name="interest" lay-filter="aihao">
+                        <option value="0">H5总装</option>
+                        <option value="1" selected="">H5机加</option>
+                    </select>
+                </div>
+            </div>
+
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">机&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;型：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="text12" id="text1" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">开始日期：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="date" id="date" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">截止日期：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="date1" id="date1" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">发动机码：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="text12" id="text12" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">工单状态：</label>
+                <div class="layui-input-block">
+                    <select name="interest" lay-filter="aihao">
+                        <option value="0">生产中</option>
+                        <option value="1" selected="">全部</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">是否打印：</label>
+                <div class="layui-input-block">
+                    <select name="interest" lay-filter="aihao">
+                        <option value="0">已打印</option>
+                        <option value="1" selected="">全部</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <button class="layui-btn layui-btn-normal" type="button"><i class="layui-icon">&#xe615;</i>搜索</button>
+                <button class="layui-btn layui-btn-normal" type="button"><i class="layui-icon">&#xe601;</i>打印</button>
+            </div>
+        </div>
+
+    </form>
+    <table class="layui-table" lay-data="{ url:'../../datas/enginecodeprintlist.json', page:false, id:'test'}" lay-filter="test" id="test">
+        <thead>
+            <tr>
+                <th lay-data="{field:'f1'}">工厂</th>
+                <th lay-data="{field:'f2'}">生产线</th>
+                <th lay-data="{field:'f3'}">优先级</th>
+                <th lay-data="{field:'f4'}">工单编号</th>
+                <th lay-data="{field:'f5'}">发动机型号</th>
+                <th lay-data="{field:'f6'}">数量</th>
+                <th lay-data="{field:'f7'}">计划时间</th>
+                <th lay-data="{field:'f8', sort: true}">起始编码</th>
+                <th lay-data="{field:'f9'}">结束编码</th>
+                <th lay-data="{field:'f10'}">工单状态</th>
+                <th lay-data="{field:'f11'}">打印次数</th>
+            </tr>
+        </thead>
+    </table>
+    <form class="layui-form" action="">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">空打数量：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="text12" value="0" id="text2" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">前缀：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="text12" id="text6" value="00824" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">打印份数：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="text12" id="text7" value="1" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+
+    </form>
+    <table class="layui-table" lay-data="{ url:'../../datas/enginecodeprintdetaillist.json', page:false, id:'test'}" lay-filter="test" id="Table1">
+        <thead>
+            <tr>
+                <th lay-data="{field:'f1'}">发动机机型</th>
+                <th lay-data="{field:'f2'}">发动机全码</th>
+                <th lay-data="{field:'f3'}">发动机码</th>
+                <th lay-data="{field:'f4'}">创建时间</th>
+                <th lay-data="{field:'f5'}">打印次数</th>
+            </tr>
+        </thead>
+    </table>
+    <script src="../../plugins/layui/layui.js"></script>
+    <script type="textml" id="barDemo">
+                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">报废</a>
+    </script>
+
+    <script>
+        layui.use(['table', 'laydate'], function () {
+            var table = layui.table;
+            laydate = layui.laydate;
+            table.render({
+                cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            });
+            table.on('tool(test)', function (obj) {
+                var data = obj.data;
+                if (obj.event === 'detail') {
+                    layer.msg('ID：' + data.id + ' 的查看操作');
+                } else if (obj.event === 'del') {
+                    layer.confirm('真的删除行么', function (index) {
+                        obj.del();
+                        layer.close(index);
+                    });
+                } else if (obj.event === 'edit') {
+                    layer.alert('编辑行：<br>' + JSON.stringify(data))
+                }
+            });
+            //日期
+            laydate.render({
+                elem: '#date'
+            });
+            laydate.render({
+                elem: '#date1'
+            });
+
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>工位放行状态查询</title>
+    <link rel="stylesheet" href="../../plugins/layui/css/layui.css">
+    <script src="../../plugins/layui/layui.js"></script>
+    <script src="../../media/js/echarts.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="layui-form layui-form-pane">
+        <div class="layui-col-md12">
+            <div class="layui-inline">
+                <label class="layui-form-label">开始时间</label>
+                <div class="layui-input-inline">
+                    <input type="text" class="layui-input" id="startTime" placeholder="yyyy-MM-dd HH:mm:ss">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">结束时间</label>
+                <div class="layui-input-inline">
+                    <input type="text" class="layui-input" id="endTime" placeholder="yyyy-MM-dd HH:mm:ss">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">工位：</label>
+                <div class="layui-input-inline" style="width: 140px;">
+                    <input type="text" name="name" autocomplete="off" class="layui-input" placeholder="工位">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">
+                    <button class="layui-btn layui-btn-normal" type="button"><i class="layui-icon">&#xe615;</i>查询
+                    </button>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-col-md3">
+        <div style="margin: 0 10px 0 40px">
+            <table class="layui-table">
+                <colgroup>
+                    <col width="33%">
+                    <col width="33%">
+                    <col width="34%">
+                </colgroup>
+                <thead>
+                <tr>
+                    <th>合格</th>
+                    <th>不合格</th>
+                    <th>强制放行</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>741</td>
+                    <td>210</td>
+                    <td>140</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="layui-col-md9">
+        <div id="echart-position" style="width: 600px;height: 400px"></div>
+    </div>
+</div>
+
+<script>
+    var echartOption = {
+        title: {
+            text: '某站点用户访问来源',
+            subtext: '纯属虚构',
+            x: 'center'
+        },
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            orient: 'vertical',
+            left: 'right',
+            data: ['合格', '不合格', '强制放行']
+        },
+        series: [
+            {
+                name: '访问来源',
+                type: 'pie',
+                radius: '55%',
+                center: ['50%', '60%'],
+                data: [
+                    {value: 741, name: '合格'},
+                    {value: 210, name: '不合格'},
+                    {value: 140, name: '强制放行'},
+                ],
+                itemStyle: {
+                    emphasis: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }
+        ]
+    };
+
+    var myChart = echarts.init(document.getElementById('echart-position'));
+    myChart.setOption(echartOption);
+
+    layui.use('laydate', function () {
+        var laydate = layui.laydate;
+
+        laydate.render({
+            elem: '#startTime'
+            , type: 'datetime'
+        });
+        laydate.render({
+            elem: '#endTime'
+            , type: 'datetime'//max,min设置值
+        });
+    });
+</script>
+</body>
+</html>

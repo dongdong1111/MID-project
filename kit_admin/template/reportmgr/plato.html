@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>c1000</title>
+    <link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all">
+</head>
+
+<body>
+
+<form class="layui-form layui-form-pane" action="" style="margin-top: 20px;">
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">生产线</label>
+            <div class="layui-input-inline">
+                <select name="">
+                </select>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">TOPN</label>
+            <div class="layui-input-inline">
+                <input type="text" name="TOPN" id="TOPN" value="" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">开始时间</label>
+            <div class="layui-input-inline">
+                <input type="text" name="date" id="date" value="" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">结束时间</label>
+            <div class="layui-input-inline">
+                <input type="text" name="date1" id="date1" value="" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <button class="layui-btn layui-btn-normal" type="button"><i class="layui-icon">&#xe615;</i>查询</button>
+            <button class="layui-btn layui-btn-normal" type="button"><i class="layui-icon">&#xe601;</i>导出</button>
+        </div>
+    </div>
+</form>
+
+<div id="echarts1" style="height: 400px; width: 1200px;"></div>
+<div>
+    <table class="layui-hide" id="test" lay-filter="test"></table>
+</div>
+
+<br>
+<br>
+<script src="../../media/js/echarts.js"></script>
+<script src="../../plugins/layui/layui.js"></script>
+<script src="../../media/js/jquery-1.10.1.min.js"></script>
+<script>
+    layui.use(['table', 'laydate'], function () {
+        var table = layui.table;
+        var laydate = layui.laydate;
+        var $ = layui.jquery;
+
+        table.on('tool(test)', function (obj) {
+            var data = obj.data;
+            if (obj.event === 'detail') {
+                layer.msg('ID：' + data.id + ' 的查看操作');
+            } else if (obj.event === 'del') {
+                layer.confirm('真的删除行么', function (index) {
+                    obj.del();
+                    layer.close(index);
+                });
+            } else if (obj.event === 'edit') {
+                layer.alert('编辑行：<br>' + JSON.stringify(data))
+            }
+        });
+        //日期
+        laydate.render({
+            elem: '#date'
+        });
+        laydate.render({
+            elem: '#date1'
+        });
+
+        table.render({
+            elem: "#test"
+            , id: 'ftt-table-id'
+            , url: '../../datas/reportData/plato.json'
+            , width: 1200
+            , cols: [[
+                {field: 'value1', width: 180, title: '曲轴后油封/装配不到位', event: ''}
+                , {field: 'value2', width: 180, title: '曲轴后油封/装配不到位', event: ''}
+                , {field: 'value3', width: 180, title: '气门锁块/装配不到位', event: ''}
+                , {field: 'value4', width: 180, title: '曲轴箱上体/涂胶不合格', event: ''}
+                , {field: 'value5', width: 180, title: '机油盘总成/涂胶不合格', event: ''}
+                , {field: 'value6', width: 180, title: '气门油封/涂胶不合格', event: ''}
+                , {field: 'value7', width: 180, title: '其它', event: ''}
+                , {field: 'value8', width: 180, title: '合计', event: ''}]]
+        });
+
+    });
+</script>
+
+<script>
+
+    var Myecharts1 = echarts.init(document.getElementById("echarts1"));
+    option1 = {
+        title: {
+            top: '1%',
+            left: 'center',
+            text: '失效模式C/1000趋势图',
+            align: 'right'
+        },
+        color: [
+            '#94D352',
+            '#C60000',
+            '#4A82BD',
+            '#e22eca',
+            '#722FA5',
+            '#FF4500',
+            '#ca8622'
+        ],
+        toolbox: {
+            feature: {
+                dataView: {show: true, readOnly: false},
+                magicType: {show: true, type: ['line', 'bar']},
+                restore: {show: true},
+                saveAsImage: {show: true}
+            }
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            top: '7%',
+            data: ['', '']
+        },
+        grid: {
+            top: '18%',
+            left: '0%',
+            right: '0%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis: {
+            type: 'category',
+            axisLabel: {
+                show: true,
+                interval: 0//横轴信息全部显示
+            },
+            axisLine:{
+                show: false
+            },
+            data: ['曲轴后油封/装配不到位', '气门锁块/装配不到位', '曲轴箱上体/涂胶不合格', '机油盘总成/涂胶不合格', '气门油封/涂胶不合格', '其它']
+        },
+        yAxis: [{
+            name: '',
+            min: 0,
+            max: 70000,
+            interval: 10000,
+            type: 'value',
+            axisLabel: {
+                formatter: '{value}'
+            }
+        },
+            {
+                name: '',
+                /*min: 0,
+                max: 80,
+                interval: 10,*/
+                type: 'value',
+                axisLabel: {
+                    formatter: function (value, index) {
+                        var vv = value.toFixed(2);
+                        return vv + '%';
+                    }
+                }
+            }
+        ],
+        series: [
+            {
+                name: '',
+                type: 'bar',
+                data: [15123, 12422, 10221, 8595, 6854, 65852],
+                barWidth: '30',
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'top'
+                    }
+                }
+            },
+            {
+                name: '',
+                type: 'line',
+                data: [9.80, 5.82, 4.22, 3.23, 2.58, 68.52],
+                barWidth: '30',
+                yAxisIndex: 1,
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'top'
+                    }
+                }
+            }
+
+        ]
+    };
+    Myecharts1.setOption(option1);
+
+</script>
+</body>
+
+</html>

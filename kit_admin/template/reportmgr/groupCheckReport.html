@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>分组检测机履历</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../../plugins/layui/css/layui.css">
+    <script src="../../plugins/layui/layui.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="layui-form layui-form-pane">
+        <div class="layui-col-md12">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label" style="width: auto;padding: 9px 0;">选择时间：</label>
+                    <div class="layui-input-block" style="margin-left: 80px;">
+                        <input type="radio" name="searhTime" value="all" title="全部" checked="">
+                        <input type="radio" name="searhTime" value="three" title="近三天">
+                        <input type="radio" name="searhTime" value="week" title="近一周">
+                        <input type="radio" name="searhTime" value="month" title="近一月">
+                        <input type="radio" name="searhTime" value="custom" title="自定义">
+                    </div>
+                </div>
+                <div class="layui-inline timeHidden searchTime" id="searchTime">
+                    <label class="layui-form-mid">开始时间</label>
+                    <div class="layui-input-inline">
+                        <input type="text" class="layui-input" id="startTime" placeholder="yyyy-MM-dd HH:mm:ss">
+                    </div>
+                    <label class="layui-form-mid">结束时间</label>
+                    <div class="layui-input-inline">
+                        <input type="text" class="layui-input" id="endTime" placeholder="yyyy-MM-dd HH:mm:ss">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-mid">工位名称：</label>
+                    <div class="layui-input-inline">
+                        <select name="modules" lay-verify="required" lay-search="">
+                            <option value="">直接选择或搜索选择</option>
+                            <option value="1">OP210(A)</option>
+                            <option value="2">OP210(A)</option>
+                            <option value="3">OP210(A)</option>
+                            <option value="4">OP210(A)</option>
+                            <option value="5">OP210(A)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-mid">生产线：</label>
+                    <div class="layui-input-inline">
+                        <select name="modules" lay-verify="required" lay-search="">
+                            <option value="">直接选择或搜索选择</option>
+                            <option value="1">OP210(A)</option>
+                            <option value="2">OP210(A)</option>
+                            <option value="3">OP210(A)</option>
+                            <option value="4">OP210(A)</option>
+                            <option value="5">OP210(A)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">
+                        <button class="layui-btn layui-btn-normal" type="button"><i class="layui-icon">&#xe615;</i>查询
+                        </button>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="idTest">
+
+    </div>
+</div>
+<script>
+    layui.use(['form', 'laydate', 'element', 'table'], function () {
+        var form = layui.form;
+        var laydate = layui.laydate;
+        var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+        var table = layui.table;
+        var $ = layui.jquery;
+
+        laydate.render({
+            elem: '#startTime'
+            , type: 'datetime'
+        });
+        laydate.render({
+            elem: '#endTime'
+            , type: 'datetime'//max,min设置值
+        });
+
+        table.render({
+            elem: '#idTest'
+            , url: '../../datas/reportData/groupCheckReport.json'
+            , cols: [[
+                {field: 'value1', sort: true, width: 110, title: '工位名称'},
+                {field: 'value2', sort: true, minWidth: 210, align: 'center', title: '工件号'},
+                {field: 'value3', sort: true, width: 110, title: '生产线'},
+                {field: 'value4', sort: true, minWidth: 165, align: 'center', title: '时间'},
+                {field: 'value5', sort: true, minWidth: 110, title: '目标节拍'},
+                {field: 'value6', sort: true, minWidth: 110, title: '实际节拍'},
+                {field: 'value7', sort: true, minWidth: 110, title: 'OK/NG'}
+            ]], page: true
+        });
+
+        form.on('radio', function (data) {
+            if (data.value == 'custom') {
+                $('#searchTime').removeClass('timeHidden');
+            } else {
+                $('#searchTime').addClass('timeHidden');
+            }
+        });
+
+        //自定义验证规则
+        form.verify({
+            title: function (value) {
+                parent.layer.alert(value);
+            }
+        });
+    });
+</script>
+</body>
+</html>

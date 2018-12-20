@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>缺陷柏拉图</title>
+    <link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all">
+</head>
+
+<body>
+
+<form class="layui-form layui-form-pane" action="" style="margin-top: 20px;">
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">生产线</label>
+            <div class="layui-input-inline">
+                <select name="">
+                    <option value="">NE1二期缸盖A线</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-inline">
+            <label class="layui-form-label">零部件代号</label>
+            <div class="layui-input-inline">
+                <input type="text" name="number" value="NE12TG-AA" autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">柏拉图类型</label>
+            <div class="layui-input-inline">
+                <select name="">
+                    <option value="">缺陷位置</option>
+                    <option value="">缺陷种类</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">时间</label>
+            <div class="layui-input-inline">
+                <input type="text" name="date" id="date" value="" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">至</label>
+            <div class="layui-input-inline">
+                <input type="text" name="date1" id="date1" value="" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <button class="layui-btn layui-btn-normal" type="button"><i class="layui-icon">&#xe615;</i>搜索</button>
+            <button class="layui-btn layui-btn-normal" type="button"><i class="layui-icon">&#xe601;</i>导出</button>
+        </div>
+    </div>
+</form>
+
+<div id="echarts1" style="height: 400px; width: 800px;"></div>
+<br>
+<br>
+<div style="float: left; margin-left: 40px ">
+    <table class="layui-table"
+           lay-data="{width:400, url:'../../datas/reportData/defectplato.json',id:'idTest1'}"
+           lay-filter="demo">
+        <thead>
+        <tr>
+            <th lay-data="{field:'value1',  fixed: true}">缺陷种类</th>
+            <th lay-data="{field:'value2',  fixed: true,width:120}">数量</th>
+        </tr>
+        </thead>
+    </table>
+</div>
+<div style="float: left; margin-left: 80px">
+    <table class="layui-table"
+           lay-data="{width:400, url:'../../datas/reportData/defectplato2.json',id:'idTest2'}"
+           lay-filter="demo">
+        <thead>
+        <tr>
+            <th lay-data="{field:'value1',  fixed: true}">缺陷位置</th>
+            <th lay-data="{field:'value2',  fixed: true,width:120}">数量</th>
+        </tr>
+        </thead>
+    </table>
+</div>
+<br>
+<div id="echarts2" style="height: 400px; width: 1500px;"></div>
+<script src="../../media/js/echarts.js"></script>
+<script src="../../plugins/layui/layui.js"></script>
+<script src="../../media/js/jquery-1.10.1.min.js"></script>
+<script>
+    layui.use(['table', 'laydate'], function () {
+        var table = layui.table;
+        var laydate = layui.laydate;
+        var $ = layui.jquery;
+        table.render({
+            cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+        });
+        table.on('tool(test)', function (obj) {
+            var data = obj.data;
+            if (obj.event === 'detail') {
+                layer.msg('ID：' + data.id + ' 的查看操作');
+            } else if (obj.event === 'del') {
+                layer.confirm('真的删除行么', function (index) {
+                    obj.del();
+                    layer.close(index);
+                });
+            } else if (obj.event === 'edit') {
+                layer.alert('编辑行：<br>' + JSON.stringify(data))
+            }
+        });
+        //日期
+        laydate.render({
+            elem: '#date'
+        });
+        laydate.render({
+            elem: '#date1'
+        });
+
+        $(".layui-table th").css("background-color", "#00B0F0");
+        /*标题加粗加黑*/
+        $("th[data-field]>div>span").css("color",'black').css("font-weight",'900');
+
+
+    });
+
+</script>
+
+<script>
+
+    var Myecharts1 = echarts.init(document.getElementById("echarts1"));
+    option1 = {
+        title: {
+            text: '缺陷的Pareto',
+            x: 'center'
+        },
+        color: ['red', '#228B22', 'orange', 'blue', '#ffd454', '#ffa361', '#d1d1d1'],
+        legend: {
+            orient: 'vertical',
+            //注意，前面图案块的颜色
+            data: ['', ''],
+            borderColor: 'red',
+            top: 100,
+            right: 0
+        },
+        grid: {
+            left: '5%',
+            right: '7%',
+            containLabel: true
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        xAxis: {
+            type: 'category',
+            axisLabel: {
+                interval: 0//横轴信息全部显示
+            },
+            data: ['', '', '', '', '', '', '', '']
+        },
+        yAxis: [{
+            type: 'value',
+            name: '缺陷数量',
+            min: 0,
+            max: 500,
+            interval: 100,
+            axisLabel: {
+                formatter: '{value}'
+            }
+
+        }, {
+            type: 'value',
+            name: '百分比',
+            min: 0,
+            max: 100,
+            interval: 20,
+            axisLabel: {
+                formatter: '{value}'
+            }
+        }],
+        series: [{
+            name: '',
+            type: 'bar',
+            barWidth: 30,
+            label: {
+                normal: {
+                    show: true,
+                    position: 'top'
+                }
+            },
+            data: [253, 194, 68, 55, 32, 31, 27, 14]
+        },
+            {
+                name: '',
+                type: 'line',
+                /*symbol: 'diamond',//拐点样式
+                symbolSize: 9,//拐点大小*/
+                yAxisIndex: 1,
+                data: [37.5, 66.3, 76.4, 84.6, 89.3, 93.9, 97.9, 100]
+            }]
+    };
+    Myecharts1.setOption(option1);
+
+</script>
+</body>
+
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>停线时间统计报表</title>
+    <link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all">
+</head>
+<body>
+<form class="layui-form layui-form-pane" action="" style="margin-top: 20px;">
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">开始日期：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="date" id="date" value="" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">截止日期：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="date1" id="date1" value="" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-inline">
+            <button class="layui-btn layui-btn-normal" type="button"><i class="layui-icon">&#xe615;</i>搜索</button>
+            <button class="layui-btn layui-btn-normal" type="button"><i class="layui-icon">&#xe601;</i>导出</button>
+        </div>
+    </div>
+</form>
+<div style="float: left;">
+    <table class="layui-table" id="table1"
+           lay-data="{width:1211, url:'../../datas/reportData/stopproductionlinetimeReport.json',id:'idTest'}"
+           lay-filter="demo">
+        <thead>
+        <tr>
+            <th lay-data="{field:'value1',  fixed: true,width:100}">班次</th>
+            <th lay-data="{field:'value2',  fixed: true,width:100}">工位号</th>
+            <th lay-data="{field:'value3',  fixed: true,width:120}">工位名称</th>
+            <th lay-data="{field:'value4',  fixed: true,width:180}">停线原因</th>
+            <th lay-data="{field:'start',  fixed: true,width:100}">起始时间</th>
+            <th lay-data="{field:'end',  fixed: true,width:100}">结束时间</th>
+            <th lay-data="{field:'value6',  fixed: true,width:100}">分钟</th>
+            <th lay-data="{field:'value7',  fixed: true,width:100}">工序设备数</th>
+            <th lay-data="{field:'value8',  fixed: true,width:140}">停线原因分类</th>
+            <th lay-data="{field:'value9',  fixed: true,width:160}">整改措施</th>
+        </tr>
+        </thead>
+    </table>
+</div>
+<div id="echarts1" style="height: 300px; width: 400px; float: left;"></div>
+<br>
+<div class="layui-form-item" style="margin-top: 400px">
+    <table class="layui-table"
+           lay-data="{width:1800, url:'../../datas/reportData/stopproductionlinetimeReport2.json',id:'idTest2'}"
+           lay-filter="demo">
+        <thead>
+        <tr>
+            <th lay-data="{field:'value1',  fixed: true,width:180}">当月非计划停线时间</th>
+            <th lay-data="{field:'value2',  fixed: true}">1月</th>
+            <th lay-data="{field:'value3',  fixed: true}">2月</th>
+            <th lay-data="{field:'value4',  fixed: true}">3月</th>
+            <th lay-data="{field:'value5',  fixed: true}">4月</th>
+            <th lay-data="{field:'value6',  fixed: true}">5月</th>
+            <th lay-data="{field:'value7',  fixed: true,width:90}">5月1日</th>
+            <th lay-data="{field:'value8',  fixed: true,width:90}">5月2日</th>
+            <th lay-data="{field:'value9',  fixed: true,width:90}">5月3日</th>
+            <th lay-data="{field:'value10',  fixed: true,width:90}">5月4日</th>
+            <th lay-data="{field:'value11',  fixed: true,width:90}">5月5日</th>
+            <th lay-data="{field:'value12',  fixed: true,width:90}">5月6日</th>
+            <th lay-data="{field:'value13',  fixed: true,width:90}">5月7日</th>
+            <th lay-data="{field:'value14',  fixed: true,width:90}">5月8日</th>
+            <th lay-data="{field:'value15',  fixed: true,width:90}">5月9日</th>
+            <th lay-data="{field:'value16',  fixed: true,width:90}">5月10日</th>
+            <th lay-data="{field:'value17',  fixed: true,width:90}">5月11日</th>
+            <th lay-data="{field:'value18',  fixed: true,width:90}">5月12日</th>
+            <th lay-data="{field:'value19',  fixed: true,width:90}">5月13日</th>
+            <th lay-data="{field:'value20',  fixed: true,width:90}">......</th>
+        </tr>
+        </thead>
+    </table>
+</div>
+<br>
+<div id="echarts2" style="height: 500px; width: 1500px; "></div>
+<br>
+
+<script src="../../media/js/echarts.js"></script>
+<script src="../../plugins/layui/layui.js"></script>
+<script src="../../media/js/jquery-1.10.1.min.js"></script>
+<script>
+    layui.use(['table', 'laydate'], function () {
+        var table = layui.table;
+        var laydate = layui.laydate;
+        $ = layui.jquery;
+        table.render({
+            cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+        });
+        table.on('tool(test)', function (obj) {
+            var data = obj.data;
+            if (obj.event === 'detail') {
+                layer.msg('ID：' + data.id + ' 的查看操作');
+            } else if (obj.event === 'del') {
+                layer.confirm('真的删除行么', function (index) {
+                    obj.del();
+                    layer.close(index);
+                });
+            } else if (obj.event === 'edit') {
+                layer.alert('编辑行：<br>' + JSON.stringify(data))
+            }
+        });
+        //日期
+        laydate.render({
+            elem: '#date'
+        });
+        laydate.render({
+            elem: '#date1'
+        });
+
+        hbrow();
+    });
+</script>
+<script>
+    var Myecharts1 = echarts.init(document.getElementById("echarts1"));
+    option = {
+        title: {
+            text: '设备 物流 人员 工艺\n',
+            x: 'center'
+        },
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            orient: 'vertical',
+            left: 'left',
+            data: []
+        },
+        series: [
+            {
+                name: '',
+                type: 'pie',
+                radius: '75%',
+                center: ['50%', '60%'],
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'inside',
+                        formatter: '{b} {d}%'//模板变量有 {a}、{b}、{c}、{d}，分别表示系列名，数据名，数据值，百分比。{d}数据会根据value值计算百分比
+
+
+                    },
+                },
+                data: [{value: 100, name: '设备'},
+                    {value: 30, name: '物流'},
+                    {value: 60, name: '人员'},
+                    {value: 10, name: '工艺'}]
+
+            }
+        ]
+    };
+    Myecharts1.setOption(option);
+
+    var Myecharts2 = echarts.init(document.getElementById("echarts2"));
+    option2 = {
+        title: {
+            text: '非计划停线时间趋势图',
+            x: 'center'
+        },
+        color: ['orange', 'green', 'red', '#ffd454', '#ffa361', '#d1d1d1'],
+        legend: {
+            orient: 'vertical',
+            data: ['停线时间（月分钟）', '停线时间（日分钟）'],
+            top: 100,
+            right: 0
+        },
+        grid: {
+            left: '1%',
+            right: '10%',
+            containLabel: true
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        xAxis: {
+            type: 'category',
+            axisLabel: {
+                interval: 0//横轴信息全部显示
+            },
+            data: ["1月", "2月", "3月", "4月", "5月", "5月1日", "5月2日", "5月3日", "5月4日", "5月5日", "5月6日", "5月7日", "5月8日", "5月9日", "5月10日", "5月11日", "5月12日", "5月13日"]
+        },
+        yAxis: {
+            type: 'value',
+            interval: 100
+
+        },
+        series: [{
+            name: '停线时间（月分钟）',
+            type: 'bar',
+            barWidth: 30,
+            data: [230, 400, 330, 500, 529, , , , , , , , , , , ,]
+        }, {
+            name: '停线时间（日分钟）',
+            type: 'line',
+            symbol: 'star',//拐点样式
+            symbolSize: 8,//拐点大小
+            data: [0, 0, 0, 0, 0, 30, 0, 25, 90, 80, 0, 10, 45, 33, 65, 71, 80, 0]
+        }]
+    };
+    Myecharts2.setOption(option2);
+
+
+</script>
+<script>
+
+    function hbrow() {
+        var datatable = $(".layui-table")[4];
+        for (var i = 1; i < datatable.rows.length; i++) {//表示数据内容的第二行
+            if (datatable.rows[i].cells[0].innerText == datatable.rows[i - 1].cells[0].innerText) {
+                t = i - 1;
+                while (datatable.rows[i].cells[0].innerText == datatable.rows[t].cells[0].innerText) {
+                    datatable.rows[i].cells[0].style.display = "none";
+                    if (datatable.rows[t].cells[0].rowSpan <= (i - t)) {
+                        datatable.rows[t].cells[0].rowSpan += 1;      //设置前一行的rowspan+1
+                    }
+                    i++;
+                }
+            }
+        }
+    }
+</script>
+</body>
+
+</html>

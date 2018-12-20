@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>基础质量数据管理</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../src/css/ztree/metro/ztree.css">
+    <script src="../../plugins/layui/layui.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="layui-form layui-form-pane">
+        <div class="layui-col-md2" style="padding-right: 2px;">
+            <fieldset class="layui-elem-field layui-field-title">
+                <legend>工位设备</legend>
+                <div class="layui-collapse" lay-filter="test" lay-accordion="" style="margin: 10px 0">
+                    <div class="layui-colla-item">
+                        <h2 class="layui-colla-title">工厂</h2>
+                        <div class="layui-colla-content layui-show">
+                            <ul id="ztree" class="ztree">
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="layui-colla-item">
+                        <h2 class="layui-colla-title">生产线</h2>
+                        <div class="layui-colla-content">
+                            <ul id="ztree2" class="ztree">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <div class="layui-col-md10">
+            <fieldset class="layui-elem-field layui-field-title">
+                <legend>设备质量参数设置</legend>
+                <table class="layui-table"
+                       lay-data="{url:'../../datas/basicQualityData.json', page:true, id:'idTest'}"
+                       lay-filter="demo">
+                    <thead>
+                    <tr>
+                        <th lay-data="{type:'checkbox', width:'3%', fixed: 'left'}"></th>
+                        <th lay-data="{field:'value1', sort: true, fixed: true}">序号</th>
+                        <th lay-data="{field:'value2', sort: true, fixed: true}">参数名称</th>
+                        <th lay-data="{field:'value3', sort: true, fixed: true}">最大值</th>
+                        <th lay-data="{field:'value4', sort: true, fixed: true}">最小值</th>
+                        <th lay-data="{field:'value5', sort: true, fixed: true}">参考值</th>
+                        <th lay-data="{fixed: 'right', width:'10%', align:'center', toolbar: '#barDemo'}">操作</th>
+                    </tr>
+                    </thead>
+                </table>
+            </fieldset>
+            <script type="text/html" id="barDemo">
+                <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="edit">编辑</a>
+                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+            </script>
+        </div>
+    </div>
+</div>
+</div>
+<script>
+    layui.config({
+        base: '../../src/js/'
+    }).use(['ztree', 'layer'], function () {
+        var $ = layui.jquery,
+            layer = layui.layer;
+        var zNodes = [{
+            id: 1,
+            pId: 0,
+            name: "WE003",
+            open: true
+        }, {
+            id: 11,
+            pId: 1,
+            name: "半轴拧紧",
+            open: true
+        }, {
+            id: 12,
+            pId: 1,
+            name: "扫码站",
+            open: true
+        }, {
+            id: 2,
+            pId: 0,
+            name: "WE004",
+            open: true
+        }, {
+            id: 21,
+            pId: 2,
+            name: "多轴拧紧",
+            open: true
+        }, {
+            id: 3,
+            pId: 0,
+            name: "WE005",
+            open: true
+        }, {
+            id: 31,
+            pId: 3,
+            name: "多轴拧紧",
+            open: true
+        }, {
+            id: 4,
+            pId: 0,
+            name: "WE006",
+            open: true
+        }, {
+            id: 41,
+            pId: 4,
+            name: "多轴拧紧",
+            open: true
+        }, {
+            id: 5,
+            pId: 0,
+            name: "WE007",
+            open: true
+        }, {
+            id: 51,
+            pId: 5,
+            name: "多轴拧紧",
+            open: true
+        }, {
+            id: 6,
+            pId: 0,
+            name: "WE008",
+            open: true
+        }, {
+            id: 61,
+            pId: 6,
+            name: "多轴拧紧",
+            open: true
+        }, {
+            id: 7,
+            pId: 0,
+            name: "WE009",
+            open: true
+        }, {
+            id: 71,
+            pId: 7,
+            name: "多轴拧紧",
+            open: true
+        }];
+
+        var setting = {
+            view: {
+                addHoverDom: addHoverDom,
+                removeHoverDom: removeHoverDom,
+                selectedMulti: false
+            },
+            check: {
+                enable: true
+            },
+            data: {
+                simpleData: {
+                    enable: true
+                }
+            },
+            edit: {
+                enable: true
+            },
+            callback: {
+                onClick: function (e, treeId, treeNode) {
+                    console.log(treeNode);
+                }
+            }
+        };
+
+
+        $(document).ready(function () {
+            $.fn.zTree.init($("#ztree"), setting, zNodes);
+            $.fn.zTree.init($("#ztree2"), setting, zNodes);
+        });
+
+        var newCount = 1;
+
+        function addHoverDom(treeId, treeNode) {
+            var sObj = $("#" + treeNode.tId + "_span");
+            if (treeNode.editNameFlag || $("#addBtn_" + treeNode.tId).length > 0)
+                return;
+            var addStr = "<span class='button add' id='addBtn_" + treeNode.tId +
+                "' title='add node' onfocus='this.blur();'></span>";
+            sObj.after(addStr);
+            var btn = $("#addBtn_" + treeNode.tId);
+            if (btn) {
+                btn.bind("click", function () {
+                    var zTree = $.fn.zTree.getZTreeObj("ztree");
+                    zTree.addNodes(treeNode, {
+                        id: (100 + newCount),
+                        pId: treeNode.id,
+                        name: "new node" + (newCount++)
+                    });
+                    return false;
+                });
+            }
+        };
+
+        function removeHoverDom(treeId, treeNode) {
+            $("#addBtn_" + treeNode.tId).unbind().remove();
+        };
+    });
+
+    layui.use(['element', 'table'], function () {
+        var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+        var table = layui.table;
+
+        //监听表格复选框选择
+        table.on('checkbox(demo)', function (obj) {
+            console.log(obj)
+        });
+
+        //监听工具条
+        table.on('tool(demo)', function (obj) {
+            var data = obj.data;
+            if (obj.event === 'detail') {
+                parent.layer.msg('ID：' + data.id + ' 的查看操作');
+            } else if (obj.event === 'del') {
+                parent.layer.confirm('真的删除行么', function (index) {
+                    obj.del();
+                    parent.layer.close(index);
+                });
+            } else if (obj.event === 'edit') {
+                parent.layer.open({
+                    type: 2,
+                    title: '编辑质量数据',
+                    shadeClose: true,
+                    shade: 0.1,
+                    area: ['30%', '38%'],
+                    content: '/kit_admin/template/basedata/edit/editBasicQualityData.html' //iframe页面的url，只能是url，不能是路径
+                });
+                //parent.layer.alert('编辑行：<br>' + JSON.stringify(data))
+            }
+        });
+
+        var $ = layui.$, active = {
+            getCheckData: function () { //获取选中数据
+                var checkStatus = table.checkStatus('idTest')
+                    , data = checkStatus.data;
+                layer.alert(JSON.stringify(data));
+            }
+            , getCheckLength: function () { //获取选中数目
+                var checkStatus = table.checkStatus('idTest')
+                    , data = checkStatus.data;
+                layer.msg('选中了：' + data.length + ' 个');
+            }
+            , isAll: function () { //验证是否全选
+                var checkStatus = table.checkStatus('idTest');
+                layer.msg(checkStatus.isAll ? '全选' : '未全选')
+            }
+        };
+
+        $('#download').on('click', function (obj) {
+            parent.layer.msg("下载BOM");
+        });
+
+        $('#refresh').on('click', function (obj) {
+            //do refresh on  your way
+
+            location.reload();
+        });
+    });
+</script>
+</body>
+</html>

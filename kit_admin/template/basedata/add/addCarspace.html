@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>新增车间</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../../../plugins/layui/css/layui.css" media="all">
+    <script src="../../../plugins/layui/layui.js"></script>
+</head>
+<body>
+<div class="container">
+    <form class="layui-form layui-form-pane" action="">
+        <div class="layui-form-item">
+            <label class="layui-form-label">工厂:</label>
+            <div class="layui-input-block">
+                <select name="value1">
+                    <option vlaue="NE1发动机工厂">NE1发动机工厂</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">车间名称:</label>
+            <div class="layui-input-block">
+                <input type="text" name="value2" lay-verify="" autocomplete="off" placeholder=""
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">车间代码:</label>
+            <div class="layui-input-block">
+                <input type="text" name="value3" lay-verify="" autocomplete="off" placeholder=""
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">备注</label>
+            <div class="layui-input-block">
+                <textarea class="layui-textarea" name="value4" lay-verify=""
+                          placeholder=""></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn layui-btn-normal" lay-submit="" lay-filter="demo">确认</button>
+                <button type="reset" class="layui-btn layui-btn-danger">取消</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    layui.use(['form', 'layer'], function () {
+        var form = layui.form,
+            layer = layui.layer;
+
+        form.verify({
+            addLength: function (value) {
+                if (value.length < 5) {
+                    return '标题至少得5个字符啊';
+                }
+            }
+        });
+
+        form.on('submit(demo)', function (data) {
+            layer.alert(JSON.stringify(data.field), {
+                title: '最终的提交信息',
+                shade: 0
+            });
+            return false;
+        })
+    })
+
+</script>
+</body>
+</html>

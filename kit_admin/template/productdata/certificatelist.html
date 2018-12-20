@@ -1,0 +1,127 @@
+﻿ 
+
+ 
+ 
+ 
+ 
+ 
+  
+ 
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>table模块快速使用</title>
+    <link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all">
+</head>
+
+<body>
+   
+    <form class="layui-form layui-form-pane" action="" style="margin-top:20px;">
+        <div class="layui-form-item">
+               <div class="layui-inline">
+                <label class="layui-form-label">发动机型：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="text12" id="text12" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">工单编号：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="text12" id="text2" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+             <div class="layui-inline">
+                <button class="layui-btn layui-btn-normal" type="button"><i class="layui-icon">&#xe615;</i>搜索</button>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">开始日期：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="date" id="date"  value="2017-12-20 11:17:36"  autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">截止日期：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="date1" id="date1" value="2017-12-20 15:04:50" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+             <div class="layui-inline">
+               <button class="layui-btn layui-btn-normal" type="button"><i class="layui-icon">&#xe601;</i>导出</button>
+            </div>
+        </div>
+
+    </form>
+    <table class="layui-table" lay-data="{ url:'../../datas/certificatelist.json', page:true, id:'test'}" lay-filter="test" id="test">
+        <thead>
+            <tr>
+                <th lay-data="{field:'f1'}">序号</th>
+                <th lay-data="{field:'f2'}">工单号</th>
+                <th lay-data="{field:'f3'}">发动机型号</th>
+                <th lay-data="{field:'f4'}">起始编码</th>
+                <th lay-data="{field:'f5'}">结束编码</th>
+                <th lay-data="{field:'f6'}">ERP计划数量</th>
+                <th lay-data="{field:'f7'}">合格证已检验数量</th>
+                <th lay-data="{fixed: 'right',align:'center',toolbar: '#barDemo'}">操作</th>
+            </tr>
+        </thead>
+    </table>
+    <script src="../../plugins/layui/layui.js"></script>
+    <script type="textml" id="barDemo">
+         <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="add" onclick="showdetail()">明细</a>
+    </script>
+
+    <script>
+        layui.use(['table', 'laydate'], function () {
+            var table = layui.table;
+            laydate = layui.laydate;
+            table.render({
+                cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            });
+            table.on('tool(test)', function (obj) {
+                var data = obj.data;
+                if (obj.event === 'detail') {
+                    layer.msg('ID：' + data.id + ' 的查看操作');
+                } else if (obj.event === 'del') {
+                    layer.confirm('真的删除行么', function (index) {
+                        obj.del();
+                        layer.close(index);
+                    });
+                } else if (obj.event === 'edit') {
+                    layer.alert('编辑行：<br>' + JSON.stringify(data))
+                }
+            });
+            //日期
+            laydate.render({
+                elem: '#date'
+            });
+            laydate.render({
+                elem: '#date1'
+            });
+
+        });
+        function showdetail()
+        {
+            parent.layer.open({
+                type: 2,
+                title: "合格证明细",
+                shadeClose: true,
+                shade: 0.1,
+                area: ['70%', '70%'],
+                content: '/kit_admin/template/productdata/certificatedetaillist.html',                //iframe页面的url，只能是url
+                btn: ['添加', '关闭'],
+                yes: function () {
+                    $(that).click();
+                },
+                btn2: function () {
+                    layer.closeAll();
+                },
+            });
+        }
+    </script>
+</body>
+
+</html>

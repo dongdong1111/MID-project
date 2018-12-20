@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>现场问题分析图表</title>
+    <link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all">
+</head>
+
+<body>
+
+<form class="layui-form layui-form-pane" action="" style="margin-top: 20px;">
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">生产线</label>
+            <div class="layui-input-inline">
+                <select name="">
+                    <option value="缸体线">缸体线</option>
+                    <option value="缸盖线">缸盖线</option>
+                    <option value="曲轴线">曲轴线</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">开始时间</label>
+            <div class="layui-input-inline">
+                <input type="text" name="date" id="date" value="" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">结束时间</label>
+            <div class="layui-input-inline">
+                <input type="text" name="date1" id="date1" value="" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <button class="layui-btn layui-btn-normal" type="button"><i class="layui-icon">&#xe615;</i>查询</button>
+            <button class="layui-btn layui-btn-normal" type="button"><i class="layui-icon">&#xe601;</i>导出</button>
+        </div>
+    </div>
+</form>
+
+<div id="echarts1" style="height: 400px; width: 1600px;"></div>
+<br>
+<br>
+<div>
+    <table class="layui-hide" id="test" lay-filter="test" ></table>
+</div>
+<div style="margin-top: 60px; width: 2900px">
+    <table class="layui-hide"  style="width: 2900px" id="test1" lay-filter="test" ></table>
+</div>
+<div style="margin-top: 60px">
+    <table class="layui-hide" id="test2" lay-filter="test" ></table>
+</div>
+<div style="margin-top: 60px">
+    <table class="layui-hide" id="test3" lay-filter="test" ></table>
+</div>
+
+<br>
+<div id="echarts2" style="height: 400px; width: 1500px;"></div>
+<script src="../../media/js/echarts.js"></script>
+<script src="../../plugins/layui/layui.js"></script>
+<script src="../../media/js/jquery-1.10.1.min.js"></script>
+<script>
+    layui.use(['table', 'laydate'], function () {
+        var table = layui.table;
+        var laydate = layui.laydate;
+        var $ = layui.jquery;
+
+        table.on('tool(test)', function (obj) {
+            var data = obj.data;
+            if (obj.event === 'detail') {
+                layer.msg('ID：' + data.id + ' 的查看操作');
+            } else if (obj.event === 'del') {
+                layer.confirm('真的删除行么', function (index) {
+                    obj.del();
+                    layer.close(index);
+                });
+            } else if (obj.event === 'edit') {
+                layer.alert('编辑行：<br>' + JSON.stringify(data))
+            }
+        });
+        //日期
+        laydate.render({
+            elem: '#date'
+        });
+        laydate.render({
+            elem: '#date1'
+        });
+
+        table.render({
+            elem: "#test"
+            , id: 'ftt-table-id'
+            ,url:'../../datas/reportData/fttReport.json'
+            , width: 2730
+            , cols: [[
+                {field: 'title', title: '', width: 217, rowspan: 2, colspan: 1, event: 'setSign'}
+                , {title: 'CY'}
+                , {title: 'Month', colspan: 3}
+                , {title: 'Week Starting', colspan: 6}
+                , {title: 'Day', colspan: 21}
+            ], [
+                {field: 'year1', width: 80, title: '2017', event: ''}
+                , {field: 'month1', width: 80, title: '01月', event: ''}
+                , {field: 'month2', width: 80, title: '02月', event: ''}
+                , {field: 'month3', width: 80, title: '03月', event: ''}
+                , {field: 'week1', width: 80, title: '02/24', event: ''}
+                , {field: 'week2', width: 80, title: '03/03', event: ''}
+                , {field: 'week3', width: 80, title: '03/10', event: ''}
+                , {field: 'week4', width: 80, title: '03/17', event: ''}
+                , {field: 'week5', width: 80, title: '03/24', event: ''}
+                , {field: 'week6', width: 80, title: '03/31', event: ''}
+                , {field: 'days', width: 80, title: '20天汇总', event: ''}
+                , {field: 'day1', width: 80, title: '03/12', event: ''}
+                , {field: 'day2', width: 80, title: '03/13', event: ''}
+                , {field: 'day3', width: 80, title: '03/14', event: ''}
+                , {field: 'day4', width: 80, title: '03/15', event: ''}
+                , {field: 'day5', width: 80, title: '03/16', event: ''}
+                , {field: 'day6', width: 80, title: '03/17', event: ''}
+                , {field: 'day7', width: 80, title: '03/18', event: ''}
+                , {field: 'day8', width: 80, title: '03/19', event: ''}
+                , {field: 'day9', width: 80, title: '03/20', event: ''}
+                , {field: 'day10', width: 80, title: '03/21', event: ''}
+                , {field: 'day11', width: 80, title: '03/22', event: ''}
+                , {field: 'day12', width: 80, title: '03/23', event: ''}
+                , {field: 'day13', width: 80, title: '03/24', event: ''}
+                , {field: 'day14', width: 80, title: '03/25', event: ''}
+                , {field: 'day15', width: 80, title: '03/26', event: ''}
+                , {field: 'day16', width: 80, title: '03/27', event: ''}
+                , {field: 'day17', width: 80, title: '03/28', event: ''}
+                , {field: 'day18', width: 80, title: '03/29', event: ''}
+                , {field: 'day19', width: 80, title: '03/30', event: ''}
+                , {field: 'day20', width: 80, title: '03/31', event: ''}
+            ]]
+        });
+
+        setTimeout(function () {
+            delRow();
+        }, 80);
+
+    });
+</script>
+
+<script>
+
+    function delRow() {
+        var table = $("td[data-field='1']");
+        console.log("---");
+        console.log(table);
+        for (var i = 0; i < table.size(); i++) {
+            if (isIE() || isIE11()) {
+                table[i].removeNode(true);
+            } else {
+                table[i].remove();
+            }
+        }
+    }
+    //根据浏览器的不同添加不同的移除方法
+    function isIE() {
+        if (!!window.ActiveXObject || "ActiveXObject" in window) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function isIE11() {
+        if ((/Trident\/7\./).test(navigator.userAgent)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    var Myecharts1 = echarts.init(document.getElementById("echarts1"));
+    option1 = {
+        title: {
+            top: '1%',
+            left: 'center',
+            text: '鱼嘴发动机工厂FTT%趋势图',
+            align: 'right'
+        },
+        color: [
+            '#94D352',
+            '#C60000',
+            '#4A82BD',
+            '#e22eca',
+            '#722FA5',
+            '#FF4500',
+            '#ca8622'
+        ],
+        toolbox: {
+            feature: {
+                dataView: {show: true, readOnly: false},
+                magicType: {show: true, type: ['line', 'bar']},
+                restore: {show: true},
+                saveAsImage: {show: true}
+            }
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            top: '7%',
+            //data: ['年', '月', '周', '20DAY', 'DAY', 'KPI']
+            data:[]
+        },
+        grid: {
+            top: '18%',
+            left: '0%',
+            right: '0%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis: {
+            type: 'category',
+            axisLabel: {
+                interval: 0//横轴信息全部显示
+            },
+            data: ['2017','01月','02月','03月','02/24','03/03','03/10','03/17','03/24','03/31','20天汇总','03/12','03/13','03/14','03/15','03/16','03/17','03/18','03/19','03/20','03/21','03/22','03/23','03/24','03/25','03/26','03/27','03/28','03/29','03/30','03/31']
+        },
+        yAxis: {
+            name:'FTT%',
+            interval: 20,
+            type: 'value',
+            axisLabel: {
+                formatter: '{value} %'
+            }
+        },
+        series: [
+            {
+                name: '年',
+                type: 'bar',
+                data: [46.73],
+                barWidth: '30',
+                barGap: '-80%',
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'top'
+                    }
+                }
+            },
+            {
+                name: '月',
+                type: 'bar',
+                barWidth: '30',
+                data: [,36.65,35.21,61.8],
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'top'
+                    }
+                }
+            },
+            {
+                name: '周',
+                type: 'bar',
+                barWidth: '30',
+                data: [,,,,44.78,48.5,48.9,59.97,57.45,81.6],
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'top'
+                    }
+                }
+            },
+            {
+                name: '20DAY',
+                type: 'bar',
+                barWidth: '30',
+                data: [,,,,,,,,,,69.68],
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'top'
+                    }
+                }
+            },
+            {
+                name: 'DAY',
+                type: 'line',
+                data: [,,,,,,,,,,,0,7.54,72.28,75.53,80.39,77.33,0,0,56.62,24.26,49.74,67.19,79.66,83.9,79.86,87.01,85.91,68.52,0,0],
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'top'
+                    }
+                }
+            },
+            {
+                name: 'KPI',
+                type: 'line',
+                data: [,,,75,,,75,75,75,75,75,75,75,75,75,75,75,75,75,75,75,75,75,75,75,75,75,75,75,75,75],
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'top'
+                    }
+                },
+                smooth: false,   //关键点，为true是不支持虚线的，实线就用true
+                itemStyle: {
+                    normal: {
+                        lineStyle: {
+                            type: 'dotted'  //'dotted'虚线 'solid'实线
+                        }
+                    }
+                }
+            }
+        ]
+    };
+    Myecharts1.setOption(option1);
+
+</script>
+</body>
+
+</html>

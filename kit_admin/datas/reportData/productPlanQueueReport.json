@@ -1,0 +1,127 @@
+{
+  "code": 0,
+  "msg": "",
+  "count": 1,
+  "data": [
+    {
+      "value1": "180412-P29-002",
+      "value2": "JL476ZQCD",
+      "value3": "JCTB075177",
+      "value4": "JCTB075896",
+      "value5": "720",
+      "value6": "2018/4/12",
+      "value7": "2018/4/17 3:42:52",
+      "value8": "315",
+      "value9": "54",
+      "value10": "生产中"
+    },
+    {
+      "value1": "180412-P29-004",
+      "value2": "JL476ZQCD",
+      "value3": "JCTJ073617",
+      "value4": "JCTB073616",
+      "value5": "210",
+      "value6": "2018/4/12",
+      "value7": "2018/4/17 0:47:29",
+      "value8": "210",
+      "value9": "208",
+      "value10": "完成"
+    },
+    {
+      "value1": "180412-P29-003",
+      "value2": "JL476ZQCD",
+      "value3": "JCTJ073617",
+      "value4": "JCTJ073826",
+      "value5": "600",
+      "value6": "2018/4/12",
+      "value7": "2018/4/16 13:02:00",
+      "value8": "600",
+      "value9": "597",
+      "value10": "完成"
+    },
+    {
+      "value1": "180412-P29-001",
+      "value2": "JL478QEE",
+      "value3": "JC9AE048820",
+      "value4": "JC9AE049419",
+      "value5": "600",
+      "value6": "2018/4/11",
+      "value7": "2018/4/15 23:41:35",
+      "value8": "600",
+      "value9": "596",
+      "value10": "完成"
+    },
+    {
+      "value1": "180412-P29-001",
+      "value2": "JL478QEE",
+      "value3": "JC9AE048034",
+      "value4": "JC9AE048333",
+      "value5": "300",
+      "value6": "2018/4/11",
+      "value7": "2018/4/15 4:41:38",
+      "value8": "300",
+      "value9": "300",
+      "value10": "完成"
+    },
+    {
+      "value1": "180410-P29-002",
+      "value2": "JL476ZQCF",
+      "value3": "JCVA005449",
+      "value4": "JCVA005748",
+      "value5": "300",
+      "value6": "2018/4/10",
+      "value7": "2018/4/14 22:50:25",
+      "value8": "300",
+      "value9": "287",
+      "value10": "完成"
+    },
+    {
+      "value1": "180410-P29-003",
+      "value2": "JL476ZQCF",
+      "value3": "JCVJ004549",
+      "value4": "JCVJ005448",
+      "value5": "900",
+      "value6": "2018/4/10",
+      "value7": "2018/4/14 2:21:41",
+      "value8": "900",
+      "value9": "899",
+      "value10": "完成"
+    },
+    {
+      "value1": "180410-P29-002",
+      "value2": "JL476ZQCF",
+      "value3": "JCVJ004069",
+      "value4": "JCVJ004548",
+      "value5": "480",
+      "value6": "2018/4/9",
+      "value7": "2018/4/13 16:25:15",
+      "value8": "480",
+      "value9": "479",
+      "value10": "完成"
+    },
+    {
+      "value1": "180410-P29-003",
+      "value2": "JL478QEE",
+      "value3": "JC9AH047523",
+      "value4": "JCVJ005448",
+      "value5": "360",
+      "value6": "360",
+      "value7": "2018/4/13 10:41:16",
+      "value8": "360",
+      "value9": "360",
+      "value10": "完成"
+    },
+    {
+      "value1": "180410-P29-002",
+      "value2": "JL478QEE",
+      "value3": "JC9AE047139",
+      "value4": "JCVJ004548",
+      "value5": "600",
+      "value6": "2018/4/9",
+      "value7": "2018/4/12 22:54:15",
+      "value8": "600",
+      "value9": "600",
+      "value10": "完成"
+    }
+  ]
+}

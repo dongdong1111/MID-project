@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>铸造工件报表</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all">
+    <script src="../../plugins/layui/layui.js"></script>
+    <script src="../../media/js/echarts.js"></script>
+    <script src="../../media/js/jquery-1.10.1.min.js"></script>
+</head>
+<body>
+<div class="layui-form layui-form-pane">
+    <br>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">车间：</label>
+            <div class="layui-input-inline">
+                <select name="">
+                    <option value=""></option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">生产线：</label>
+            <div class="layui-input-inline">
+                <select name="">
+                    <option value=""></option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">设备名称：</label>
+            <div class="layui-input-inline">
+                <select name="">
+                    <option value=""></option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">统计方式：</label>
+            <div class="layui-input-inline">
+                <select name="">
+                    <option value=""></option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">目标值：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="" id="" value="" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">开始日期：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="date" id="date" value="" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">截止日期：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="date1" id="date1" value="" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <button class="layui-btn layui-btn-normal" type="button"><i class="layui-icon"></i>查询</button>
+        </div>
+    </div>
+    <br>
+</div>
+<br>
+<div id="echart1" style="height: 500px; width: 80%; float: left"></div>
+
+</body>
+<script>
+    layui.use(['element', 'table', 'laydate', 'laypage'], function () {
+        var element = layui.element;
+        var table = layui.table;
+        var laydate = layui.laydate;
+        //日期
+        laydate.render({
+            elem: '#date'
+        });
+        laydate.render({
+            elem: '#date1'
+        });
+        //监听表格复选框选择
+        table.on('checkbox(demo)', function (obj) {
+            console.log(obj)
+        });
+
+        //监听工具条
+        table.on('tool(demo)', function (obj) {
+            var data = obj.data;
+            if (obj.event === 'detail') {
+                parent.layer.msg('ID：' + data.id + ' 的查看操作');
+            } else if (obj.event === 'del') {
+                parent.layer.confirm('真的删除行么', function (index) {
+                    obj.del();
+                    layer.close(index);
+                });
+            } else if (obj.event === 'edit') {
+                parent.layer.alert('编辑行：<br>' + JSON.stringify(data))
+            }
+        });
+    });
+</script>
+<script>
+    var Myechart1 = echarts.init(document.getElementById("echart1"));
+    option1 = {
+        title: {
+            text: 'NE1发动机气缸盖铸造Ⅰ线NE12TG-AA粗加工泄检合格率\n',
+            x: 'center',
+            top: '20'
+        },
+        color: ['green', 'red', 'blue', '#ffd454', '#ffa361', '#d1d1d1'],
+        legend: {
+            top: 50,
+            data: ['实际达成', '目标值']
+            /*orient: 'vertical',
+            right: 0*/
+        },
+        grid: {
+            left: '3%',
+            right: '10%',
+            top: '20%',
+            containLabel: true
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        xAxis: {
+            type: 'category',
+            axisLabel: {
+                interval: 0//横轴信息全部显示
+                //rotate: 30,//-30度角倾斜显示
+            },
+            data:[9.6,9.20,10.25,11.11,11.13,12.1,12.19,12.30,1.12,1.31,3.22,4.1,'4.1夜',4.2,4.3,'4.3夜',4.4,4.6,'4.6夜',4.7,'4.7夜',4.8]
+        },
+        yAxis: {
+            type: 'value',
+            interval: 5,
+            min: 60,
+            max: 100,
+            axisLabel: {
+                formatter: function (value, index) {
+                    var vv = value.toFixed(2);
+                    return vv + '%';
+                }
+            }
+        },
+        series: [{
+            name: '实际达成',
+            type: 'bar',
+            barWidth: 30,
+            smooth: true,
+            itemStyle: {
+                normal: {
+                    label: {
+                        show: true,
+                        position: 'top',
+                        formatter: '{c}%'
+                    }
+                }
+            },
+            label: {
+                normal: {
+                    show: true,
+                    position: 'inside'
+                }
+            },
+            data: [90.58,91.58,94.58,94.58,94.58,94.58,94.58,94.58,93.58,94.58,94.58,94.58,94.58,94.58,94.58,92.58,94.58,94.58,94.58,94.58,94.58,94.58,]
+        },
+            {
+                name: '目标值',
+                type: 'line',
+                barWidth: 30,
+                itemStyle: {
+                    normal: {
+                        label: {
+                            show: true,
+                            position: 'top',
+                            formatter: '{c}%'
+                        }
+                    }
+                },
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'top'
+                    }
+                },
+                data: [80.00,80.00,80.00,93.00,93.00,93.00,95.00,95.00,95.00,95.00,95.00,95.00,95.00,95.00,95.00,95.00,95.00,95.00,95.00,95.00,95.00,95.00]
+            }]
+    };
+    Myechart1.setOption(option1);
+</script>
+</body>
+</html>

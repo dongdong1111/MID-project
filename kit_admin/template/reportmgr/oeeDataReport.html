@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OEE数据表</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../../plugins/layui/css/layui.css">
+    <script src="../../plugins/layui/layui.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="layui-form layui-form-pane">
+        <div class="layui-col-md12">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label" style="width: auto;padding: 9px 0;">选择时间：</label>
+                    <div class="layui-input-block" style="margin-left: 80px;">
+                        <input type="radio" name="searhTime" value="all" title="全部" checked="">
+                        <input type="radio" name="searhTime" value="three" title="近三天">
+                        <input type="radio" name="searhTime" value="week" title="近一周">
+                        <input type="radio" name="searhTime" value="month" title="近一月">
+                        <input type="radio" name="searhTime" value="custom" title="自定义">
+                    </div>
+                </div>
+                <div class="layui-inline timeHidden searchTime" id="searchTime">
+                    <label class="layui-form-mid">开始时间</label>
+                    <div class="layui-input-inline">
+                        <input type="text" class="layui-input" id="startTime" placeholder="yyyy-MM-dd HH:mm:ss">
+                    </div>
+                    <label class="layui-form-mid">结束时间</label>
+                    <div class="layui-input-inline">
+                        <input type="text" class="layui-input" id="endTime" placeholder="yyyy-MM-dd HH:mm:ss">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-mid">工作线：</label>
+                    <div class="layui-input-inline">
+                        <select name="modules" lay-verify="required" lay-search="">
+                            <option value="">直接选择或搜索选择</option>
+                            <option value="1">OP210(A)</option>
+                            <option value="2">OP210(A)</option>
+                            <option value="3">OP210(A)</option>
+                            <option value="4">OP210(A)</option>
+                            <option value="5">OP210(A)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">
+                        <button class="layui-btn layui-btn-normal" type="button"><i class="layui-icon">&#xe615;</i>查询
+                        </button>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="idTest" style="width:100%;overflow: auto">
+        <table class="layui-table"
+               lay-data="{url:'../../datas/reportData/oeeDataReport.json',page: true}">
+            <thead>
+            <tr>
+                <th lay-data="{field:['value1'], width:160}" rowspan="2">瓶颈设备OP130</th>
+                <th lay-data="{align:'center'}" colspan="3">工作时间/min</th>
+                <th lay-data="{align:'center'}" colspan="6">计划停机时间/min</th>
+                <th lay-data="{align:'center'}" colspan="7">非计划停机时间/min</th>
+                <th lay-data="{align:'center'}" colspan="5">生产数量、节拍</th>
+                <th lay-data="{align:'center'}" colspan="2"></th>
+            </tr>
+            <tr>
+                <th lay-data="{field:'value2', width:120}">开班时间</th>
+                <th lay-data="{field:'value3', width:120}">收班时间</th>
+                <th lay-data="{field:'value4', width:120}">总时间</th>
+                <th lay-data="{field:'value5', width:120}">班会延迟</th>
+                <th lay-data="{field:'value6', width:120}">用餐</th>
+                <th lay-data="{field:'value7', width:120}">设备维护</th>
+                <th lay-data="{field:'value8', width:120}">休息</th>
+                <th lay-data="{field:'value9', width:120}">培训</th>
+                <th lay-data="{field:'value10', width:120}">总时间</th>
+                <th lay-data="{field:'value11', width:120}">设备故障</th>
+                <th lay-data="{field:'value12', width:120}">换型</th>
+                <th lay-data="{field:'value13', width:120}">换刀/换膜</th>
+                <th lay-data="{field:'value14', width:120}">调整/试机</th>
+                <th lay-data="{field:'value15', width:150}">质量分险评估等待</th>
+                <th lay-data="{field:'value16', width:120}">其他停机等待</th>
+                <th lay-data="{field:'value17', width:120}">总时间</th>
+                <th lay-data="{field:'value18', width:120}">计划生产数</th>
+                <th lay-data="{field:'value19', width:120}">实际生产数</th>
+                <th lay-data="{field:'value20', width:150}">返工/次品/废品数量</th>
+                <th lay-data="{field:'value21', width:140}">返理论节拍/min</th>
+                <th lay-data="{field:'value22', width:120}">实际节拍/min</th>
+                <th lay-data="{width:120, align:'center', toolbar: '#barDemo'}">操作</th>
+            </tr>
+            </thead>
+        </table>
+        <script type="text/html" id="barDemo">
+            <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="edit">编辑</a>
+            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+        </script>
+    </div>
+</div>
+<script>
+    layui.use(['form', 'laydate', 'element', 'table'], function () {
+        var form = layui.form;
+        var laydate = layui.laydate;
+        var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+        var table = layui.table;
+        var $ = layui.jquery;
+
+        laydate.render({
+            elem: '#startTime'
+            , type: 'datetime'
+        });
+        laydate.render({
+            elem: '#endTime'
+            , type: 'datetime'//max,min设置值
+        });
+
+        form.on('radio', function (data) {
+            if (data.value == 'custom') {
+                $('#searchTime').removeClass('timeHidden');
+            } else {
+                $('#searchTime').addClass('timeHidden');
+            }
+        });
+
+        //自定义验证规则
+        form.verify({
+            title: function (value) {
+                parent.layer.alert(value);
+            }
+        });
+    });
+</script>
+</body>
+</html>

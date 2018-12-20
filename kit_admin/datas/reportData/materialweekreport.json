@@ -1,0 +1,80 @@
+{
+  "code": 0,
+  "msg": "",
+  "count": 10,
+  "data": [
+    {
+      "value1": "1",
+      "value2": "1003710-B02",
+      "value3": "2缸高压阻尼线总成",
+      "value4": "1",
+      "value5": "遵义长征汽车零部件有限公司",
+      "value6": "来件粘连，表面损坏",
+      "value7": "EA03",
+      "value8": "料废"
+
+    },
+    {
+      "value1": "2",
+      "value2": "1003710-B13",
+      "value3": "曲轴箱分总成",
+      "value4": "2",
+      "value5": "重庆秦安机电股份有限公司",
+      "value6": "整机泄检不过",
+      "value7": "EA03",
+      "value8": "工废"
+
+    },
+    {
+      "value1": "3",
+      "value2": "1003710-B10",
+      "value3": "气缸盖分总成",
+      "value4": "1",
+      "value5": "温州瑞明工业股份有限公司",
+      "value6": "整机泄检不过",
+      "value7": "EA03",
+      "value8": "工废"
+
+    },
+    {
+      "value1": "4",
+      "value2": "",
+      "value3": "",
+      "value4": "",
+      "value5": "",
+      "value6": "",
+      "value7": "",
+      "value8": ""
+    },
+    {
+      "value1": "5",
+      "value2": "",
+      "value3": "",
+      "value4": "",
+      "value5": "",
+      "value6": "",
+      "value7": "",
+      "value8": ""
+    },
+    {
+      "value1": "6",
+      "value2": "",
+      "value3": "",
+      "value4": "",
+      "value5": "",
+      "value6": "",
+      "value7": "",
+      "value8": ""
+    },
+    {
+      "value1": " ",
+      "value2": "",
+      "value3": " ",
+      "value4": "当周产量：700 ",
+      "value5": "工废料：0.4%   ",
+      "value6": "工废料：0.4%   ",
+      "value7": "料废率：0.1%",
+      "value8": "料废率：0.1%"
+    }
+  ]
+}

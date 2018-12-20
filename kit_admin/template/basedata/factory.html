@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>工厂管理</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all">
+    <script src="../../plugins/layui/layui.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="layui-form layui-form-pane">
+        <div class="layui-col-md12">
+            <div class="layui-inline">
+                <div class="layui-input-inline">
+                    <button class="layui-btn layui-btn-normal" id="addFactory">
+                        <i class="layui-icon">&#xe61f;</i>新增工厂
+                    </button>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <div class="layui-input-inline">
+                    <button class="layui-btn layui-btn-normal" type="button" function="query"><i
+                            class="layui-icon"></i>查询
+                    </button>
+                </div>
+            </div>
+            <div class="layui-col-md12">
+                <table class="layui-table" lay-data="{url:'../../datas/factory.json', page:true, id:'idTest'}"
+                       lay-filter="demo">
+                    <thead>
+                    <tr>
+                        <th lay-data="{field:'value1', sort: true, fixed: true}">工厂名称</th>
+                        <th lay-data="{field:'value2', sort: true, fixed: true}">组织代码</th>
+                        <th lay-data="{field:'value3', sort: true, fixed: true}">备注</th>
+                        <th lay-data="{fixed: 'right', align:'center', toolbar: '#barDemo'}">操作</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="textml" id="barDemo">
+       <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="edit">编辑</a>
+       <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+<script>
+    layui.use(['element', 'table', 'layer'], function () {
+        var table = layui.table;
+        var layer = layui.layer;
+
+        //监听表格复选框选择
+        table.on('checkbox(demo)', function (obj) {
+            console.log(obj)
+        });
+
+        //监听工具条
+        table.on('tool(demo)', function (obj) {
+            var data = obj.data;
+            if (obj.event === 'detail') {
+                layer.msg('ID：' + data.id + ' 的查看操作');
+            } else if (obj.event === 'del') {
+                layer.confirm('真的删除行么', function (index) {
+                    obj.del();
+                    layer.close(index);
+                });
+            } else if (obj.event === 'edit') {
+                layer.alert('编辑行：<br>' + JSON.stringify(data))
+            }
+        });
+
+        var $ = layui.$, active = {
+            getCheckData: function () { //获取选中数据
+                var checkStatus = table.checkStatus('idTest')
+                    , data = checkStatus.data;
+                layer.alert(JSON.stringify(data));
+            }
+            , getCheckLength: function () { //获取选中数目
+                var checkStatus = table.checkStatus('idTest')
+                    , data = checkStatus.data;
+                layer.msg('选中了：' + data.length + ' 个');
+            }
+            , isAll: function () { //验证是否全选
+                var checkStatus = table.checkStatus('idTest');
+                layer.msg(checkStatus.isAll ? '全选' : '未全选')
+            }
+        };
+
+        $('#addFactory').on('click', function (obj) {
+            parent.layer.open({
+                type: 2,
+                title: '新增工厂',
+                shadeClose: true,
+                shade: 0.1,
+                area: ['35%', '55%'],
+                content: '/template/basedata/add/addFactory.html'
+            });
+        });
+
+    });
+</script>
+</body>
+</html>
