@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>INSPINIA | Dashboard</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <!-- Toastr style -->
+    <link href="css/plugins/toastr/toastr.min.css" rel="stylesheet">
+
+    <!-- Gritter -->
+    <link href="js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
+
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <style>
+       li{
+           list-style: none;
+       }
+
+        .bb {
+            display: none;
+        }
+
+        .show {
+            display: block;
+        }
+        .tab-close{
+            color:#c4c4c4;
+        }
+    </style>
+</head>
+
+<body>
+<div id="wrapper">
+    <!--左侧导航栏-->
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav metismenu" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element">
+                        <img alt="image" class="rounded-circle" src="img/profile_small.jpg"/>
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="block m-t-xs font-bold">David Williams</span>
+                            <span class="text-muted text-xs block">Art Director <b class="caret"></b></span>
+                        </a>
+                        <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                            <li><a class="dropdown-item" href="profile.html">Profile</a></li>
+                            <li><a class="dropdown-item" href="contacts.html">Contacts</a></li>
+                            <li><a class="dropdown-item" href="mailbox.html">Mailbox</a></li>
+                            <li class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="login.html">Logout</a></li>
+                        </ul>
+                    </div>
+                    <div class="logo-element">
+                        IN+
+                    </div>
+                </li>
+                <li>
+                    <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span> <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a data-href="dashboard_1.html" data-id="Dashboard v.1"  class="nav-label-item ">Dashboard v.1</a></li>
+                        <li><a data-href="dashboard_2.html" data-id="Dashboard v.2"  class="nav-label-item">Dashboard v.2</a></li>
+                        <li><a data-href="dashboard_3.html" data-id="Dashboard v.3"  class="nav-label-item">Dashboard v.3</a></li>
+                        <li><a data-href="dashboard_4_1.html" data-id="Dashboard v.4" class="nav-label-item">Dashboard v.4</a></li>
+                        <li><a data-href="dashboard_5.html" data-id="Dashboard v.5 "  class="nav-label-item">Dashboard v.5 </a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="layouts.html"><i class="fa fa-diamond"></i> <span class="nav-label">Layouts</span></a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-flask"></i> <span class="nav-label">UI Elements</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="typography.html">Typography</a></li>
+                        <li><a href="icons.html">Icons</a></li>
+                        <li><a href="draggable_panels.html">Draggable Panels</a></li> <li><a href="resizeable_panels.html">Resizeable Panels</a></li>
+                        <li><a href="buttons.html">Buttons</a></li>
+                        <li><a href="video.html">Video</a></li>
+                        <li><a href="tabs_panels.html">Panels</a></li>
+                        <li><a href="tabs.html">Tabs</a></li>
+                        <li><a href="notifications.html">Notifications & Tooltips</a></li>
+                        <li><a href="helper_classes.html">Helper css classes</a></li>
+                        <li><a href="badges_labels.html">Badges, Labels, Progress</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-picture-o"></i> <span class="nav-label">Gallery</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="basic_gallery.html">Lightbox Gallery</a></li>
+                        <li><a href="slick_carousel.html">Slick Carousel</a></li>
+                        <li><a href="carousel.html">Bootstrap Carousel</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!--头部 + 内容-->
+    <div id="page-wrapper" class="gray-bg dashbard-1">
+        <!--头部-->
+        <div class="row border-bottom">
+            <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+                    <form role="search" class="navbar-form-custom" action="search_results.html">
+                        <div class="form-group">
+                            <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search">
+                        </div>
+                    </form>
+                </div>
+                <ul class="nav navbar-top-links navbar-right">
+                    <li style="padding: 20px">
+                        <span class="m-r-sm text-muted welcome-message">Welcome to INSPINIA+ Admin Theme.</span>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                            <i class="fa fa-envelope"></i>  <span class="label label-warning">16</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-messages dropdown-menu-right">
+                            <li>
+                                <div class="dropdown-messages-box">
+                                    <a class="dropdown-item float-left" href="profile.html">
+                                        <img alt="image" class="rounded-circle" src="img/a7.jpg">
+                                    </a>
+                                    <div class="media-body">
+                                        <small class="float-right">46h ago</small>
+                                        <strong>Mike Loreipsum</strong> started following <strong>Monica Smith</strong>. <br>
+                                        <small class="text-muted">3 days ago at 7:58 pm - 10.06.2014</small>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="dropdown-divider"></li>
+                            <li>
+                                <div class="dropdown-messages-box">
+                                    <a class="dropdown-item float-left" href="profile.html">
+                                        <img alt="image" class="rounded-circle" src="img/a4.jpg">
+                                    </a>
+                                    <div class="media-body ">
+                                        <small class="float-right text-navy">5h ago</small>
+                                        <strong>Chris Johnatan Overtunk</strong> started following <strong>Monica Smith</strong>. <br>
+                                        <small class="text-muted">Yesterday 1:21 pm - 11.06.2014</small>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="dropdown-divider"></li>
+                            <li>
+                                <div class="dropdown-messages-box">
+                                    <a class="dropdown-item float-left" href="profile.html">
+                                        <img alt="image" class="rounded-circle" src="img/profile.jpg">
+                                    </a>
+                                    <div class="media-body ">
+                                        <small class="float-right">23h ago</small>
+                                        <strong>Monica Smith</strong> love <strong>Kim Smith</strong>. <br>
+                                        <small class="text-muted">2 days ago at 2:30 am - 11.06.2014</small>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="dropdown-divider"></li>
+                            <li>
+                                <div class="text-center link-block">
+                                    <a href="mailbox.html" class="dropdown-item">
+                                        <i class="fa fa-envelope"></i> <strong>Read All Messages</strong>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                            <i class="fa fa-bell"></i>  <span class="label label-primary">8</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-alerts">
+                            <li>
+                                <a href="mailbox.html" class="dropdown-item">
+                                    <div>
+                                        <i class="fa fa-envelope fa-fw"></i> You have 16 messages
+                                        <span class="float-right text-muted small">4 minutes ago</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="dropdown-divider"></li>
+                            <li>
+                                <a href="profile.html" class="dropdown-item">
+                                    <div>
+                                        <i class="fa fa-twitter fa-fw"></i> 3 New Followers
+                                        <span class="float-right text-muted small">12 minutes ago</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="dropdown-divider"></li>
+                            <li>
+                                <a href="grid_options.html" class="dropdown-item">
+                                    <div>
+                                        <i class="fa fa-upload fa-fw"></i> Server Rebooted
+                                        <span class="float-right text-muted small">4 minutes ago</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="dropdown-divider"></li>
+                            <li>
+                                <div class="text-center link-block">
+                                    <a href="notifications.html" class="dropdown-item">
+                                        <strong>See All Alerts</strong>
+                                        <i class="fa fa-angle-right"></i>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="login.html">
+                            <i class="fa fa-sign-out"></i> Log out
+                        </a>
+                    </li>
+                    <li>
+                        <a class="right-sidebar-toggle">
+                            <i class="fa fa-tasks"></i>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <!--新加的导航栏-->
+
+        <div>
+            <ul class="nav nav-tabs" id="addTab" >
+                <li class="nav-link active" data-id="Dashboard v.2"  data-href="dashboard_2.html"  data-toggle="tab" href="#tab-8"  src="dashboard_2.html"> 主控制台</li>
+            </ul>
+            <iframe class="bb"  data-id="Dashboard v.2" src="dashboard_2.html" frameborder="0" width="100%" height="800"></iframe>
+            <iframe class="bb show" id="content-area" data-id="Dashboard v.2" src="dashboard_2.html" frameborder="0" width="100%" height="800"></iframe>
+        </div>
+    </div>
+</div>
+
+<!-- Mainly scripts -->
+<script src="js/jquery-3.1.1.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<!--<script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>-->
+<!--<script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>-->
+
+<!-- Flot -->
+<!--<script src="js/plugins/flot/jquery.flot.js"></script>-->
+<!--<script src="js/plugins/flot/jquery.flot.tooltip.min.js"></script>-->
+<!--<script src="js/plugins/flot/jquery.flot.spline.js"></script>-->
+<!--<script src="js/plugins/flot/jquery.flot.resize.js"></script>-->
+<!--<script src="js/plugins/flot/jquery.flot.pie.js"></script>-->
+
+<!-- Peity -->
+<!--<script src="js/plugins/peity/jquery.peity.min.js"></script>-->
+<!--<script src="js/demo/peity-demo.js"></script>-->
+
+<!-- Custom and plugin javascript -->
+<!--<script src="js/inspinia.js"></script>-->
+<!--<script src="js/plugins/pace/pace.min.js"></script>-->
+
+<!-- jQuery UI -->
+<!--<script src="js/plugins/jquery-ui/jquery-ui.min.js"></script>-->
+
+<!-- GITTER -->
+<!--<script src="js/plugins/gritter/jquery.gritter.min.js"></script>-->
+
+<!-- Sparkline -->
+<!--<script src="js/plugins/sparkline/jquery.sparkline.min.js"></script>-->
+
+<!-- Sparkline demo data  -->
+<!--<script src="js/demo/sparkline-demo.js"></script>-->
+
+
+<!-- ChartJS-->
+<!--<script src="js/plugins/chartJs/Chart.min.js"></script>-->
+
+<!-- Toastr -->
+<!--<script src="js/plugins/toastr/toastr.min.js"></script>-->
+
+
+<script>
+
+
+    //左侧导航栏 刷新 并且添加到对应容器
+
+    $('.nav-label-item').click(function () {   //左侧每一列绑定一个点击事件
+        var dataHref = $(this).attr('data-href');
+        var dataId = $(this).attr('data-id');
+        var obj = $("#addTab li");   //需要接收内容的容器
+        var addflag = 0;    //定义一个容器初始值 接下来方便判断里边是否增加新的内容
+        for(var i=1;i<obj.length;i++){
+            // console.log(obj[i].attributes[1].textContent);
+            var nowdataId = obj[i].attributes[1].textContent;
+            if(dataId == nowdataId){
+                addflag = 1;
+                $('#content-area').attr('src', dataHref).attr('data-id', dataId);
+                var nowTab = obj[i];
+                $(obj[i]).addClass("active").siblings("li").removeClass("active");
+            }
+        }
+        if(addflag == 0){  //证明容器里没有新增加的的内容  那么就新增加进去
+            // 修改iframe的src和data-id
+            $('#content-area').attr('src', dataHref).attr('data-id', dataId);
+            $('#addTab').append("<li class='nav-link ' data-id='" + dataId + "' data-href='" + dataHref + "'>" + dataId + "<i class='fa fa-remove tab-close'></i></li>");
+            $("#addTab li:last-child").addClass("active").siblings("li").removeClass("active");
+        }
+
+    });
+    //结束
+
+    //上栏选项卡 切换点击 刷新一次页面
+
+    $("#addTab").on("click","li ",function(){      //只需要找到你点击的是哪个ul里面的就行
+        var tabLi = $(this);
+        var dataId = tabLi[0].attributes[1].textContent;
+        var dataHref = tabLi[0].attributes[2].textContent;
+        $('#content-area').attr('src', dataHref).attr('data-id', dataId);
+        $(this).addClass("active").siblings("li").removeClass("active");
+    });
+    //结束
+
+
+    $("ul#addTab").on("click","li i",function(ev){      //只需要找到你点击的是哪个ul里面的就行
+        var ev = ev || event;
+        ev.stopPropagation();
+        //先判断当前要关闭的tab选项卡有没有active类，再判断当前选项卡是否最后一个，如果是则给前一个选项卡以及内容添加active，否则给下一个添加active类
+        var gParent=$(this).parent().parent(),//ul
+            parent=$(this).parent();//li
+        parent.remove();
+        var lastobj =  $("#addTab li:last-child");
+        lastobj.addClass('active');
+        var dataId = lastobj[0].attributes[1].textContent;
+        var dataHref = lastobj[0].attributes[2].textContent;
+        $('#content-area').removeAttr('data-id');
+        $('#content-area').removeAttr('src');
+        $('#content-area').attr('src', dataHref).attr('data-id', dataId)
+
+    });
+
+
+
+
+    $('.tab-close').on('click', function(ev) {
+        var ev=window.event||ev;
+        ev.stopPropagation();
+        //先判断当前要关闭的tab选项卡有没有active类，再判断当前选项卡是否最后一个，如果是则给前一个选项卡以及内容添加active，否则给下一个添加active类
+        var gParent=$(this).parent().parent(),//li
+            parent=$(this).parent();//a
+
+        if(gParent.hasClass('active')){
+            if(gParent.index()==gParent.length){
+                gParent.prev().addClass('active');
+                $(parent.attr('href')).prev().addClass('active');
+            }else{
+                gParent.next().addClass('active');
+                $(parent.attr('href')).next().addClass('active');
+            }
+        }
+        gParent.remove();
+        $(parent.attr('href')).remove();
+    });
+
+</script>
+</body>
+</html>
