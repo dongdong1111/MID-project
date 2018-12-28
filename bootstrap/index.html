@@ -21,9 +21,9 @@
     <link href="css/animate.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <style>
-       li{
-           list-style: none;
-       }
+        li {
+            list-style: none;
+        }
 
         .bb {
             display: none;
@@ -31,9 +31,83 @@
 
         .show {
             display: block;
+            position: absolute;
+            top: 40px;
         }
-        .tab-close{
-            color:#c4c4c4;
+
+        .tab-close {
+            color: #c4c4c4;
+            padding: 5px;
+        }
+
+        li:hover {
+            cursor: pointer;
+        }
+
+        .add-tab-container {
+            position: relative;
+        }
+
+        #addTab {
+            width: calc(100% - 100px);
+            height: 39px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .add-tab-container .ibox-tools {
+            width: 80px;
+            height: 38px;
+            background: #ffffff;
+            text-align: center;
+            line-height: 38px;
+            position: absolute;
+            right: 20px;
+            top: 0px;
+        }
+
+        .add-tab-container-more{
+            height: auto !important;
+            white-space: normal !important;
+            overflow: visible;
+            z-index: 1;
+            background: #f3f3f4;
+        }
+
+        #addTab .click-hide {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            display: none;
+            width: 24px;
+            height: 38px;
+            line-height: 38px;
+            background: #ffffff;
+            padding-left: 10px;
+        }
+
+        #addTab .click-show {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            display: block;
+            width: 24px;
+            height: 38px;
+            line-height: 38px;
+            background: #ffffff;
+            padding-left: 10px;
+        }
+
+        .add-tab-container .ibox-tools i {
+            padding-left: 5px;
+            cursor: pointer;
+        }
+
+        .add-tab-container .ibox-content {
+            position: absolute;
+            right: 20px;
+            top: 38px;
+            text-align: center;
         }
     </style>
 </head>
@@ -64,36 +138,55 @@
                     </div>
                 </li>
                 <li>
-                    <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span> <span class="fa arrow"></span></a>
+                    <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span> <span
+                            class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li><a data-href="dashboard_1.html" data-id="Dashboard v.1"  class="nav-label-item ">Dashboard v.1</a></li>
-                        <li><a data-href="dashboard_2.html" data-id="Dashboard v.2"  class="nav-label-item">Dashboard v.2</a></li>
-                        <li><a data-href="dashboard_3.html" data-id="Dashboard v.3"  class="nav-label-item">Dashboard v.3</a></li>
-                        <li><a data-href="dashboard_4_1.html" data-id="Dashboard v.4" class="nav-label-item">Dashboard v.4</a></li>
-                        <li><a data-href="dashboard_5.html" data-id="Dashboard v.5 "  class="nav-label-item">Dashboard v.5 </a></li>
+                        <li><a data-href="dashboard_1.html" data-id="Dashboard v.1" class="nav-label-item ">Dashboard
+                            v.1</a></li>
+                        <li><a data-href="dashboard_2.html" data-id="Dashboard v.2" class="nav-label-item">Dashboard
+                            v.2</a></li>
+                        <li><a data-href="dashboard_3.html" data-id="Dashboard v.3" class="nav-label-item">Dashboard
+                            v.3</a></li>
+                        <li><a data-href="dashboard_4_1.html" data-id="Dashboard v.4" class="nav-label-item">Dashboard
+                            v.4</a></li>
+                        <li><a data-href="dashboard_5.html" data-id="Dashboard v.5 " class="nav-label-item">Dashboard
+                            v.5 </a></li>
                     </ul>
                 </li>
+
 
                 <li>
                     <a href="layouts.html"><i class="fa fa-diamond"></i> <span class="nav-label">Layouts</span></a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-flask"></i> <span class="nav-label">UI Elements</span><span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-flask"></i> <span class="nav-label">UI Elements</span><span
+                            class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
-                        <li><a href="typography.html">Typography</a></li>
-                        <li><a href="icons.html">Icons</a></li>
-                        <li><a href="draggable_panels.html">Draggable Panels</a></li> <li><a href="resizeable_panels.html">Resizeable Panels</a></li>
-                        <li><a href="buttons.html">Buttons</a></li>
-                        <li><a href="video.html">Video</a></li>
-                        <li><a href="tabs_panels.html">Panels</a></li>
-                        <li><a href="tabs.html">Tabs</a></li>
-                        <li><a href="notifications.html">Notifications & Tooltips</a></li>
-                        <li><a href="helper_classes.html">Helper css classes</a></li>
-                        <li><a href="badges_labels.html">Badges, Labels, Progress</a></li>
+                        <li><a data-href="dashboard_1.html" data-id="Dashboard v.6" class="nav-label-item ">Dashboard
+                            v.6</a></li>
+                        <li><a data-href="dashboard_2.html" data-id="Dashboard v.7" class="nav-label-item">Dashboard
+                            v.7</a></li>
+                        <li><a data-href="dashboard_3.html" data-id="Dashboard v.8" class="nav-label-item">Dashboard
+                            v.8</a></li>
+                        <li><a data-href="dashboard_4_1.html" data-id="Dashboard v.9" class="nav-label-item">Dashboard
+                            v.9</a></li>
+                        <li><a data-href="dashboard_5.html" data-id="Dashboard v.10 " class="nav-label-item">Dashboard
+                            v.10 </a></li>
+                        <li><a data-href="dashboard_1.html" data-id="Dashboard v.11" class="nav-label-item ">Dashboard
+                            v.11</a></li>
+                        <li><a data-href="dashboard_2.html" data-id="Dashboard v.12" class="nav-label-item">Dashboard
+                            v.12</a></li>
+                        <li><a data-href="dashboard_3.html" data-id="Dashboard v.13" class="nav-label-item">Dashboard
+                            v.13</a></li>
+                        <li><a data-href="dashboard_4_1.html" data-id="Dashboard v.14" class="nav-label-item">Dashboard
+                            v.14</a></li>
+                        <li><a data-href="dashboard_5.html" data-id="Dashboard v.15" class="nav-label-item">Dashboard
+                            v.15</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-picture-o"></i> <span class="nav-label">Gallery</span><span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-picture-o"></i> <span class="nav-label">Gallery</span><span
+                            class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
                         <li><a href="basic_gallery.html">Lightbox Gallery</a></li>
                         <li><a href="slick_carousel.html">Slick Carousel</a></li>
@@ -110,10 +203,12 @@
         <div class="row border-bottom">
             <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
                 <div class="navbar-header">
-                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i>
+                    </a>
                     <form role="search" class="navbar-form-custom" action="search_results.html">
                         <div class="form-group">
-                            <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search">
+                            <input type="text" placeholder="Search for something..." class="form-control"
+                                   name="top-search" id="top-search">
                         </div>
                     </form>
                 </div>
@@ -123,7 +218,7 @@
                     </li>
                     <li class="dropdown">
                         <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                            <i class="fa fa-envelope"></i>  <span class="label label-warning">16</span>
+                            <i class="fa fa-envelope"></i> <span class="label label-warning">16</span>
                         </a>
                         <ul class="dropdown-menu dropdown-messages dropdown-menu-right">
                             <li>
@@ -133,7 +228,8 @@
                                     </a>
                                     <div class="media-body">
                                         <small class="float-right">46h ago</small>
-                                        <strong>Mike Loreipsum</strong> started following <strong>Monica Smith</strong>. <br>
+                                        <strong>Mike Loreipsum</strong> started following <strong>Monica Smith</strong>.
+                                        <br>
                                         <small class="text-muted">3 days ago at 7:58 pm - 10.06.2014</small>
                                     </div>
                                 </div>
@@ -146,7 +242,8 @@
                                     </a>
                                     <div class="media-body ">
                                         <small class="float-right text-navy">5h ago</small>
-                                        <strong>Chris Johnatan Overtunk</strong> started following <strong>Monica Smith</strong>. <br>
+                                        <strong>Chris Johnatan Overtunk</strong> started following <strong>Monica
+                                        Smith</strong>. <br>
                                         <small class="text-muted">Yesterday 1:21 pm - 11.06.2014</small>
                                     </div>
                                 </div>
@@ -176,7 +273,7 @@
                     </li>
                     <li class="dropdown">
                         <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                            <i class="fa fa-bell"></i>  <span class="label label-primary">8</span>
+                            <i class="fa fa-bell"></i> <span class="label label-primary">8</span>
                         </a>
                         <ul class="dropdown-menu dropdown-alerts">
                             <li>
@@ -231,12 +328,31 @@
         </div>
         <!--新加的导航栏-->
 
-        <div>
-            <ul class="nav nav-tabs" id="addTab" >
-                <li class="nav-link active" data-id="Dashboard v.2"  data-href="dashboard_2.html"  data-toggle="tab" href="#tab-8"  src="dashboard_2.html"> 主控制台</li>
+        <div class="add-tab-container">
+            <ul class="nav nav-tabs" id="addTab">
+                <li class="nav-link active" data-id="Dashboard v.2" data-href="dashboard_2.html" data-toggle="tab"
+                    href="#tab-8" src="dashboard_2.html"> 主控制台
+                </li>
+                <span class="click-hide" status="0"><a class="collapse-link"><i
+                        class="fa fa-chevron-down"></i></a></span>
+                <!--<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>-->
             </ul>
-            <iframe class="bb"  data-id="Dashboard v.2" src="dashboard_2.html" frameborder="0" width="100%" height="800"></iframe>
-            <iframe class="bb show" id="content-area" data-id="Dashboard v.2" src="dashboard_2.html" frameborder="0" width="100%" height="800"></iframe>
+            <div class="ibox-tools">
+                操作<i class="fa fa-chevron-down"></i>
+            </div>
+            <div class="ibox-content no-padding" style="width: 150px; display: none">
+                <ul class="list-group">
+                    <li class="list-group-item refresh">刷新当前选项卡</li>
+                    <li class="kit-line"></li>
+                    <li class="list-group-item closeCurrent">关闭当前选项卡</li>
+                    <li class="list-group-item closeOther">关闭其他选项卡</li>
+                    <li class="list-group-item closeAll">关闭全部选项卡</li>
+                </ul>
+            </div>
+            <iframe class="bb" data-id="Dashboard v.2" src="dashboard_2.html" frameborder="0" width="100%"
+                    height="800"></iframe>
+            <iframe class="bb show" id="content-area" data-id="Dashboard v.2" src="dashboard_2.html" frameborder="0"
+                    width="100%" height="800"></iframe>
         </div>
     </div>
 </div>
@@ -245,8 +361,8 @@
 <script src="js/jquery-3.1.1.min.js"></script>
 <script src="js/popper.min.js"></script>
 <script src="js/bootstrap.js"></script>
-<!--<script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>-->
-<!--<script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>-->
+<script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
 <!-- Flot -->
 <!--<script src="js/plugins/flot/jquery.flot.js"></script>-->
@@ -256,31 +372,31 @@
 <!--<script src="js/plugins/flot/jquery.flot.pie.js"></script>-->
 
 <!-- Peity -->
-<!--<script src="js/plugins/peity/jquery.peity.min.js"></script>-->
-<!--<script src="js/demo/peity-demo.js"></script>-->
+<script src="js/plugins/peity/jquery.peity.min.js"></script>
+<script src="js/demo/peity-demo.js"></script>
 
 <!-- Custom and plugin javascript -->
-<!--<script src="js/inspinia.js"></script>-->
+<script src="js/inspinia.js"></script>
 <!--<script src="js/plugins/pace/pace.min.js"></script>-->
 
 <!-- jQuery UI -->
-<!--<script src="js/plugins/jquery-ui/jquery-ui.min.js"></script>-->
+<script src="js/plugins/jquery-ui/jquery-ui.min.js"></script>
 
 <!-- GITTER -->
-<!--<script src="js/plugins/gritter/jquery.gritter.min.js"></script>-->
+<script src="js/plugins/gritter/jquery.gritter.min.js"></script>
 
 <!-- Sparkline -->
-<!--<script src="js/plugins/sparkline/jquery.sparkline.min.js"></script>-->
+<script src="js/plugins/sparkline/jquery.sparkline.min.js"></script>
 
 <!-- Sparkline demo data  -->
-<!--<script src="js/demo/sparkline-demo.js"></script>-->
+<script src="js/demo/sparkline-demo.js"></script>
 
 
 <!-- ChartJS-->
-<!--<script src="js/plugins/chartJs/Chart.min.js"></script>-->
+<script src="js/plugins/chartJs/Chart.min.js"></script>
 
 <!-- Toastr -->
-<!--<script src="js/plugins/toastr/toastr.min.js"></script>-->
+<script src="js/plugins/toastr/toastr.min.js"></script>
 
 
 <script>
@@ -293,29 +409,61 @@
         var dataId = $(this).attr('data-id');
         var obj = $("#addTab li");   //需要接收内容的容器
         var addflag = 0;    //定义一个容器初始值 接下来方便判断里边是否增加新的内容
-        for(var i=1;i<obj.length;i++){
+        for (var i = 1; i < obj.length; i++) {
             // console.log(obj[i].attributes[1].textContent);
             var nowdataId = obj[i].attributes[1].textContent;
-            if(dataId == nowdataId){
+            if (dataId == nowdataId) {
                 addflag = 1;
                 $('#content-area').attr('src', dataHref).attr('data-id', dataId);
                 var nowTab = obj[i];
                 $(obj[i]).addClass("active").siblings("li").removeClass("active");
             }
         }
-        if(addflag == 0){  //证明容器里没有新增加的的内容  那么就新增加进去
+        if (addflag == 0) {  //证明容器里没有新增加的的内容  那么就新增加进去
             // 修改iframe的src和data-id
             $('#content-area').attr('src', dataHref).attr('data-id', dataId);
             $('#addTab').append("<li class='nav-link ' data-id='" + dataId + "' data-href='" + dataHref + "'>" + dataId + "<i class='fa fa-remove tab-close'></i></li>");
             $("#addTab li:last-child").addClass("active").siblings("li").removeClass("active");
         }
 
+        // 获取ul宽度
+        var navOffsetWidth = $('ul[class="nav nav-tabs"]')[0].offsetWidth;
+        // 获取每个li的宽度总和,加上功能按钮ibox-tools宽度
+        var sumWidth = totalWidth();
+        // 判断ul宽度是否小于和
+        if (navOffsetWidth < sumWidth) {
+            // 显示展示按钮
+            $('.click-hide').attr('class', 'click-show');
+        }
+        // console.log(navOffsetWidth > sumWidth);
     });
+
+    $('.click-hide').on('click',function () {
+        var $this = $(this);
+        if($this.attr("status") === '0'){
+            $('#addTab').addClass('add-tab-container-more')
+        }else {
+            $('#addTab').removeClass('add-tab-container-more')
+        }
+        // console.log($this.attr("status") === '0');
+        $this.attr("status", $this.attr("status") === '0' ? '1' : '0');
+    });
+
+    // 获取每个li的宽度总和,加上功能按钮ibox-tools宽度
+    function totalWidth() {
+        var $li = $('.nav-link');
+        var buttonWidth = $('.ibox-tools')[0].offsetWidth;
+        $li.each(function (index, li) {
+            buttonWidth += li.offsetWidth;
+        });
+        return buttonWidth;
+    }
+
     //结束
 
     //上栏选项卡 切换点击 刷新一次页面
 
-    $("#addTab").on("click","li ",function(){      //只需要找到你点击的是哪个ul里面的就行
+    $("#addTab").on("click", "li ", function () {      //只需要找到你点击的是哪个ul里面的就行
         var tabLi = $(this);
         var dataId = tabLi[0].attributes[1].textContent;
         var dataHref = tabLi[0].attributes[2].textContent;
@@ -325,44 +473,74 @@
     //结束
 
 
-    $("ul#addTab").on("click","li i",function(ev){      //只需要找到你点击的是哪个ul里面的就行
+    $("ul#addTab").on("click", "li i", function (ev) {      //只需要找到你点击的是哪个ul里面的就行
         var ev = ev || event;
         ev.stopPropagation();
         //先判断当前要关闭的tab选项卡有没有active类，再判断当前选项卡是否最后一个，如果是则给前一个选项卡以及内容添加active，否则给下一个添加active类
-        var gParent=$(this).parent().parent(),//ul
-            parent=$(this).parent();//li
+        var gParent = $(this).parent().parent(),//ul
+            parent = $(this).parent();//li
         parent.remove();
-        var lastobj =  $("#addTab li:last-child");
+        var lastobj = $("#addTab li:last-child");
         lastobj.addClass('active');
         var dataId = lastobj[0].attributes[1].textContent;
         var dataHref = lastobj[0].attributes[2].textContent;
-        $('#content-area').removeAttr('data-id');
-        $('#content-area').removeAttr('src');
+        // $('#content-area').removeAttr('data-id');
+        // $('#content-area').removeAttr('src');
         $('#content-area').attr('src', dataHref).attr('data-id', dataId)
+    });
+
+    //点击操作按钮时 下拉菜单显示
+    $('.ibox-tools ').on('click', function () {
+        $('.ibox-content').toggle();
+        $('.ibox-content').css('z-index',1);
+    });
+
+    //刷新当前选项卡
+    $('.refresh').on('click', function () {
+        var refreshData = $("#addTab li[class='nav-link active']");
+        var dataHref = $(refreshData).attr('data-href');
+        var dataId = $(refreshData).attr('data-id');
+        $('#content-area').attr('src', dataHref).attr('data-id', dataId);
+    });
+
+    //关闭当前选项卡
+    $('.closeCurrent').on('click', function (e) {
+        var ev1 = e || event;
+        ev1.stopPropagation();
+        var dParent = $(this).parent().parent().parent().find('#addTab li[class="nav-link active"]');
+        dParent.remove();
+        var lastobj1 = $("#addTab li:last-child");
+        lastobj1.addClass('active');
+        var dataId1 = lastobj1[0].attributes[1].textContent;
+        var dataHref1 = lastobj1[0].attributes[2].textContent;
+        $('#content-area').attr('src', dataHref1).attr('data-id', dataId1);
+    });
+
+    //关闭其他选项卡
+    $('.closeOther').on('click', function (e) {
+        var ev2 = e || event;
+        ev2.stopPropagation();
+        var qParent = $(this).parent().parent().parent().find('#addTab li[class="nav-link active"]');
+        console.log(qParent);
+        qParent.siblings().not(':first').remove();
+        var lastobj3 = $("#addTab li:last-child");
+        lastobj3.addClass('active');
+        var dataId3 = lastobj3[0].attributes[1].textContent;
+        var dataHref3 = lastobj3[0].attributes[2].textContent;
+        $('#content-area').attr('src', dataHref3).attr('data-id', dataId3);
 
     });
 
+    //关闭全部选项卡
 
-
-
-    $('.tab-close').on('click', function(ev) {
-        var ev=window.event||ev;
-        ev.stopPropagation();
-        //先判断当前要关闭的tab选项卡有没有active类，再判断当前选项卡是否最后一个，如果是则给前一个选项卡以及内容添加active，否则给下一个添加active类
-        var gParent=$(this).parent().parent(),//li
-            parent=$(this).parent();//a
-
-        if(gParent.hasClass('active')){
-            if(gParent.index()==gParent.length){
-                gParent.prev().addClass('active');
-                $(parent.attr('href')).prev().addClass('active');
-            }else{
-                gParent.next().addClass('active');
-                $(parent.attr('href')).next().addClass('active');
-            }
-        }
-        gParent.remove();
-        $(parent.attr('href')).remove();
+    $('.closeAll').on('click', function () {
+        var sParent = $(this).parent().parent().parent().find('#addTab li:first-child');
+        sParent.siblings().remove();
+        var lastobj2 = $("#addTab li:last-child");
+        lastobj2.addClass('active');
+        var dataId2 = lastobj2[0].attributes[1].textContent;
+        var dataHref2 = lastobj2[0].attributes[2].textContent;
+        $('#content-area').attr('src', dataHref2).attr('data-id', dataId2);
     });
 
 </script>
