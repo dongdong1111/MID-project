@@ -29,7 +29,7 @@
             display: none;
         }
 
-        .show {
+        .cc {
             display: block;
             position: absolute;
             top: 40px;
@@ -66,7 +66,7 @@
             top: 0px;
         }
 
-        .add-tab-container-more{
+        .add-tab-container-more {
             height: auto !important;
             white-space: normal !important;
             overflow: visible;
@@ -109,6 +109,15 @@
             top: 38px;
             text-align: center;
         }
+
+        .item-this {
+            color: #fff;
+            background: #1ab394;
+        }
+        .nav-second-level li{
+            color: #a7b1c2;
+        }
+
     </style>
 </head>
 
@@ -141,15 +150,15 @@
                     <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span> <span
                             class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li><a data-href="dashboard_1.html" data-id="Dashboard v.1" class="nav-label-item ">Dashboard
+                        <li><a data-href="dashboard_1.html" data-id="1" data-title="Dashboard v.1" class="nav-label-item ">Dashboard
                             v.1</a></li>
-                        <li><a data-href="dashboard_2.html" data-id="Dashboard v.2" class="nav-label-item">Dashboard
+                        <li><a data-href="dashboard_2.html" data-id="2" data-title="Dashboard v.2" class="nav-label-item">Dashboard
                             v.2</a></li>
-                        <li><a data-href="dashboard_3.html" data-id="Dashboard v.3" class="nav-label-item">Dashboard
+                        <li><a data-href="dashboard_3.html" data-id="3" data-title="Dashboard v.3" class="nav-label-item">Dashboard
                             v.3</a></li>
-                        <li><a data-href="dashboard_4_1.html" data-id="Dashboard v.4" class="nav-label-item">Dashboard
+                        <li><a data-href="dashboard_4_1.html" data-id="4" data-title="Dashboard v.4" class="nav-label-item">Dashboard
                             v.4</a></li>
-                        <li><a data-href="dashboard_5.html" data-id="Dashboard v.5 " class="nav-label-item">Dashboard
+                        <li><a data-href="dashboard_5.html" data-id="5 " data-title="Dashboard v.5" class="nav-label-item">Dashboard
                             v.5 </a></li>
                     </ul>
                 </li>
@@ -162,25 +171,25 @@
                     <a href="#"><i class="fa fa-flask"></i> <span class="nav-label">UI Elements</span><span
                             class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
-                        <li><a data-href="dashboard_1.html" data-id="Dashboard v.6" class="nav-label-item ">Dashboard
+                        <li><a data-href="dashboard_1.html" data-id="6" data-title="Dashboard v.6" class="nav-label-item ">Dashboard
                             v.6</a></li>
-                        <li><a data-href="dashboard_2.html" data-id="Dashboard v.7" class="nav-label-item">Dashboard
+                        <li><a data-href="dashboard_2.html" data-id="7" data-title="Dashboard v.7" class="nav-label-item">Dashboard
                             v.7</a></li>
-                        <li><a data-href="dashboard_3.html" data-id="Dashboard v.8" class="nav-label-item">Dashboard
+                        <li><a data-href="dashboard_3.html" data-id="8" data-title="Dashboard v.8" class="nav-label-item">Dashboard
                             v.8</a></li>
-                        <li><a data-href="dashboard_4_1.html" data-id="Dashboard v.9" class="nav-label-item">Dashboard
+                        <li><a data-href="dashboard_4_1.html" data-id="9" data-title="Dashboard v.9" class="nav-label-item">Dashboard
                             v.9</a></li>
-                        <li><a data-href="dashboard_5.html" data-id="Dashboard v.10 " class="nav-label-item">Dashboard
+                        <li><a data-href="dashboard_5.html" data-id="10 " data-title="Dashboard v.10" class="nav-label-item">Dashboard
                             v.10 </a></li>
-                        <li><a data-href="dashboard_1.html" data-id="Dashboard v.11" class="nav-label-item ">Dashboard
+                        <li><a data-href="dashboard_1.html" data-id="11" data-title="Dashboard v.11" class="nav-label-item ">Dashboard
                             v.11</a></li>
-                        <li><a data-href="dashboard_2.html" data-id="Dashboard v.12" class="nav-label-item">Dashboard
+                        <li><a data-href="dashboard_2.html" data-id="12" data-title="Dashboard v.12" class="nav-label-item">Dashboard
                             v.12</a></li>
-                        <li><a data-href="dashboard_3.html" data-id="Dashboard v.13" class="nav-label-item">Dashboard
+                        <li><a data-href="dashboard_3.html" data-id="13" data-title="Dashboard v.13" class="nav-label-item">Dashboard
                             v.13</a></li>
-                        <li><a data-href="dashboard_4_1.html" data-id="Dashboard v.14" class="nav-label-item">Dashboard
+                        <li><a data-href="dashboard_4_1.html" data-id="14" data-title="Dashboard v.14" class="nav-label-item">Dashboard
                             v.14</a></li>
-                        <li><a data-href="dashboard_5.html" data-id="Dashboard v.15" class="nav-label-item">Dashboard
+                        <li><a data-href="dashboard_5.html" data-id="15" data-title="Dashboard v.15" class="nav-label-item">Dashboard
                             v.15</a></li>
                     </ul>
                 </li>
@@ -188,9 +197,17 @@
                     <a href="#"><i class="fa fa-picture-o"></i> <span class="nav-label">Gallery</span><span
                             class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
-                        <li><a href="basic_gallery.html">Lightbox Gallery</a></li>
+                        <li><a href="dashboard_5.html">Lightbox Gallery</a></li>
                         <li><a href="slick_carousel.html">Slick Carousel</a></li>
                         <li><a href="carousel.html">Bootstrap Carousel</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-user-circle"></i> <span class="nav-label">用户管理</span><span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a data-href="user_list.html" data-id="16" data-title="用户列表" class="nav-label-item ">用户列表</a></li>
+                        <li><a data-href="edit.html" data-id="17" data-title="工作日历" class="nav-label-item">工作日历</a></li>
                     </ul>
                 </li>
             </ul>
@@ -330,7 +347,7 @@
 
         <div class="add-tab-container">
             <ul class="nav nav-tabs" id="addTab">
-                <li class="nav-link active" data-id="Dashboard v.2" data-href="dashboard_2.html" data-toggle="tab"
+                <li class="nav-link active" data-id="2" data-title="Dashboard v.2" data-href="dashboard_2.html" data-toggle="tab"
                     href="#tab-8" src="dashboard_2.html"> 主控制台
                 </li>
                 <span class="click-hide" status="0"><a class="collapse-link"><i
@@ -338,7 +355,7 @@
                 <!--<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>-->
             </ul>
             <div class="ibox-tools">
-                操作<i class="fa fa-chevron-down"></i>
+                操作<a class="collapse-link"><i class="fa fa-chevron-down"></i></a>
             </div>
             <div class="ibox-content no-padding" style="width: 150px; display: none">
                 <ul class="list-group">
@@ -349,11 +366,400 @@
                     <li class="list-group-item closeAll">关闭全部选项卡</li>
                 </ul>
             </div>
-            <iframe class="bb" data-id="Dashboard v.2" src="dashboard_2.html" frameborder="0" width="100%"
+            <iframe class="bb" data-id="'2" data-title="Dashboard v.2" src="dashboard_2.html" frameborder="0" width="100%"
                     height="800"></iframe>
-            <iframe class="bb show" id="content-area" data-id="Dashboard v.2" src="dashboard_2.html" frameborder="0"
+            <iframe class="bb cc" id="content-area" data-id="2" data-title="Dashboard v.2" src="dashboard_2.html" frameborder="0"
                     width="100%" height="800"></iframe>
         </div>
+        <div class="footer">
+            <div>
+                2018.12.28
+            </div>
+        </div>
+    </div>
+
+
+    <div id="right-sidebar">
+        <div class="sidebar-container">
+
+            <ul class="nav nav-tabs navs-3">
+                <li>
+                    <a class="nav-link active" data-toggle="tab" href="#tab-1"> Notes </a>
+                </li>
+                <li>
+                    <a class="nav-link" data-toggle="tab" href="#tab-2"> Projects </a>
+                </li>
+                <li>
+                    <a class="nav-link" data-toggle="tab" href="#tab-3"> <i class="fa fa-gear"></i> </a>
+                </li>
+            </ul>
+
+            <div class="tab-content">
+
+
+                <div id="tab-1" class="tab-pane active">
+
+                    <div class="sidebar-title">
+                        <h3><i class="fa fa-comments-o"></i> Latest Notes</h3>
+                        <small><i class="fa fa-tim"></i> You have 10 new message.</small>
+                    </div>
+
+                    <div>
+
+                        <div class="sidebar-message">
+                            <a href="#">
+                                <div class="float-left text-center">
+                                    <img alt="image" class="rounded-circle message-avatar" src="img/a1.jpg">
+
+                                    <div class="m-t-xs">
+                                        <i class="fa fa-star text-warning"></i>
+                                        <i class="fa fa-star text-warning"></i>
+                                    </div>
+                                </div>
+                                <div class="media-body">
+
+                                    There are many variations of passages of Lorem Ipsum available.
+                                    <br>
+                                    <small class="text-muted">Today 4:21 pm</small>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="sidebar-message">
+                            <a href="#">
+                                <div class="float-left text-center">
+                                    <img alt="image" class="rounded-circle message-avatar" src="img/a2.jpg">
+                                </div>
+                                <div class="media-body">
+                                    The point of using Lorem Ipsum is that it has a more-or-less normal.
+                                    <br>
+                                    <small class="text-muted">Yesterday 2:45 pm</small>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="sidebar-message">
+                            <a href="#">
+                                <div class="float-left text-center">
+                                    <img alt="image" class="rounded-circle message-avatar" src="img/a3.jpg">
+
+                                    <div class="m-t-xs">
+                                        <i class="fa fa-star text-warning"></i>
+                                        <i class="fa fa-star text-warning"></i>
+                                        <i class="fa fa-star text-warning"></i>
+                                    </div>
+                                </div>
+                                <div class="media-body">
+                                    Mevolved over the years, sometimes by accident, sometimes on purpose (injected
+                                    humour and the like).
+                                    <br>
+                                    <small class="text-muted">Yesterday 1:10 pm</small>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="sidebar-message">
+                            <a href="#">
+                                <div class="float-left text-center">
+                                    <img alt="image" class="rounded-circle message-avatar" src="img/a4.jpg">
+                                </div>
+
+                                <div class="media-body">
+                                    Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the
+                                    <br>
+                                    <small class="text-muted">Monday 8:37 pm</small>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="sidebar-message">
+                            <a href="#">
+                                <div class="float-left text-center">
+                                    <img alt="image" class="rounded-circle message-avatar" src="img/a8.jpg">
+                                </div>
+                                <div class="media-body">
+
+                                    All the Lorem Ipsum generators on the Internet tend to repeat.
+                                    <br>
+                                    <small class="text-muted">Today 4:21 pm</small>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="sidebar-message">
+                            <a href="#">
+                                <div class="float-left text-center">
+                                    <img alt="image" class="rounded-circle message-avatar" src="img/a7.jpg">
+                                </div>
+                                <div class="media-body">
+                                    Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes
+                                    from a line in section 1.10.32.
+                                    <br>
+                                    <small class="text-muted">Yesterday 2:45 pm</small>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="sidebar-message">
+                            <a href="#">
+                                <div class="float-left text-center">
+                                    <img alt="image" class="rounded-circle message-avatar" src="img/a3.jpg">
+
+                                    <div class="m-t-xs">
+                                        <i class="fa fa-star text-warning"></i>
+                                        <i class="fa fa-star text-warning"></i>
+                                        <i class="fa fa-star text-warning"></i>
+                                    </div>
+                                </div>
+                                <div class="media-body">
+                                    The standard chunk of Lorem Ipsum used since the 1500s is reproduced below.
+                                    <br>
+                                    <small class="text-muted">Yesterday 1:10 pm</small>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="sidebar-message">
+                            <a href="#">
+                                <div class="float-left text-center">
+                                    <img alt="image" class="rounded-circle message-avatar" src="img/a4.jpg">
+                                </div>
+                                <div class="media-body">
+                                    Uncover many web sites still in their infancy. Various versions have.
+                                    <br>
+                                    <small class="text-muted">Monday 8:37 pm</small>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div id="tab-2" class="tab-pane">
+
+                    <div class="sidebar-title">
+                        <h3><i class="fa fa-cube"></i> Latest projects</h3>
+                        <small><i class="fa fa-tim"></i> You have 14 projects. 10 not completed.</small>
+                    </div>
+
+                    <ul class="sidebar-list">
+                        <li>
+                            <a href="#">
+                                <div class="small float-right m-t-xs">9 hours ago</div>
+                                <h4>Business valuation</h4>
+                                It is a long established fact that a reader will be distracted.
+
+                                <div class="small">Completion with: 22%</div>
+                                <div class="progress progress-mini">
+                                    <div style="width: 22%;" class="progress-bar progress-bar-warning"></div>
+                                </div>
+                                <div class="small text-muted m-t-xs">Project end: 4:00 pm - 12.06.2014</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="small float-right m-t-xs">9 hours ago</div>
+                                <h4>Contract with Company </h4>
+                                Many desktop publishing packages and web page editors.
+
+                                <div class="small">Completion with: 48%</div>
+                                <div class="progress progress-mini">
+                                    <div style="width: 48%;" class="progress-bar"></div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="small float-right m-t-xs">9 hours ago</div>
+                                <h4>Meeting</h4>
+                                By the readable content of a page when looking at its layout.
+
+                                <div class="small">Completion with: 14%</div>
+                                <div class="progress progress-mini">
+                                    <div style="width: 14%;" class="progress-bar progress-bar-info"></div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="label label-primary float-right">NEW</span>
+                                <h4>The generated</h4>
+                                <!--<div class="small float-right m-t-xs">9 hours ago</div>-->
+                                There are many variations of passages of Lorem Ipsum available.
+                                <div class="small">Completion with: 22%</div>
+                                <div class="small text-muted m-t-xs">Project end: 4:00 pm - 12.06.2014</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="small float-right m-t-xs">9 hours ago</div>
+                                <h4>Business valuation</h4>
+                                It is a long established fact that a reader will be distracted.
+
+                                <div class="small">Completion with: 22%</div>
+                                <div class="progress progress-mini">
+                                    <div style="width: 22%;" class="progress-bar progress-bar-warning"></div>
+                                </div>
+                                <div class="small text-muted m-t-xs">Project end: 4:00 pm - 12.06.2014</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="small float-right m-t-xs">9 hours ago</div>
+                                <h4>Contract with Company </h4>
+                                Many desktop publishing packages and web page editors.
+
+                                <div class="small">Completion with: 48%</div>
+                                <div class="progress progress-mini">
+                                    <div style="width: 48%;" class="progress-bar"></div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="small float-right m-t-xs">9 hours ago</div>
+                                <h4>Meeting</h4>
+                                By the readable content of a page when looking at its layout.
+
+                                <div class="small">Completion with: 14%</div>
+                                <div class="progress progress-mini">
+                                    <div style="width: 14%;" class="progress-bar progress-bar-info"></div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="label label-primary float-right">NEW</span>
+                                <h4>The generated</h4>
+                                <!--<div class="small float-right m-t-xs">9 hours ago</div>-->
+                                There are many variations of passages of Lorem Ipsum available.
+                                <div class="small">Completion with: 22%</div>
+                                <div class="small text-muted m-t-xs">Project end: 4:00 pm - 12.06.2014</div>
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+                <div id="tab-3" class="tab-pane">
+
+                    <div class="sidebar-title">
+                        <h3><i class="fa fa-gears"></i> Settings</h3>
+                        <small><i class="fa fa-tim"></i> You have 14 projects. 10 not completed.</small>
+                    </div>
+
+                    <div class="setings-item">
+                    <span>
+                        Show notifications
+                    </span>
+                        <div class="switch">
+                            <div class="onoffswitch">
+                                <input type="checkbox" name="collapsemenu" class="onoffswitch-checkbox" id="example">
+                                <label class="onoffswitch-label" for="example">
+                                    <span class="onoffswitch-inner"></span>
+                                    <span class="onoffswitch-switch"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="setings-item">
+                    <span>
+                        Disable Chat
+                    </span>
+                        <div class="switch">
+                            <div class="onoffswitch">
+                                <input type="checkbox" name="collapsemenu" checked class="onoffswitch-checkbox"
+                                       id="example2">
+                                <label class="onoffswitch-label" for="example2">
+                                    <span class="onoffswitch-inner"></span>
+                                    <span class="onoffswitch-switch"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="setings-item">
+                    <span>
+                        Enable history
+                    </span>
+                        <div class="switch">
+                            <div class="onoffswitch">
+                                <input type="checkbox" name="collapsemenu" class="onoffswitch-checkbox" id="example3">
+                                <label class="onoffswitch-label" for="example3">
+                                    <span class="onoffswitch-inner"></span>
+                                    <span class="onoffswitch-switch"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="setings-item">
+                    <span>
+                        Show charts
+                    </span>
+                        <div class="switch">
+                            <div class="onoffswitch">
+                                <input type="checkbox" name="collapsemenu" class="onoffswitch-checkbox" id="example4">
+                                <label class="onoffswitch-label" for="example4">
+                                    <span class="onoffswitch-inner"></span>
+                                    <span class="onoffswitch-switch"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="setings-item">
+                    <span>
+                        Offline users
+                    </span>
+                        <div class="switch">
+                            <div class="onoffswitch">
+                                <input type="checkbox" checked name="collapsemenu" class="onoffswitch-checkbox"
+                                       id="example5">
+                                <label class="onoffswitch-label" for="example5">
+                                    <span class="onoffswitch-inner"></span>
+                                    <span class="onoffswitch-switch"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="setings-item">
+                    <span>
+                        Global search
+                    </span>
+                        <div class="switch">
+                            <div class="onoffswitch">
+                                <input type="checkbox" checked name="collapsemenu" class="onoffswitch-checkbox"
+                                       id="example6">
+                                <label class="onoffswitch-label" for="example6">
+                                    <span class="onoffswitch-inner"></span>
+                                    <span class="onoffswitch-switch"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="setings-item">
+                    <span>
+                        Update everyday
+                    </span>
+                        <div class="switch">
+                            <div class="onoffswitch">
+                                <input type="checkbox" name="collapsemenu" class="onoffswitch-checkbox" id="example7">
+                                <label class="onoffswitch-label" for="example7">
+                                    <span class="onoffswitch-inner"></span>
+                                    <span class="onoffswitch-switch"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-content">
+                        <h4>Settings</h4>
+                        <div class="small">
+                            I belive that. Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                            And typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since
+                            the 1500s.
+                            Over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+
     </div>
 </div>
 
@@ -365,11 +771,11 @@
 <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
 <!-- Flot -->
-<!--<script src="js/plugins/flot/jquery.flot.js"></script>-->
-<!--<script src="js/plugins/flot/jquery.flot.tooltip.min.js"></script>-->
-<!--<script src="js/plugins/flot/jquery.flot.spline.js"></script>-->
-<!--<script src="js/plugins/flot/jquery.flot.resize.js"></script>-->
-<!--<script src="js/plugins/flot/jquery.flot.pie.js"></script>-->
+<script src="js/plugins/flot/jquery.flot.js"></script>
+<script src="js/plugins/flot/jquery.flot.tooltip.min.js"></script>
+<script src="js/plugins/flot/jquery.flot.spline.js"></script>
+<script src="js/plugins/flot/jquery.flot.resize.js"></script>
+<script src="js/plugins/flot/jquery.flot.pie.js"></script>
 
 <!-- Peity -->
 <script src="js/plugins/peity/jquery.peity.min.js"></script>
@@ -401,78 +807,233 @@
 
 <script>
 
+    $(document).ready(function () {
+        setTimeout(function () {
+            toastr.options = {
+                closeButton: true,
+                progressBar: true,
+                showMethod: 'slideDown',
+                timeOut: 4000
+            };
+            toastr.success('Responsive Admin Theme', 'Welcome to INSPINIA');
+
+        }, 1300);
+
+        var data1 = [
+            [0, 4], [1, 8], [2, 5], [3, 10], [4, 4], [5, 16], [6, 5], [7, 11], [8, 6], [9, 11], [10, 30], [11, 10], [12, 13], [13, 4], [14, 3], [15, 3], [16, 6]
+        ];
+        var data2 = [
+            [0, 1], [1, 0], [2, 2], [3, 0], [4, 1], [5, 3], [6, 1], [7, 5], [8, 2], [9, 3], [10, 2], [11, 1], [12, 0], [13, 2], [14, 8], [15, 0], [16, 0]
+        ];
+        $("#flot-dashboard-chart").length && $.plot($("#flot-dashboard-chart"), [
+                data1, data2
+            ],
+            {
+                series: {
+                    lines: {
+                        show: false,
+                        fill: true
+                    },
+                    splines: {
+                        show: true,
+                        tension: 0.4,
+                        lineWidth: 1,
+                        fill: 0.4
+                    },
+                    points: {
+                        radius: 0,
+                        show: true
+                    },
+                    shadowSize: 2
+                },
+                grid: {
+                    hoverable: true,
+                    clickable: true,
+                    tickColor: "#d5d5d5",
+                    borderWidth: 1,
+                    color: '#d5d5d5'
+                },
+                colors: ["#1ab394", "#1C84C6"],
+                xaxis: {},
+                yaxis: {
+                    ticks: 4
+                },
+                tooltip: false
+            }
+        );
+        var doughnutData = {
+            labels: ["App", "Software", "Laptop"],
+            datasets: [{
+                data: [300, 50, 100],
+                backgroundColor: ["#a3e1d4", "#dedede", "#9CC3DA"]
+            }]
+        };
+
+        var doughnutOptions = {
+            responsive: false,
+            legend: {
+                display: false
+            }
+        };
+
+        var ctx4 = document.getElementById("doughnutChart").getContext("2d");
+        new Chart(ctx4, {type: 'doughnut', data: doughnutData, options: doughnutOptions});
+
+        var doughnutData = {
+            labels: ["App", "Software", "Laptop"],
+            datasets: [{
+                data: [70, 27, 85],
+                backgroundColor: ["#a3e1d4", "#dedede", "#9CC3DA"]
+            }]
+        };
+
+
+        var doughnutOptions = {
+            responsive: false,
+            legend: {
+                display: false
+            }
+        };
+
+
+        var ctx4 = document.getElementById("doughnutChart2").getContext("2d");
+        new Chart(ctx4, {type: 'doughnut', data: doughnutData, options: doughnutOptions});
+
+    });
+
 
     //左侧导航栏 刷新 并且添加到对应容器
 
     $('.nav-label-item').click(function () {   //左侧每一列绑定一个点击事件
         var dataHref = $(this).attr('data-href');
-        var dataId = $(this).attr('data-id');
+        var dataId = $(this).attr('data-title');
         var obj = $("#addTab li");   //需要接收内容的容器
-        var addflag = 0;    //定义一个容器初始值 接下来方便判断里边是否增加新的内容
+        var addFlag = 0;    //定义一个容器初始值 接下来方便判断里边是否增加新的内容
         for (var i = 1; i < obj.length; i++) {
             // console.log(obj[i].attributes[1].textContent);
             var nowdataId = obj[i].attributes[1].textContent;
             if (dataId == nowdataId) {
-                addflag = 1;
+                addFlag = 1;
                 $('#content-area').attr('src', dataHref).attr('data-id', dataId);
                 var nowTab = obj[i];
                 $(obj[i]).addClass("active").siblings("li").removeClass("active");
             }
         }
-        if (addflag == 0) {  //证明容器里没有新增加的的内容  那么就新增加进去
+        if (addFlag == 0) {  //证明容器里没有新增加的的内容  那么就新增加进去
             // 修改iframe的src和data-id
             $('#content-area').attr('src', dataHref).attr('data-id', dataId);
             $('#addTab').append("<li class='nav-link ' data-id='" + dataId + "' data-href='" + dataHref + "'>" + dataId + "<i class='fa fa-remove tab-close'></i></li>");
             $("#addTab li:last-child").addClass("active").siblings("li").removeClass("active");
         }
 
+
         // 获取ul宽度
         var navOffsetWidth = $('ul[class="nav nav-tabs"]')[0].offsetWidth;
         // 获取每个li的宽度总和,加上功能按钮ibox-tools宽度
         var sumWidth = totalWidth();
-        // 判断ul宽度是否小于和
-        if (navOffsetWidth < sumWidth) {
+        // 判断内容和大于ul宽度
+        if (sumWidth > navOffsetWidth) {
             // 显示展示按钮
             $('.click-hide').attr('class', 'click-show');
         }
-        // console.log(navOffsetWidth > sumWidth);
+
+        // $('li[class="nav-link active"]').attr('data-id');
+        //$('tabLi').attr('data-id');
+        //$('a[data-id="Dashboard v.1"]').addClass("active");
+
     });
 
-    $('.click-hide').on('click',function () {
+    $('.click-hide').on('click', function () {
         var $this = $(this);
-        if($this.attr("status") === '0'){
+        if ($this.attr("status") === '0') {
             $('#addTab').addClass('add-tab-container-more')
-        }else {
+        } else {
             $('#addTab').removeClass('add-tab-container-more')
         }
         // console.log($this.attr("status") === '0');
         $this.attr("status", $this.attr("status") === '0' ? '1' : '0');
     });
 
-    // 获取每个li的宽度总和,加上功能按钮ibox-tools宽度
+    // 获取每个li的宽度总和,加上功能按钮ibox-tools宽度 开始
     function totalWidth() {
-        var $li = $('.nav-link');
-        var buttonWidth = $('.ibox-tools')[0].offsetWidth;
+        var $li = $('li[class*="nav-link"][data-id]');
+        var buttonWidth = 0;// = $('.ibox-tools')[0].offsetWidth;// 80
         $li.each(function (index, li) {
             buttonWidth += li.offsetWidth;
         });
         return buttonWidth;
     }
 
+
     //结束
 
-    //上栏选项卡 切换点击 刷新一次页面
-
+    //上栏选项卡 切换点击 刷新一次页面开始
     $("#addTab").on("click", "li ", function () {      //只需要找到你点击的是哪个ul里面的就行
         var tabLi = $(this);
+
         var dataId = tabLi[0].attributes[1].textContent;
         var dataHref = tabLi[0].attributes[2].textContent;
         $('#content-area').attr('src', dataHref).attr('data-id', dataId);
+
+        // 获取左侧对应菜单$对象
+        var $navLabelItem = $('a[data-id="' + dataId + '"]');
+
+        // 关闭其他已经打开的左侧菜单
+        //var $li = $('#side-menu > .active');
+
+        //$li.removeClass('active');
+
+        //$li.find('a[aria-expanded]').attr('aria-expanded', false);
+
+        //$li.find('ul').removeClass('in');//.addClass('collapsing');
+
+/*        setTimeout(function () {
+            $li.find('ul').removeClass('collapsing').addClass('collapse')
+        }, 350);*/
+
+        //$li.find('ul').attr('aria-expanded', false);
+
+        //$li.find('ul').css('height', 0);
+
+        // 判断二级菜单是否展开
+        var $navSecond = $navLabelItem.parent().parent().parent();
+
+        // 1、li添加active
+         //$li.addClass('active');
+
+        // 2、a标签aria-expanded
+        //$li.find('a[aria-expanded]').attr('aria-expanded',true);
+
+        // 3、ul class增加in
+        //$li.find('ul').addClass('in');
+
+        // 4、ul 修改aria-expanded
+        //$li.find('ul').attr('aria-expanded',true);
+
+        // 5、ul 修改style height:0
+        //$li.find('ul').css('height','auto');
+
+        //$('ul[class="nav-second-level item-this"]').attr('data-id');
+        // 将所有的左侧菜单背景改为默认
+        //$('.item-this').addClass('item-this');
+
+        // 将当前对应菜单背景改为绿色
+        $('a[data-id="' + dataId + '"]').addClass('item-this');
         $(this).addClass("active").siblings("li").removeClass("active");
     });
+
+    // 左侧点击事件
+    $(".nav-second-level").on("click", "li", function () {
+        $('li[class="nav-link active"]').attr('data-id');
+
+        $('.item-this').removeClass('item-this');
+        $(this).find('a').addClass('item-this');
+        //$('a[data-id]').addClass("active");
+    });
+
     //结束
 
-
+    //s删除当前  把active类添加给前一个，并且刷新页面显示当前内容
     $("ul#addTab").on("click", "li i", function (ev) {      //只需要找到你点击的是哪个ul里面的就行
         var ev = ev || event;
         ev.stopPropagation();
@@ -481,18 +1042,31 @@
             parent = $(this).parent();//li
         parent.remove();
         var lastobj = $("#addTab li:last-child");
+        $('li[class*="active"][data-id]').removeClass('active');
         lastobj.addClass('active');
         var dataId = lastobj[0].attributes[1].textContent;
         var dataHref = lastobj[0].attributes[2].textContent;
         // $('#content-area').removeAttr('data-id');
         // $('#content-area').removeAttr('src');
-        $('#content-area').attr('src', dataHref).attr('data-id', dataId)
+        $('#content-area').attr('src', dataHref).attr('data-id', dataId);
+
+        //当内容宽度小于总长度navOffsetWidth时 按钮隐藏
+        // 获取ul宽度
+        var navOffsetWidth = $('ul[class*="nav nav-tabs"]')[0].offsetWidth;
+        // 获取每个li的宽度总和,加上功能按钮ibox-tools宽度
+        var sumWidth = totalWidth();
+        // 判断内容和大于ul宽度
+        if (sumWidth < navOffsetWidth) {
+            // 关闭展示按钮
+            $('.click-show').attr('class', 'click-hide');
+        }
     });
+    //结束
 
     //点击操作按钮时 下拉菜单显示
     $('.ibox-tools ').on('click', function () {
         $('.ibox-content').toggle();
-        $('.ibox-content').css('z-index',1);
+        $('.ibox-content').css('z-index', 1);
     });
 
     //刷新当前选项卡
@@ -528,7 +1102,6 @@
         var dataId3 = lastobj3[0].attributes[1].textContent;
         var dataHref3 = lastobj3[0].attributes[2].textContent;
         $('#content-area').attr('src', dataHref3).attr('data-id', dataId3);
-
     });
 
     //关闭全部选项卡
