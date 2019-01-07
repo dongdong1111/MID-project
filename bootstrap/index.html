@@ -115,7 +115,10 @@
             background: #1ab394;
         }
         .nav-second-level li{
-            color: #a7b1c2;
+            color:#a7b1c2;
+        }
+        .nav-second-level li:hover{
+            color: #fff;
         }
 
     </style>
@@ -207,7 +210,7 @@
                             class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
                         <li><a data-href="user_list.html" data-id="16" data-title="用户列表" class="nav-label-item ">用户列表</a></li>
-                        <li><a data-href="edit.html" data-id="17" data-title="工作日历" class="nav-label-item">工作日历</a></li>
+                        <li><a data-href="work-date.html" data-id="17" data-title="工作日历" class="nav-label-item">工作日历</a></li>
                     </ul>
                 </li>
             </ul>
@@ -222,7 +225,7 @@
                 <div class="navbar-header">
                     <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i>
                     </a>
-                    <form role="search" class="navbar-form-custom" action="search_results.html">
+                    <form role="search" class="navbar-form-custom" action="main.html">
                         <div class="form-group">
                             <input type="text" placeholder="Search for something..." class="form-control"
                                    name="top-search" id="top-search">
@@ -347,8 +350,8 @@
 
         <div class="add-tab-container">
             <ul class="nav nav-tabs" id="addTab">
-                <li class="nav-link active" data-id="2" data-title="Dashboard v.2" data-href="dashboard_2.html" data-toggle="tab"
-                    href="#tab-8" src="dashboard_2.html"> 主控制台
+                <li class="nav-link active" data-id="20" data-title="main.html" data-href="main.html" data-toggle="tab"
+                    href="#tab-8" src="main.html"> 主控制台
                 </li>
                 <span class="click-hide" status="0"><a class="collapse-link"><i
                         class="fa fa-chevron-down"></i></a></span>
@@ -366,9 +369,9 @@
                     <li class="list-group-item closeAll">关闭全部选项卡</li>
                 </ul>
             </div>
-            <iframe class="bb" data-id="'2" data-title="Dashboard v.2" src="dashboard_2.html" frameborder="0" width="100%"
+            <iframe class="bb" data-id="20" data-title="main.html" src="main.html" frameborder="0" width="100%"
                     height="800"></iframe>
-            <iframe class="bb cc" id="content-area" data-id="2" data-title="Dashboard v.2" src="dashboard_2.html" frameborder="0"
+            <iframe class="bb cc" id="content-area" data-id="20" data-title="主控制台" src="main.html" frameborder="0"
                     width="100%" height="800"></iframe>
         </div>
         <div class="footer">
@@ -911,8 +914,8 @@
         var addFlag = 0;    //定义一个容器初始值 接下来方便判断里边是否增加新的内容
         for (var i = 1; i < obj.length; i++) {
             // console.log(obj[i].attributes[1].textContent);
-            var nowdataId = obj[i].attributes[1].textContent;
-            if (dataId == nowdataId) {
+            var nowDataId = obj[i].attributes[1].textContent;
+            if (dataId == nowDataId) {
                 addFlag = 1;
                 $('#content-area').attr('src', dataHref).attr('data-id', dataId);
                 var nowTab = obj[i];
@@ -936,11 +939,6 @@
             // 显示展示按钮
             $('.click-hide').attr('class', 'click-show');
         }
-
-        // $('li[class="nav-link active"]').attr('data-id');
-        //$('tabLi').attr('data-id');
-        //$('a[data-id="Dashboard v.1"]').addClass("active");
-
     });
 
     $('.click-hide').on('click', function () {
@@ -971,12 +969,14 @@
     $("#addTab").on("click", "li ", function () {      //只需要找到你点击的是哪个ul里面的就行
         var tabLi = $(this);
 
-        var dataId = tabLi[0].attributes[1].textContent;
-        var dataHref = tabLi[0].attributes[2].textContent;
+        //var dataId = tabLi[0].attributes[1].textContent;
+        var dataId = tabLi.attr('data-id');
+        //var dataHref = tabLi[0].attributes[2].textContent;
+        var dataHref = tabLi.attr('data-href');
         $('#content-area').attr('src', dataHref).attr('data-id', dataId);
 
         // 获取左侧对应菜单$对象
-        var $navLabelItem = $('a[data-id="' + dataId + '"]');
+        //var $navLabelItem = $('a[data-id="' + dataId + '"]');
 
         // 关闭其他已经打开的左侧菜单
         //var $li = $('#side-menu > .active');
@@ -996,7 +996,7 @@
         //$li.find('ul').css('height', 0);
 
         // 判断二级菜单是否展开
-        var $navSecond = $navLabelItem.parent().parent().parent();
+        //var $navSecond = $navLabelItem.parent().parent().parent();
 
         // 1、li添加active
          //$li.addClass('active');
@@ -1013,7 +1013,6 @@
         // 5、ul 修改style height:0
         //$li.find('ul').css('height','auto');
 
-        //$('ul[class="nav-second-level item-this"]').attr('data-id');
         // 将所有的左侧菜单背景改为默认
         //$('.item-this').addClass('item-this');
 
@@ -1039,15 +1038,17 @@
         ev.stopPropagation();
         //先判断当前要关闭的tab选项卡有没有active类，再判断当前选项卡是否最后一个，如果是则给前一个选项卡以及内容添加active，否则给下一个添加active类
         var gParent = $(this).parent().parent(),//ul
-            parent = $(this).parent();//li
+            parent = $(this).parent();//li class=nav-link active 主控制台
         parent.remove();
-        var lastobj = $("#addTab li:last-child");
+        //改动之处 //使用last-of-type代替last-child 获取最后一个li子元素，因为#addTab里面还有一个span标签所以last-child不好使
+        //var lastobj = $("#addTab li:last-child");
+        var lastobj = $("#addTab li:last-of-type");
         $('li[class*="active"][data-id]').removeClass('active');
         lastobj.addClass('active');
-        var dataId = lastobj[0].attributes[1].textContent;
-        var dataHref = lastobj[0].attributes[2].textContent;
-        // $('#content-area').removeAttr('data-id');
-        // $('#content-area').removeAttr('src');
+        var dataId = lastobj.attr('data-id');
+        var dataHref = lastobj.attr('data-href');
+        //$('#content-area').removeAttr('data-id');
+        //$('#content-area').removeAttr('src');
         $('#content-area').attr('src', dataHref).attr('data-id', dataId);
 
         //当内容宽度小于总长度navOffsetWidth时 按钮隐藏
@@ -1083,10 +1084,11 @@
         ev1.stopPropagation();
         var dParent = $(this).parent().parent().parent().find('#addTab li[class="nav-link active"]');
         dParent.remove();
-        var lastobj1 = $("#addTab li:last-child");
+        var lastobj1 = $("#addTab li:last-of-type");
+        console.log(lastobj1)
         lastobj1.addClass('active');
-        var dataId1 = lastobj1[0].attributes[1].textContent;
-        var dataHref1 = lastobj1[0].attributes[2].textContent;
+        var dataId1 = lastobj1.attr('data-id');
+        var dataHref1 = lastobj1.attr('data-href');
         $('#content-area').attr('src', dataHref1).attr('data-id', dataId1);
     });
 
@@ -1099,8 +1101,8 @@
         qParent.siblings().not(':first').remove();
         var lastobj3 = $("#addTab li:last-child");
         lastobj3.addClass('active');
-        var dataId3 = lastobj3[0].attributes[1].textContent;
-        var dataHref3 = lastobj3[0].attributes[2].textContent;
+        var dataId3 = lastobj3.attr('data-id');
+        var dataHref3 = lastobj3.attr('data-href');
         $('#content-area').attr('src', dataHref3).attr('data-id', dataId3);
     });
 
@@ -1109,10 +1111,10 @@
     $('.closeAll').on('click', function () {
         var sParent = $(this).parent().parent().parent().find('#addTab li:first-child');
         sParent.siblings().remove();
-        var lastobj2 = $("#addTab li:last-child");
+        var lastobj2 = $("#addTab li:first-child");
         lastobj2.addClass('active');
-        var dataId2 = lastobj2[0].attributes[1].textContent;
-        var dataHref2 = lastobj2[0].attributes[2].textContent;
+        var dataId2 = lastobj2.attr('data-id');
+        var dataHref2 = lastobj2.attr('data-href');
         $('#content-area').attr('src', dataHref2).attr('data-id', dataId2);
     });
 
