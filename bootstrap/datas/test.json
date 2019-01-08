@@ -1,0 +1,84 @@
+{
+  "code": 0,
+  "msg": "",
+  "count": 100,
+  "data": [
+    {
+      "id": "1",
+      "name": "admin",
+      "username": "王大大",
+      "email": "1578526699@qq.com",
+      "phone": "18699996666",
+      "work": "软件部",
+      "time": "2018-12-12",
+      "login": "100",
+      "do" : "11"
+    },
+    {
+      "id": "1",
+      "name": "admin",
+      "username": "王大大",
+      "email": "1578526699@qq.com",
+      "phone": "18699996666",
+      "work": "软件部",
+      "time": "2018-12-12",
+      "login": "100",
+      "do" : "11"
+    },
+    {
+      "id": "1",
+      "name": "admin",
+      "username": "王大大",
+      "email": "1578526699@qq.com",
+      "phone": "18699996666",
+      "work": "软件部",
+      "time": "2018-12-12",
+      "login": "100",
+      "do" : "11"
+    },
+    {
+      "id": "1",
+      "name": "admin",
+      "username": "王大大",
+      "email": "1578526699@qq.com",
+      "phone": "18699996666",
+      "work": "软件部",
+      "time": "2018-12-12",
+      "login": "100",
+      "do" : "11"
+    },
+    {
+      "id": "1",
+      "name": "admin",
+      "username": "王大大",
+      "email": "1578526699@qq.com",
+      "phone": "18699996666",
+      "work": "软件部",
+      "time": "2018-12-12",
+      "login": "100",
+      "do" : "11"
+    },
+    {
+      "id": "1",
+      "name": "admin",
+      "username": "王大大",
+      "email": "1578526699@qq.com",
+      "phone": "18699996666",
+      "work": "软件部",
+      "time": "2018-12-12",
+      "login": "100",
+      "do" : "11"
+    },
+    {
+      "id": "1",
+      "name": "admin",
+      "username": "王大大",
+      "email": "1578526699@qq.com",
+      "phone": "18699996666",
+      "work": "软件部",
+      "time": "2018-12-12",
+      "login": "100",
+      "do" : "11"
+    }
+  ]
+}
