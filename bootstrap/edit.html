@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>INSPINIA | Search Page</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <style>
+        .self-introduction{
+            width: auto;
+            height: 120px;
+            background: #ffffff;
+            padding-left: 50px;
+            padding-top: 10px;
+            position: relative;
+        }
+        .self-position{
+            position: absolute;
+            top: 5px;
+            left: 150px;
+        }
+        .self-position p{
+            margin-top: 10px;
+        }
+        .self-position button{
+            width: 300px;
+            height: 30px;
+            line-height: 30px;
+            margin-top: 10px;
+
+        }
+
+    </style>
+</head>
+
+<body style="background:#f3f3f4;">
+
+    <div id="wrapper">
+
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-9">
+                    <h2>编辑用户</h2>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="index.html">用户管理</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            用户资料
+                        </li>
+                        <li class="breadcrumb-item active">
+                            <strong>用户管理</strong>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="ibox ">
+                        <div class="ibox-content">
+                            <h2>
+                                角色权限
+                            </h2>
+                            <div class="search-form">
+                                <form action="index.html" method="get">
+                                    <div class="input-group">
+                                        <input type="text" placeholder="关键字" name="search" class="form-control form-control-lg">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-lg btn-primary" type="submit"><i class="layui-icon">&#xe615;</i>
+                                                查询
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="search-result" style="margin-top: 10px;">
+                                    <div class="tabs-container">
+                                        <ul class="nav nav-tabs" role="tablist">
+                                            <li><a class="nav-link active" data-toggle="tab" href="#tab-1"><i class="fa fa-user"></i>角色设置</a></li>
+                                            <li><a class="nav-link" data-toggle="tab" href="#tab-2"><i class="fa fa-briefcase"></i>项目权限</a></li>
+                                        </ul>
+                                        <div class="tab-content">
+                                            <div role="tabpanel" id="tab-1" class="tab-pane active">
+                                                <div class="panel-body">
+                                                    <table class="layui-table" lay-data="{url:'datas/edit-list.json',page:true,toolbar: '<div><button>批量授权角色</button></div>', id:'idProject'}"
+                                                           lay-filter="demo101" >
+                                                        <thead>
+                                                        <tr>
+                                                            <th lay-data="{type:'checkbox', width:'5%', fixed: 'left'}"></th>
+                                                            <th lay-data="{field:'value1',  width:'10%', sort: true}">ID</th>
+                                                            <th lay-data="{field:'value2',  width:'15%'}">角色名</th>
+                                                            <th lay-data="{field:'value3',  width:'15%',sort: true}">备注</th>
+                                                            <th lay-data="{field:'value4', width:'36%'}">创建时间</th>
+                                                            <th lay-data="{fixed: 'right', width:'20%', align:'center', toolbar: '#barDemo'}">操作</th>
+                                                        </tr>
+                                                        </thead>
+                                                    </table>
+                                                    <script type="text/html" id="barDemo">
+                                                        <button class="layui-btn layui-btn-xs layui-btn-danger" id="cancel">取消授权</button>
+                                                    </script>
+                                                </div>
+                                            </div>
+                                            <div role="tabpanel" id="tab-2" class="tab-pane">
+                                                <div class="panel-body">
+                                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="ibox ">
+                        <div class="self-introduction">
+                            <span class="block m-t-xs font-bold">David</span>
+                            <img alt="image" class="rounded-circle" src="img/profile_small.jpg"/>
+                            <div class="self-position">
+                                <p>所属部门</p>
+                                <p>智慧医疗</p>
+                                <button class="layui-btn"><i class="fa fa-user-circle-o" style="padding: 5px;"></i>修改组织机构</button>
+                            </div>
+                        </div>
+                        <div class="ibox-title">
+                            <h5>基本信息</h5>
+                            <div class="ibox-tools">
+                                <a class="collapse-link">
+                                    <i class="fa fa-chevron-up"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+                            <form>
+                                <div class="form-group row"><label class="col-lg-2 col-form-label">登录名</label>
+                                    <div class="col-lg-10"><input type="email" placeholder="admin" class="form-control"></div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group row"><label class="col-lg-2 col-form-label">密码</label>
+                                    <div class="col-lg-10"><input type="email" placeholder="" class="form-control"></div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group row"><label class="col-lg-2 col-form-label">中文姓名</label>
+                                    <div class="col-lg-10"><input type="password" placeholder="管理员" class="form-control"></div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group row"><label class="col-lg-2 col-form-label">Email</label>
+                                    <div class="col-lg-10"><input type="email" placeholder="1258479568@qq.com" class="form-control"></div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group row"><label class="col-lg-2 col-form-label">联系电话</label>
+                                    <div class="col-lg-10"><input type="email" placeholder="13612345678" class="form-control"></div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group row"><label class="col-lg-2 col-form-label">性别</label>
+                                    <div class="col-lg-10">
+                                        <input type="radio" name="sex" id="emp_add_gender1" value="M" checked="checked"> 男
+                                        <input type="radio" name="sex" id="emp_add_gender2" value="F"> 女
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group row">
+                                    <div class="col-lg-offset-2 col-lg-10">
+                                        <button class="layui-btn" type="submit">保存</button>
+                                        <button class="layui-btn" type="submit">返回</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+
+    <!-- Mainly scripts -->
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="js/inspinia.js"></script>
+    <script src="js/plugins/pace/pace.min.js"></script>
+    <script src="layui/layui.js"></script>
+    <script>
+        layui.use(['form',  'layer', 'table', 'element'], function () {
+            var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+            var form = layui.form;
+            var table = layui.table;
+            var $ = layui.jquery;
+            var layer = layui.layer;
+        });
+    </script>
+</body>
+
+</html>
