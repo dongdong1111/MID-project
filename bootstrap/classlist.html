@@ -1,0 +1,77 @@
+﻿
+// 获取左侧对应菜单$对象
+//var $navLabelItem = $('a[data-id="' + dataId + '"]');
+
+// 关闭其他已经打开的左侧菜单
+//var $li = $('#side-menu > .active');
+
+//$li.removeClass('active');
+
+//$li.find('a[aria-expanded]').attr('aria-expanded', false);
+
+//$li.find('ul').removeClass('in');//.addClass('collapsing');
+
+/*        setTimeout(function () {
+$li.find('ul').removeClass('collapsing').addClass('collapse')
+}, 350);*/
+
+//$li.find('ul').attr('aria-expanded', false);
+
+//$li.find('ul').css('height', 0);
+
+// 判断二级菜单是否展开
+//var $navSecond = $navLabelItem.parent().parent().parent();
+
+// 1、li添加active
+//$li.addClass('active');
+
+// 2、a标签aria-expanded
+//$li.find('a[aria-expanded]').attr('aria-expanded',true);
+
+// 3、ul class增加in
+//$li.find('ul').addClass('in');
+
+// 4、ul 修改aria-expanded
+//$li.find('ul').attr('aria-expanded',true);
+
+// 5、ul 修改style height:0
+//$li.find('ul').css('height','auto');
+
+// 将所有的左侧菜单背景改为默认
+//$('.item-this').addClass('item-this');
+
+
+$("ul#addTab").on("click", "li i", function (ev) {      //只需要找到你点击的是哪个ul里面的就行
+var ev = ev || event;
+ev.stopPropagation();
+//先判断当前要关闭的tab选项卡有没有active类，再判断当前选项卡是否最后一个，如果是则给前一个选项卡以及内容添加active，否则给下一个添加active类
+var gParent = $(this).parent().parent(),//ul
+parent = $(this).parent();//li
+parent.remove();
+//使用last-of-type代替last-child 获取最后一个li子元素，因为#addTab里面还有一个span标签所以last-child不好使
+var lastobj = $("#addTab li:last-of-type");
+$('li[class*="active"][data-id]').removeClass('active');
+lastobj.addClass('active');
+//因为lastobj是jq对象所以存在属性方法，直接根据名称获取属性值，因为li中属性的位置不固定所以不能直接使用数组
+var dataId = lastobj.attr('data-id');
+var dataHref = lastobj.attr('data-href');
+
+//var dataId = lastobj[0].attributes[1].textContent;
+//var dataHref = lastobj[0].attributes[2].textContent;
+// $('#content-area').removeAttr('data-id');
+// $('#content-area').removeAttr('src');
+
+$('#content-area').attr('src', dataHref).attr('data-id', dataId);
+
+//当内容宽度小于总长度navOffsetWidth时 按钮隐藏
+// 获取ul宽度
+var navOffsetWidth = $('ul[class*="nav nav-tabs"]')[0].offsetWidth;
+// 获取每个li的宽度总和,加上功能按钮ibox-tools宽度
+var sumWidth = totalWidth();
+// 判断内容和大于ul宽度
+if (sumWidth < navOffsetWidth) {
+// 关闭展示按钮
+$('.click-show').attr('class', 'click-hide');
+}
+});
+
