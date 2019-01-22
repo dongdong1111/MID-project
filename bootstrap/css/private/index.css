@@ -2,11 +2,11 @@ li {
     list-style: none;
 }
 
-.bb {
+.iframe-hide {
     display: none;
 }
 
-.cc {
+.iframe-show{
     display: block;
     position: absolute;
     top: 40px;
