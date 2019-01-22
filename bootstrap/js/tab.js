@@ -14,14 +14,16 @@ function addContent(that, flag) {
             addFlag = 1;
             $(obj[i]).addClass("active").siblings("li").removeClass("active");
 
-            $("iframe.cc").removeClass("cc");
-            $('iframe[data-id="'+ dataId +'"]').addClass("cc")
+            $("iframe.iframe-show").removeClass("iframe-show");
+            $('iframe[data-id="'+ dataId +'"]').addClass("iframe-show")
         }
     }
     if (addFlag == 0) {
         //增加iframe的src和data-id
         var addIframe = eval(flag + "$('.add-tab-container')");
-        addIframe.append('<iframe class="bb cc"  data-id="' + dataId + '" data-title="'+ dataTitle +'" src="'+ dataHref +'" frameborder="0" width="100%" height="800"></iframe>');
+        //删除iframe-show
+        $("iframe.iframe-show").removeClass("iframe-show");
+        addIframe.append('<iframe class="iframe-hide iframe-show"  data-id="' + dataId + '" data-title="'+ dataTitle +'" src="'+ dataHref +'" frameborder="0" width="100%" height="800"></iframe>');
         // 修改iframe的src和data-id
         //eval(flag + "$('#content-area').attr('src', dataHref).attr('data-id', dataId)");
         eval(flag + "$('#addTab').append(\"<li class='nav-link ' data-id='\" + dataId + \"' data-href='\" + dataHref + \"'>\" + dataTitle + \"<i class='fa fa-remove tab-close'></i></li>\")");
@@ -32,18 +34,19 @@ function addContent(that, flag) {
 
 //刷新方法
 function refresh(refreshData) {
-    //var dataHref = $(refreshData).attr('data-href')
+    var dataHref = $(refreshData).attr('data-href');
     var dataId = $(refreshData).attr('data-id');
     //$('#content-area').attr('src', dataHref).attr('data-id', dataId);
-    $("iframe.cc").removeClass("cc");
-    $('iframe[data-id="'+ dataId +'"]').addClass("cc");
+    $("iframe.iframe-show").removeClass("iframe-show");
+    $('iframe[data-id="'+ dataId +'"]').addClass("iframe-show");
+    $('iframe[data-id="'+ dataId+'"]').attr('src',dataHref);
 }
 
 
 function changeTab(changeTab) {
     var dataId = $(changeTab).attr('data-id');
-    $("iframe.cc").removeClass("cc");
-    $('iframe[data-id="'+ dataId +'"]').addClass("cc");
+    $("iframe.iframe-show").removeClass("iframe-show");
+    $('iframe[data-id="'+ dataId +'"]').addClass("iframe-show");
 }
 
 // 获取每个li的宽度总和,加上功能按钮iBox-tools宽度 开始
@@ -102,6 +105,7 @@ $('.closeCurrent').on('click', function (e) {
         var dParent = $(this).parent().parent().parent().find('#addTab li[class="nav-link active"]');
         dParent.remove();
         var dataId = dParent.attr('data-id');
+        console.log(dataId)
         closeContent(dataId);
     }
     toggleClass();
@@ -114,10 +118,10 @@ $('.closeOther').on('click', function () {
     var qParent = $(this).parent().parent().parent().find('#addTab li[class="nav-link active"]');
     qParent.siblings().not(':first').remove();
     var lastobj3 = $("#addTab li:last-child");
-    console.log(lastobj3);
+    //console.log(lastobj3);
     lastobj3.addClass('active');
     var dataId = lastobj3.attr('data-id');
-    console.log(dataId);
+    //console.log(dataId);
     $('iframe[data-id="' + dataId + '"]').siblings('iframe').not('#content-area').remove();
 });
 
@@ -171,8 +175,8 @@ $('.click-hide').on('click', function () {
 $("#addTab").on("click", "li ", function () {      //只需要找到你点击的是哪个ul里面的就行
     var tabLi = $(this);
     var dataId = tabLi.attr('data-id');
-    $("iframe.cc").removeClass("cc");
-    $('iframe[data-id="'+ dataId +'"]').addClass("cc");
+    $("iframe.iframe-show").removeClass("iframe-show");
+    $('iframe[data-id="'+ dataId +'"]').addClass("iframe-show");
 
 
     // 将当前对应菜单背景改为绿色
