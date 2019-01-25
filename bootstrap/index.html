@@ -21,12 +21,10 @@
     <link href="css/animate.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="css/private/index.css">
-
-
 </head>
 
 <body>
-<div id="wrapper">
+<div id="wrapper" style="height: 100%">
     <!--左侧导航栏-->
     <nav class="navbar-default navbar-static-side" role="navigation">
         <div class="sidebar-collapse">
@@ -100,9 +98,9 @@
     </nav>
 
     <!--头部 + 内容-->
-    <div id="page-wrapper" class="gray-bg dashbard-1">
+    <div id="page-wrapper" class="gray-bg dashbard-1" style="height: calc(100% - 40px)">
         <!--头部-->
-        <div class="row border-bottom">
+        <div class="row border-bottom" style="height: 62px;">
             <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
                 <div class="navbar-header">
                     <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i></a>
@@ -221,15 +219,14 @@
                 </ul>
             </nav>
         </div>
-        <!--新加的导航栏-->
 
+        <!--新加的导航栏-->
         <div class="add-tab-container">
             <ul class="nav nav-tabs" id="addTab">
                 <li class="nav-link active" data-id="20" data-title="main.html" data-href="main.html" data-toggle="tab"
                     href="#tab-8" src="main.html"> 主控制台
                 </li>
-                <span class="click-hide" status="0"><a class="collapse-link"><i
-                        class="fa fa-chevron-down"></i></a></span>
+                <span class="click-hide" status="0"><a class="collapse-link"><i class="fa fa-chevron-down"></i></a></span>
             </ul>
             <div class="ibox-tools">
                 操作<a class="collapse-link"><i class="fa fa-chevron-down"></i></a>
@@ -243,13 +240,18 @@
                     <li class="list-group-item closeAll">关闭全部选项卡</li>
                 </ul>
             </div>
-            <!--<iframe class="bb" data-id="20" data-title="main.html" src="main.html" frameborder="0" width="100%" height="800"></iframe>-->
-            <iframe class="iframe-show" id="content-area" data-id="20" data-title="主控制台" src="main.html" frameborder="0" width="100%" height="800"></iframe>
+
         </div>
-        <div class="footer">
-            <div>
-                2018.12.28
-            </div>
+
+        <!--新增加iframe-->
+        <div class="iframe-content">
+            <iframe class="iframe-hide iframe-show" id="content-area" data-id="20" data-title="主控制台" src="main.html" frameborder="0" width="100%" height="100%"></iframe>
+            <!--<iframe class="bb" data-id="20" data-title="main.html" src="main.html" frameborder="0" width="100%" height="800"></iframe>-->
+        </div>
+    </div>
+    <div class="footer">
+        <div>
+            2018.12.28
         </div>
     </div>
 
