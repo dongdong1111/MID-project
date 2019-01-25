@@ -871,11 +871,11 @@ h5 {
 .nav > li.active > a {
   color: #ffffff;
 }
-.navbar-default .nav > li > a:hover,
-.navbar-default .nav > li > a:focus {
+/*.navbar-default .nav > li > a:hover,*/
+/*.navbar-default .nav > li > a:focus {
   background-color: #293846;
   color: white;
-}
+}*/
 .nav .open > a,
 .nav .open > a:hover,
 .nav .open > a:focus {
@@ -4537,14 +4537,14 @@ video {
 }
 #page-wrapper {
   padding: 0 15px;
-  min-height: 568px;
+  /*min-height: 568px;*/
   position: relative !important;
 }
 @media (min-width: 768px) {
   #page-wrapper {
     position: inherit;
     margin: 0 0 0 240px;
-    min-height: 2002px;
+    /*min-height: 2002px;*/
   }
 }
 .title-action {
@@ -8602,7 +8602,7 @@ body.rtls.top-navigation .footer.fixed {
   .body-small.rtls #page-wrapper {
     position: inherit;
     margin: 0 0 0 0;
-    min-height: 1000px;
+    /*min-height: 1000px;*/
   }
   .body-small.rtls .navbar-static-side {
     display: none;
@@ -9430,7 +9430,7 @@ body.md-skin {
   #page-wrapper {
     position: inherit;
     margin: 0 0 0 220px;
-    min-height: 100vh;
+    /*min-height: 100vh;*/
   }
   .navbar-static-side {
     z-index: 2001;
@@ -9447,7 +9447,7 @@ body.md-skin {
   #page-wrapper {
     position: inherit;
     margin: 0 0 0 0;
-    min-height: 100vh;
+    /*min-height: 100vh;*/
   }
   .body-small .navbar-static-side {
     display: none;
