@@ -1,3 +1,4 @@
+
 li {
     list-style: none;
 }
@@ -6,10 +7,35 @@ li {
     display: none;
 }
 
+.iframe-content{
+    width: 100%;
+    /*position: fixed;*/
+    height: calc(100% - 101px);
+    overflow: hidden;
+}
 .iframe-show{
     display: block;
     position: absolute;
-    top: 40px;
+    top: 101px;
+
+}
+
+#page-wrapper{
+    position: relative;
+}
+
+.footer{
+    position: absolute;
+    bottom: 0;
+    height: 40px;
+    left: 220px;
+}
+
+.footer-change{
+    position: absolute;
+    bottom: 0;
+    height: 40px;
+    left: 70px;
 }
 
 .tab-close {
@@ -33,13 +59,14 @@ li:hover {
 }
 
 .add-tab-container .ibox-tools {
-    width: 80px;
+    /*width: 80px;*/
+    width: 112px;
     height: 38px;
     background: #ffffff;
     text-align: center;
     line-height: 38px;
     position: absolute;
-    right: 20px;
+    right: -12px;
     top: 0px;
 }
 
