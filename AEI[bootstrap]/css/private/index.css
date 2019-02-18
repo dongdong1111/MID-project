@@ -1,0 +1,112 @@
+li {
+    list-style: none;
+}
+
+.iframe-hide {
+    display: none;
+}
+
+.iframe-show {
+    display: block;
+    position: absolute;
+    top: 50px;
+}
+
+.tab-close {
+    color: #c4c4c4;
+    padding: 5px;
+}
+
+li:hover {
+    cursor: pointer;
+}
+
+.add-tab-container {
+    position: relative;
+}
+
+#addTab {
+    width: calc(100% - 100px);
+    height: 39px;
+    position: relative;
+    overflow: hidden;
+}
+
+.add-tab-container .ibox-tools {
+    width: 80px;
+    height: 38px;
+    background: #ffffff;
+    text-align: center;
+    line-height: 38px;
+    position: absolute;
+    right: 20px;
+    top: 0px;
+}
+
+.add-tab-container-more {
+    height: auto !important;
+    white-space: normal !important;
+    overflow: visible;
+    z-index: 1;
+    background: #f3f3f4;
+}
+
+#addTab .click-hide {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    display: none;
+    width: 24px;
+    height: 38px;
+    line-height: 38px;
+    background: #ffffff;
+    padding-left: 10px;
+}
+
+#addTab .click-show {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    display: block;
+    width: 24px;
+    height: 38px;
+    line-height: 38px;
+    background: #ffffff;
+    padding-left: 10px;
+}
+
+.add-tab-container .ibox-tools i {
+    padding-left: 5px;
+    cursor: pointer;
+}
+
+.add-tab-container .ibox-content {
+    position: absolute;
+    right: 20px;
+    top: 38px;
+    text-align: center;
+}
+
+.item-this {
+    color: #fff;
+    background: #1ab394;
+}
+
+.nav-second-level li {
+    color: #a7b1c2;
+}
+
+.nav-second-level li:hover {
+    color: #fff;
+}
+
+iframe {
+    background: white;
+}
+
+.trans-right-two {
+    transition:right 1s;
+    -moz-transition:right 1s; /* Firefox 4 */
+    -webkit-transition:right 1s; /* Safari and Chrome */
+    -o-transition:right 1s; /* Opera */
+}
