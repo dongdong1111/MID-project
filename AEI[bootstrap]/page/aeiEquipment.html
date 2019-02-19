@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>AEI设备查询</title>
+    <link rel="stylesheet" href="../plugins/element-ui/element-ui.css">
+    <script src="../plugins/vue/vue.js"></script>
+    <script src="../plugins/element-ui/element-ui.js"></script>
+    <link rel="stylesheet" href="../css/plugins/animate/animate.css">
+</head>
+<body>
+<div class="animated fadeInUp" id="v-main">
+    <el-form :inline="true" :model="condition" class="demo-form-inline" size="small">
+        <el-row>
+            <el-col :span="24">
+                <el-form-item label-width="90px" label="车站">
+                    <el-select v-model="condition.field01" placeholder="车站">
+                        <el-option label="全选" value=""></el-option>
+                        <el-option v-for="(item,idx) in station" :label="item.label" :key="idx"
+                                   :value="item.value"></el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label-width="90px" label="查询内容">
+                    <el-radio-group v-model="condition.field02">
+                        <el-radio label="1">车站CPS</el-radio>
+                        <el-radio label="2">AEI设备</el-radio>
+                    </el-radio-group>
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" @click="onSubmit">查询</el-button>
+                </el-form-item>
+            </el-col>
+        </el-row>
+    </el-form>
+    <el-table :data="tableData" border stripe style="width: 100%">
+        <el-table-column prop="field01" label="序号" width="200px" align="center"></el-table-column>
+        <el-table-column prop="field02" label="车辆段名称" align="center"></el-table-column>
+        <el-table-column prop="field03" label="车站名称" align="center"></el-table-column>
+        <el-table-column prop="field04" label="电报略号" align="center"></el-table-column>
+        <el-table-column prop="field05" label="AEI数量" align="center"></el-table-column>
+    </el-table>
+    <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage2"
+                   :page-size="100" layout="total, prev, pager, next, jumper" :total="400">
+    </el-pagination>
+</div>
+<script>
+    new Vue({
+        el: '#v-main',
+        data: {
+            station: [{label: '重庆', value: 'cq'}, {label: '成都', value: 'cd'}],
+            aeiCode: [{label: '重庆', value: 'cq'}, {label: '成都', value: 'cd'}],
+            condition: {
+                field01: '',
+                field02: '1',
+                field03: '',
+                startTime: '',
+                endTime: '',
+                sortItem: '',
+                sortType: ''
+            },
+            tableData: [{
+                field01: '1',
+                field02: '焦作',
+                field03: '安阳',
+                field04: 'AYF',
+                field05: 5
+            }, {
+                field01: '1',
+                field02: '焦作',
+                field03: '安阳',
+                field04: 'AYF',
+                field05: 5
+            }, {
+                field01: '1',
+                field02: '焦作',
+                field03: '安阳',
+                field04: 'AYF',
+                field05: 5
+            }, {
+                field01: '1',
+                field02: '焦作',
+                field03: '安阳',
+                field04: 'AYF',
+                field05: 5
+            }, {
+                field01: '1',
+                field02: '焦作',
+                field03: '安阳',
+                field04: 'AYF',
+                field05: 5
+            }, {
+                field01: '1',
+                field02: '焦作',
+                field03: '安阳',
+                field04: 'AYF',
+                field05: 5
+            }, {
+                field01: '1',
+                field02: '焦作',
+                field03: '安阳',
+                field04: 'AYF',
+                field05: 5
+            }, {
+                field01: '1',
+                field02: '焦作',
+                field03: '安阳',
+                field04: 'AYF',
+                field05: 5
+            }, {
+                field01: '1',
+                field02: '焦作',
+                field03: '安阳',
+                field04: 'AYF',
+                field05: 5
+            }, {
+                field01: '1',
+                field02: '焦作',
+                field03: '安阳',
+                field04: 'AYF',
+                field05: 5
+            }],
+            currentPage1: 1,
+            currentPage2: 2,
+            currentPage3: 3,
+            currentPage4: 4
+        },
+        methods: {
+            onSubmit: function () {
+                console.log(this.condition);
+            },
+            handleSizeChange: function (val) {
+                console.log(val);
+            },
+            handleCurrentChange: function (val) {
+                console.log(val);
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑车间</title>
+    <link rel="stylesheet" href="../../plugins/element-ui/element-ui.css">
+    <script src="../../plugins/vue/vue.js"></script>
+    <script src="../../plugins/element-ui/element-ui.js"></script>
+    <link rel="stylesheet" href="../../css/plugins/animate/animate.css">
+</head>
+<body>
+<div class="animated fadeInUp" style="width: 970px;margin: 0 auto" id="v-main">
+    <el-form :inline="true" :model="form" class="demo-form-inline" size="small">
+        <el-row>
+            <el-col :span="24">
+                <el-form-item label-width="90px" label="车间名称">
+                    <el-input v-model="form.field01"></el-input>
+                </el-form-item>
+                <el-form-item label-width="90px" label="车间次序">
+                    <el-input v-model="form.field02"></el-input>
+                </el-form-item>
+                <el-form-item label-width="90px" label="所属车辆段">
+                    <el-select v-model="form.field03" placeholder="所属车辆段">
+                        <el-option label="郑北车辆段" value="1"></el-option>
+                        <el-option label="北京车辆段" value="2"></el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label-width="90px" label="AEI设备数量">
+                    <el-input v-model="form.field04"></el-input>
+                </el-form-item>
+            </el-col>
+        </el-row>
+        <el-row>
+            <el-col :span="24">
+                <el-form-item>
+                    <el-button type="primary" @click="onSubmit">保存</el-button>
+                </el-form-item>
+            </el-col>
+        </el-row>
+    </el-form>
+</div>
+<script>
+    new Vue({
+        el: '#v-main',
+        data: {
+            form: {
+                field01: '郑州北',
+                field02: 10,
+                field03: '2',
+                field04: 5
+            }
+        },
+        methods: {
+            onSubmit: function () {
+                this.$message(JSON.stringify(this.form));
+            }
+        }
+    });
+</script>
+</body>
+</html>

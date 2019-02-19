@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>相关下载</title>
+    <link rel="stylesheet" href="../plugins/element-ui/element-ui.css">
+    <script src="../plugins/vue/vue.js"></script>
+    <script src="../plugins/element-ui/element-ui.js"></script>
+    <link rel="stylesheet" href="../css/plugins/animate/animate.css">
+    <style>
+        .el-col {
+            margin: 20px;
+        }
+
+        .time {
+            font-size: 13px;
+            color: #999;
+        }
+
+        .bottom {
+            margin-top: 13px;
+            line-height: 12px;
+        }
+
+        .button {
+            padding: 0;
+            float: right;
+        }
+
+        .image {
+            width: 100%;
+            display: block;
+        }
+
+        .clearfix:before,
+        .clearfix:after {
+            display: table;
+            content: "";
+        }
+
+        .clearfix:after {
+            clear: both
+        }
+    </style>
+</head>
+<body>
+<div class="animated fadeInUp" id="v-main">
+    <el-row>
+        <el-col :span="7" v-for="(o, index) in 7" :key="o" :offset="(index % 3 !== 0) ? 1 : 0">
+            <el-card :body-style="{ padding: '0px' }">
+                <img src="../img/download_temp.png" class="image">
+                <div style="padding: 14px;">
+                    <span>车号路局监控客户端监控程序升级</span>
+                    <div class="bottom clearfix">
+                        <time class="time">{{ currentDate }}</time>
+                        <el-button type="text" class="button">下载</el-button>
+                    </div>
+                </div>
+            </el-card>
+        </el-col>
+    </el-row>
+</div>
+<script>
+    new Vue({
+        el: '#v-main',
+        data: {
+            currentDate: '升级时间：2014年9月，版本3.2，适用于兼容客车标签'
+        }
+    });
+</script>
+</body>
+</html>

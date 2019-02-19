@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>机车追踪</title>
+    <link rel="stylesheet" href="../plugins/element-ui/element-ui.css">
+    <script src="../plugins/vue/vue.js"></script>
+    <script src="../plugins/element-ui/element-ui.js"></script>
+    <link rel="stylesheet" href="../css/plugins/animate/animate.css">
+</head>
+<body>
+<div class="animated fadeInUp" id="v-main">
+    <el-form :inline="true" :model="condition" class="demo-form-inline" size="small">
+        <el-row>
+            <el-col :span="24">
+                <el-form-item label-width="90px" label="车站">
+                    <el-select v-model="condition.field01" placeholder="车站">
+                        <el-option label="全选" value=""></el-option>
+                        <el-option v-for="(item,idx) in station" :label="item.label" :key="idx"
+                                   :value="item.value"></el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label-width="90px" label="AEI编号">
+                    <el-select v-model="condition.field02" placeholder="AEI编号">
+                        <el-option label="全选" value=""></el-option>
+                        <el-option v-for="(item,idx) in aeiCode" :label="item.label" :key="idx"
+                                   :value="item.value"></el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label-width="90px" label="机车车号">
+                    <el-input v-model="condition.field03" placeholder="机车车号"></el-input>
+                </el-form-item>
+            </el-col>
+            <el-col :span="24">
+                <el-form-item label-width="90px" label="开始时间">
+                    <el-date-picker v-model="condition.startTime" type="datetime" placeholder="选择日期时间">
+                    </el-date-picker>
+                </el-form-item>
+                <el-form-item label-width="90px" label="结束时间">
+                    <el-date-picker v-model="condition.endTime" type="datetime"
+                                    placeholder="选择日期时间">
+                    </el-date-picker>
+                </el-form-item>
+                <el-form-item label-width="90px" label="结果排序">
+                    <el-radio-group v-model="condition.sortItem">
+                        <el-radio label="1">通过时间</el-radio>
+                        <el-radio label="2">通过车站</el-radio>
+                    </el-radio-group>
+                </el-form-item>
+            </el-col>
+            <el-col :span="24">
+                <el-form-item label-width="90px" label="排序方式">
+                    <el-radio-group v-model="condition.sortType">
+                        <el-radio label="1">升序</el-radio>
+                        <el-radio label="2">降序</el-radio>
+                    </el-radio-group>
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" @click="onSubmit">查询</el-button>
+                </el-form-item>
+            </el-col>
+        </el-row>
+    </el-form>
+    <el-table :data="tableData" border stripe style="width: 100%">
+        <el-table-column prop="field01" label="报文名称" align="center"></el-table-column>
+        <el-table-column prop="field02" label="车站名称" align="center"></el-table-column>
+        <el-table-column prop="field03" label="AEI编号" align="center"></el-table-column>
+        <el-table-column prop="field04" label="车次" align="center"></el-table-column>
+        <el-table-column prop="field05" label="辆数" align="center"></el-table-column>
+        <el-table-column prop="field06" label="标签数" align="center"></el-table-column>
+        <el-table-column prop="field07" label="运行方向" align="center"></el-table-column>
+        <el-table-column prop="field08" label="过车时间" align="center"></el-table-column>
+    </el-table>
+    <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage2"
+                   :page-size="100" layout="total, prev, pager, next, jumper" :total="400">
+    </el-pagination>
+</div>
+<script>
+    new Vue({
+        el: '#v-main',
+        data: {
+            station: [{label: '重庆', value: 'cq'}, {label: '成都', value: 'cd'}],
+            aeiCode: [{label: '重庆', value: 'cq'}, {label: '成都', value: 'cd'}],
+            condition: {
+                field01: '',
+                field02: '',
+                field03: '',
+                startTime: '',
+                endTime: '',
+                sortItem: '1',
+                sortType: '1'
+            },
+            tableData: [{
+                field01: 'DXXF8086.108',
+                field02: '新乡',
+                field03: 8,
+                field04: 'H 86120',
+                field05: 23,
+                field06: 20,
+                field07: '上行',
+                field08: '2019-1-22 09:37:14'
+            }, {
+                field01: 'DXXF8086.108',
+                field02: '新乡',
+                field03: 8,
+                field04: 'H 86120',
+                field05: 23,
+                field06: 20,
+                field07: '上行',
+                field08: '2019-1-22 09:37:14'
+            }, {
+                field01: 'DXXF8086.108',
+                field02: '新乡',
+                field03: 8,
+                field04: 'H 86120',
+                field05: 23,
+                field06: 20,
+                field07: '上行',
+                field08: '2019-1-22 09:37:14'
+            }, {
+                field01: 'DXXF8086.108',
+                field02: '新乡',
+                field03: 8,
+                field04: 'H 86120',
+                field05: 23,
+                field06: 20,
+                field07: '上行',
+                field08: '2019-1-22 09:37:14'
+            }, {
+                field01: 'DXXF8086.108',
+                field02: '新乡',
+                field03: 8,
+                field04: 'H 86120',
+                field05: 23,
+                field06: 20,
+                field07: '上行',
+                field08: '2019-1-22 09:37:14'
+            }, {
+                field01: 'DXXF8086.108',
+                field02: '新乡',
+                field03: 8,
+                field04: 'H 86120',
+                field05: 23,
+                field06: 20,
+                field07: '上行',
+                field08: '2019-1-22 09:37:14'
+            }, {
+                field01: 'DXXF8086.108',
+                field02: '新乡',
+                field03: 8,
+                field04: 'H 86120',
+                field05: 23,
+                field06: 20,
+                field07: '上行',
+                field08: '2019-1-22 09:37:14'
+            }, {
+                field01: 'DXXF8086.108',
+                field02: '新乡',
+                field03: 8,
+                field04: 'H 86120',
+                field05: 23,
+                field06: 20,
+                field07: '上行',
+                field08: '2019-1-22 09:37:14'
+            }, {
+                field01: 'DXXF8086.108',
+                field02: '新乡',
+                field03: 8,
+                field04: 'H 86120',
+                field05: 23,
+                field06: 20,
+                field07: '上行',
+                field08: '2019-1-22 09:37:14'
+            }, {
+                field01: 'DXXF8086.108',
+                field02: '新乡',
+                field03: 8,
+                field04: 'H 86120',
+                field05: 23,
+                field06: 20,
+                field07: '上行',
+                field08: '2019-1-22 09:37:14'
+            }],
+            currentPage1: 1,
+            currentPage2: 2,
+            currentPage3: 3,
+            currentPage4: 4
+        },
+        methods: {
+            onSubmit: function () {
+                console.log(this.condition);
+            },
+            handleSizeChange: function (val) {
+                console.log(val);
+            },
+            handleCurrentChange: function (val) {
+                console.log(val);
+            }
+        }
+    })
+</script>
+</body>
+</html>

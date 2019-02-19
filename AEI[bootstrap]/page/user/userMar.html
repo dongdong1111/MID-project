@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>用户管理</title>
+    <link rel="stylesheet" href="../../plugins/element-ui/element-ui.css">
+    <script src="../../plugins/vue/vue.js"></script>
+    <script src="../../plugins/element-ui/element-ui.js"></script>
+    <link rel="stylesheet" href="../../css/plugins/animate/animate.css">
+</head>
+<body>
+<div class="animated fadeInUp" id="v-main">
+    <el-form :inline="true" :model="condition" class="demo-form-inline" size="small">
+        <el-row>
+            <el-col :span="24">
+                <el-form-item label-width="90px" label="用户名">
+                    <el-input v-model="condition.userName" placeholder="用户名"></el-input>
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" @click="onSubmit">查询</el-button>
+                </el-form-item>
+            </el-col>
+        </el-row>
+    </el-form>
+    <el-table :data="tableData" border stripe style="width: 100%">
+        <el-table-column prop="field01" label="真实姓名" width="200px" align="center"></el-table-column>
+        <el-table-column prop="field02" label="用户名" align="center"></el-table-column>
+        <el-table-column prop="field03" label="单位/部门" align="center"></el-table-column>
+        <el-table-column prop="field04" label="用户属性" align="center"></el-table-column>
+        <el-table-column prop="field05" label="注册时间" align="center"></el-table-column>
+        <el-table-column prop="field06" label="注销状态" align="center"></el-table-column>
+        <el-table-column fixed="right" label="操作" align="center" width="160">
+            <template slot-scope="scope">
+                <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+                <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+            </template>
+        </el-table-column>
+    </el-table>
+    <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage"
+                   :page-size="100" layout="total, prev, pager, next, jumper" :total="400">
+    </el-pagination>
+</div>
+<script>
+    new Vue({
+        el: '#v-main',
+        data: {
+            condition: {
+                userName: '张三'
+            },
+            tableData: [{
+                field01: '张三',
+                field02: 'zhangsan',
+                field03: '郑州北车辆段',
+                field04: '管理员',
+                field05: '2019-1-22 15:16:49',
+                field06: '已注销'
+            }, {
+                field01: '李四',
+                field02: 'lisi',
+                field03: '郑州铁路局',
+                field04: '管理员',
+                field05: '2019-1-22 15:16:49',
+                field06: '已注销'
+            }, {
+                field01: '王五',
+                field02: 'wangwu',
+                field03: '郑州铁路局',
+                field04: '普通用户',
+                field05: '2019-1-22 15:16:49',
+                field06: '已注销'
+            }, {
+                field01: '张三',
+                field02: 'zhangsan',
+                field03: '测试部门',
+                field04: '普通用户',
+                field05: '2019-1-22 15:16:49',
+                field06: '已注销'
+            }, {
+                field01: '张三',
+                field02: 'zhangsan',
+                field03: '测试部门',
+                field04: '管理员',
+                field05: '2019-1-22 15:16:49',
+                field06: '已注销'
+            }, {
+                field01: '张三',
+                field02: 'zhangsan',
+                field03: '测试部门',
+                field04: '管理员',
+                field05: '2019-1-22 15:16:49',
+                field06: '已注销'
+            }, {
+                field01: '张三',
+                field02: 'zhangsan',
+                field03: '测试部门',
+                field04: '管理员',
+                field05: '2019-1-22 15:16:49',
+                field06: '已注销'
+            }, {
+                field01: '张三',
+                field02: 'zhangsan',
+                field03: '测试部门',
+                field04: '管理员',
+                field05: '2019-1-22 15:16:49',
+                field06: '已注销'
+            }, {
+                field01: '张三',
+                field02: 'zhangsan',
+                field03: '测试部门',
+                field04: '管理员',
+                field05: '2019-1-22 15:16:49',
+                field06: '已注销'
+            }, {
+                field01: '张三',
+                field02: 'zhangsan',
+                field03: '测试部门',
+                field04: '管理员',
+                field05: '2019-1-22 15:16:49',
+                field06: '已注销'
+            },],
+            currentPage: 2
+        },
+        methods: {
+            onSubmit: function () {
+                this.$message('查询操作，你输入了' + this.condition.userName);
+            },
+            handleEdit: function (index, row) {
+                parent.addTab({
+                    id: new Date().getTime(),
+                    title: '编辑用户',
+                    url: 'page/user/editUser.html?id=' + index
+                });
+            },
+            handleDelete: function (index, row) {
+                this.$message('删除行：' + index + '，数据：' + JSON.stringify(row));
+            },
+            handleSizeChange: function (val) {
+                console.log(val);
+            },
+            handleCurrentChange: function (val) {
+                console.log(val);
+            }
+        }
+    })
+</script>
+</body>
+</html>
